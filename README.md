@@ -1,7 +1,10 @@
 <h1 align="center">WeEat 🍜 — Your food memory, searchable</h1>
 
+
+
+
 <p align="center">
-  <img src="assets/banner.png" alt="WeEat banner" width="100%">
+  <img width="180" height="180" alt="image" src="https://github.com/user-attachments/assets/c6037082-d3aa-4cb4-91f2-bf750f8dc6bd" />
 </p>
 
 <p align="center">
