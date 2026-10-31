@@ -4,12 +4,13 @@
 
 Tiến độ bước 31/10: đã thêm `mapGeometry.ts`, `pinDistance.ts`, `links.ts`, `mapOrigin.ts` đúng import/export của locked tests. Năm file test tương ứng: **37/37 xanh**. `npm run typecheck` còn đỏ do nhiều test ngoài bước này import module chưa tồn tại (`mockData`, `mockApi`, server Ask AI, v.v.); các module vừa thêm được kiểm tra TypeScript riêng. Chưa nối bốn helper vào UI/live flow.
 
-Tiến độ server/auth: đã có `server/config.mjs`, `db.mjs`, `session.mjs`, `index.mjs`, Google OAuth xác minh email qua tokeninfo, Profile GET/PATCH và Categories từ DB; live client dùng cookie cùng origin và khôi phục `/api/auth/me`. Unit config/session **17/17 xanh**, smoke chọn lọc tại cổng 32031 **7/7 xanh**, PATCH Home giữ nguyên dữ liệu trả 200; đã tắt server kiểm tra. `npx vite build` xanh. `npm run build` vẫn bị chặn bởi lỗi typecheck baseline nói trên.
+Tiến độ server/auth: đã có `server/config.mjs`, `db.mjs`, `session.mjs`, `index.mjs`, Google OAuth xác minh email qua tokeninfo, Profile GET/PATCH và Categories từ DB; live client dùng cookie cùng origin và khôi phục `/api/auth/me`. Unit config/session **17/17 xanh**, smoke chọn lọc tại cổng 32031 **7/7 xanh**, PATCH Home giữ nguyên dữ liệu trả 200; đã tắt server kiểm tra. `npm run build` kiểm tra TypeScript của ứng dụng qua `tsconfig.build.json`; `npm run typecheck` vẫn kiểm tra cả locked tests và còn đỏ vì module của các bước sau chưa có. Sửa chuẩn hóa đường dẫn `dist/` để server phục vụ được trang `/` và assets sau build.
 
 Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec 10 > spec 07 > spec 03 > API contract cũ. Đặc biệt: cookie phiên thay Firebase token; DB chỉ có `is_saved` boolean (API trả 0/1), không dùng `is_save`; Map lọc Library ở client, không gọi `/api/map/places`; Along route lọc bằng ellipse dù vẫn vẽ tuyến xe máy thật; card Ask AI lấy từ event `references` do server chọn theo marker `[[n]]` và quy tắc fallback của spec 11. Ảnh là chuẩn bố cục; số lượng quán, ảnh món và vị trí pin là dữ liệu live nên có thể khác.
 
 ## Nền tảng
 
+- [x] Tách TypeScript check cho build (`typecheck:app`) khỏi check toàn repo (`typecheck`) để `npm ci && npm run build` chạy được trong khi các locked tests tương lai vẫn còn import module chưa triển khai.
 - [x] Giữ mock mode và nối live mode với server cùng origin: `apiClient.ts` dùng `credentials: "include"` và cookie thay Bearer token; build production vẫn ở live mode.
 - [x] Thêm adapter Google OAuth phía client (`liveAuth.ts`), khôi phục phiên bằng `/api/auth/me`, logout bằng `/api/auth/logout`; onboarding hiện có dẫn người mới tới Profile chọn Home. Server lấy `user_id` từ session.
 - [ ] Bổ sung script `migrate:ask`, `reindex`, `ask:log`; cài `maplibre-gl`. `pg` và script `start` đã có. Secret chỉ ở server env, không đưa vào `VITE_*`/Git. Server đã phục vụ `dist/` và SPA fallback; còn `/covers/` và cấu hình deploy trong workspace.

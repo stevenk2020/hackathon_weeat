@@ -7,7 +7,7 @@ import { config, missingConfig, originFor } from './config.mjs';
 import { pool, query } from './db.mjs';
 import { cookie, readCookie, seal, unseal } from './session.mjs';
 
-const dist = fileURLToPath(new URL('../dist/', import.meta.url));
+const dist = resolve(fileURLToPath(new URL('../dist/', import.meta.url)));
 const SESSION = 'weeat_session';
 const OAUTH = 'weeat_oauth';
 const SESSION_SECONDS = 7 * 24 * 60 * 60;
