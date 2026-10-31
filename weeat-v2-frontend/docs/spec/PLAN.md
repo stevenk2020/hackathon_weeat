@@ -55,6 +55,7 @@ Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec
 - [x] Textarea nhiều link dùng `extractLinks`, giới hạn 10, xử lý tuần tự, hiển thị `processingProgress`, kết quả cộng dồn, lỗi và Retry riêng từng link. Paste link có thông báo riêng khi không thấy URL hoặc quyền clipboard bị từ chối.
 - [x] `?links=`, `?text=`, `?url=` từ share target điền ô, xóa query, không tự analyze; giữ draft qua Google sign-in bằng sessionStorage. Guest/onboarding vẫn dùng prompt hiện có.
 - [x] Video mẫu live từ `/api/samples`, chạm mở video gốc; Recent từ Library thật với badge giá, địa chỉ, ShopeeFood. Save/Unsave trên card trích xuất live và Save all dùng API; lỗi URL hiển thị đúng `urlInvalid`.
+- [x] Discover nhận link bài ảnh TikTok `/@user/photo/{id}` cả khi có query tracking; `extractLinks` khử trùng theo ID và server Analyze đã chuẩn hóa URL ảnh, nên link được đưa vào luồng scan như video.
 - [x] Manifest/icon và iPhone meta/install banner từ assets/spec để Android share-to-WeEat và PWA hoạt động.
 - [ ] Cải thiện trạng thái rỗng/loading của video mẫu live và hiển thị riêng metadata nguồn cho từng link khi phân tích nhiều video. Cover TikTok upstream hiện trả 404 với một số ảnh cũ; trang dùng ảnh dự phòng.
 
