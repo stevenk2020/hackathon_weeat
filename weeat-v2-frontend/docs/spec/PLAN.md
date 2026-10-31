@@ -58,6 +58,16 @@ Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec
 - [x] Manifest/icon và iPhone meta/install banner từ assets/spec để Android share-to-WeEat và PWA hoạt động.
 - [ ] Cải thiện trạng thái rỗng/loading của video mẫu live và hiển thị riêng metadata nguồn cho từng link khi phân tích nhiều video. Cover TikTok upstream hiện trả 404 với một số ảnh cũ; trang dùng ảnh dự phòng.
 
+### Ảnh bìa TikTok thật (bước tiếp theo)
+
+**Hiện trạng đã kiểm tra:** 386 dòng TikTok của 72 video trong DB đang dùng đều có `thumbnail_url` dạng cover từ crawl service; thử 3 cover đại diện có 1 ảnh `200 image/jpeg`, 2 ảnh `404`. `server/places.mjs` hiện proxy `/covers/*` sang crawl service và đổi `404` thành `/images/pho-scene.jpg`, nên người dùng thấy cùng một ảnh món mẫu. UI cũng dùng ảnh này khi `thumbnail_url` rỗng. `deploy/watch.mjs` chỉ thay `dist/` khi build, còn `deploy/compose.yaml` mount workspace vào container; ảnh cần nằm ngoài `dist/` và được giữ qua restart/build.
+
+- [ ] Tạo kho cover thuộc app (thư mục dữ liệu bền vững, không commit ảnh và không nằm trong `dist/`) cùng bảng riêng `weeat_video_covers` khóa `(platform, video_id)` để lưu tên file, nguồn, thời điểm kiểm tra và trạng thái. Không sửa/xóa dữ liệu quán nguồn. Dùng tên file tạo từ video ID đã kiểm tra hoặc hash; chỉ nhận `image/jpeg|png|webp`, giới hạn dung lượng, ghi file tạm rồi đổi tên atomically. Có backup/volume cho thư mục ảnh khi triển khai.
+- [ ] Với video TikTok mới: khi crawl trả ảnh bìa, server tải và lưu ngay một lần theo video ID trước khi trả Analyze. Nếu crawl chỉ trả link cover tạm hoặc không có ảnh, thử lấy ảnh từ metadata/frame qua chính luồng crawl; kiểm tra nguồn thực tế trước khi chọn cách lấy. Không để trình duyệt gọi crawl service hoặc URL ảnh TikTok hết hạn trực tiếp.
+- [ ] Với 72 video cũ: chạy job phục hồi idempotent, mỗi video một lần, ưu tiên cover upstream còn sống; với `404` thử lấy lại từ link video/metadata hoặc frame mà crawl service còn cung cấp, có giới hạn tốc độ và báo cáo số ảnh lấy được/không lấy được. Không gọi lại phân tích AI chỉ để lấy ảnh. Video đã bị gỡ hoặc không còn nguồn ảnh thật sẽ được đánh dấu không khả dụng, không gán ảnh của video khác.
+- [ ] `/covers/*` phục vụ file đã lưu trước; API Analyze/Library/Samples trả đường dẫn cùng origin của ảnh đã xác nhận tồn tại. Dùng một component ảnh chung cho Discover (sample, nguồn, Recent), Library, Details, Map và Ask AI: nếu ảnh lỗi thì hiện placeholder trung tính có nhãn TikTok, không hiện ảnh món mẫu như thể là ảnh thật. Mock mode giữ fixtures hiện có.
+- [ ] Tiêu chí xong: cover mới và cover cũ phục hồi được trả `200` với `Content-Type: image/*`, vẫn còn sau build/restart; link mất ảnh hiện placeholder rõ ràng, không có icon ảnh vỡ, không lặp request lỗi; trình duyệt chỉ tải ảnh cùng origin. Kiểm tra unit mapping/proxy, một lượt live cho mỗi nhánh ảnh có/không có, chụp Discover và Library ở 390/1280 px cạnh ảnh mẫu.
+
 ## Library
 
 - [x] `/api/library` chỉ tải saved của user; search server và client chỉ tên/món/địa chỉ không dấu; category gửi `cate_id` đến server. Clear filters xóa query, platform, category và sort. Edit đồng bộ card từ PATCH; Unsave chỉ đổi `is_saved`.
