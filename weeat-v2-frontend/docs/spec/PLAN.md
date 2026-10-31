@@ -4,22 +4,25 @@
 
 Tiến độ bước 31/10: đã thêm `mapGeometry.ts`, `pinDistance.ts`, `links.ts`, `mapOrigin.ts` đúng import/export của locked tests. Năm file test tương ứng: **37/37 xanh**. `npm run typecheck` còn đỏ do nhiều test ngoài bước này import module chưa tồn tại (`mockData`, `mockApi`, server Ask AI, v.v.); các module vừa thêm được kiểm tra TypeScript riêng. Chưa nối bốn helper vào UI/live flow.
 
+Tiến độ server/auth: đã có `server/config.mjs`, `db.mjs`, `session.mjs`, `index.mjs`, Google OAuth xác minh email qua tokeninfo, Profile GET/PATCH và Categories từ DB; live client dùng cookie cùng origin và khôi phục `/api/auth/me`. Unit config/session **17/17 xanh**, smoke chọn lọc tại cổng 32031 **7/7 xanh**, PATCH Home giữ nguyên dữ liệu trả 200; đã tắt server kiểm tra. `npx vite build` xanh. `npm run build` vẫn bị chặn bởi lỗi typecheck baseline nói trên.
+
 Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec 10 > spec 07 > spec 03 > API contract cũ. Đặc biệt: cookie phiên thay Firebase token; DB chỉ có `is_saved` boolean (API trả 0/1), không dùng `is_save`; Map lọc Library ở client, không gọi `/api/map/places`; Along route lọc bằng ellipse dù vẫn vẽ tuyến xe máy thật; card Ask AI lấy từ event `references` do server chọn theo marker `[[n]]` và quy tắc fallback của spec 11. Ảnh là chuẩn bố cục; số lượng quán, ảnh món và vị trí pin là dữ liệu live nên có thể khác.
 
 ## Nền tảng
 
-- [ ] Giữ mock mode chạy độc lập để phục vụ các test hiện có, đồng thời nối live mode với server cùng origin. `src/services/apiClient.ts` hiện chặn `base` rỗng và gửi Bearer token; cần `credentials: "include"`, cookie session, timeout và thông báo lỗi đúng contract. Giữ build production luôn ở live mode.
-- [ ] Thêm adapter Google OAuth phía client (`liveAuth.ts`), khôi phục phiên bằng `/api/auth/me`, logout bằng `/api/auth/logout`, đồng bộ trạng thái guest → onboarding → ready; redirect người mới tới Profile để chọn Home có tọa độ. Không nhận `user_id` từ browser cho thao tác dữ liệu.
-- [ ] Bổ sung cấu hình tên biến môi trường và script `start`, `migrate:ask`, `reindex`, `ask:log`; cài `pg`, `maplibre-gl`. Secret chỉ ở server env, không đưa vào `VITE_*`/Git. Tạo server phục vụ `dist/`, SPA fallback và `/covers/`; chuẩn bị cấu hình deploy trong workspace, không tác động production ở bước này.
+- [x] Giữ mock mode và nối live mode với server cùng origin: `apiClient.ts` dùng `credentials: "include"` và cookie thay Bearer token; build production vẫn ở live mode.
+- [x] Thêm adapter Google OAuth phía client (`liveAuth.ts`), khôi phục phiên bằng `/api/auth/me`, logout bằng `/api/auth/logout`; onboarding hiện có dẫn người mới tới Profile chọn Home. Server lấy `user_id` từ session.
+- [ ] Bổ sung script `migrate:ask`, `reindex`, `ask:log`; cài `maplibre-gl`. `pg` và script `start` đã có. Secret chỉ ở server env, không đưa vào `VITE_*`/Git. Server đã phục vụ `dist/` và SPA fallback; còn `/covers/` và cấu hình deploy trong workspace.
 - [ ] Duy trì giao diện responsive theo ảnh live: khung hẹp của Discover/Profile, lưới Library, bản đồ và dải card ngang, nav dưới ở 390/820/1280 px. Chuyển copy sang i18n EN/VI đúng `specs/i18n-delta.diff`; giữ target chạm đủ lớn và font input 16 px trên điện thoại. Khi sửa UI ở các bước sau, xem screenshot cạnh ảnh live.
 
 ## Server
 
-- [ ] Tạo `server/index.mjs`, `config.mjs`, `db.mjs`, `session.mjs`, `google.mjs` bằng Node ES modules: `/api/health`, Google OAuth và cookie `weeat_session` ký/HMAC HttpOnly, xác minh Origin cho non-GET, lỗi JSON `{error:{code,message}}`, `/api/*` chưa triển khai trả 501. Chỉ dùng DB trong `.env.local`.
+- [x] Tạo Node server không framework (`server/index.mjs`, `config.mjs`, `db.mjs`, `session.mjs`): `/api/health`, Google OAuth, cookie `weeat_session` ký/HMAC HttpOnly, xác minh Origin cho non-GET, lỗi JSON `{error:{code,message}}`, `/api/*` chưa triển khai trả 501. Chỉ dùng DB trong `.env.local`.
+- [x] Tạo `/api/profile` GET/PATCH cho Home label + tọa độ trong `user_dim`, `/api/categories` từ `cate_dim`. Query có tham số; chỉ test user được dùng trong smoke/PATCH kiểm tra.
 - [ ] Tạo `places.mjs` và mapping DB → API: `/api/categories` từ `cate_dim`; `/api/analyze`, `/api/samples`; `/api/library` với `q`, `cate_id`; PUT/DELETE save; PATCH edit; GET/PATCH profile. Khóa bản ghi theo `(user_id, video_id, restaurant_id)` với user lấy từ session; `is_saved` trong DB là boolean, API 0/1. Không đọc/ghi cột `is_save` hoặc sửa cấu trúc các bảng nguồn bị cấm.
 - [ ] Analyze theo thứ tự DB trước: tìm video đã có của bất kỳ user nào, chép các quán sang user hiện tại nhưng không chép `user_note` hay saved state của người khác; chỉ video chưa có mới gọi crawl service. Chuẩn hóa link/ID; insert idempotent với `doc_id` ổn định và các cột NOT NULL (`has_conflict`, `incomplete`), giữ save khi analyze lại. Ánh xạ lỗi video dài, non-food, giới hạn, upstream; video không có quán trả danh sách rỗng. Proxy thumbnail TikTok qua `/covers/`.
 - [ ] Save/Unsave phải idempotent và không xóa bản ghi khi unsave. PATCH chỉ cập nhật field được sửa; địa chỉ đổi phải có tọa độ và nguồn geocode được chọn; giới hạn ghi chú theo server. Search Library chỉ khớp tên quán, món, địa chỉ và không dấu; bỏ title/transcript/comments/note khỏi điều kiện. Trả category thật, không hardcode sáu loại.
-- [ ] Profile lưu email từ OAuth, tên và Home label + lat/lng; chỉ cho trạng thái ready khi Home hợp lệ. `/api/samples` trả hai video gần nhất theo spec. Ghi các dữ liệu transcript/comments/giá/link ShopeeFood đúng nguồn để Details và card không mất thông tin; chỉ bật ShopeeFood cho URL cửa hàng hợp lệ.
+- [ ] Sau phần Profile/Home đã có, làm `/api/samples` trả hai video gần nhất theo spec; ghi transcript/comments/giá/link ShopeeFood đúng nguồn để Details và card không mất thông tin; chỉ bật ShopeeFood cho URL cửa hàng hợp lệ.
 - [ ] Giữ đối chiếu API ở spec 10 trong các bước triển khai: `/api/map/places` không sử dụng; `/api/ask` là fallback còn `/api/ask/stream` là luồng chính. Cập nhật tài liệu API cũ khi API thực tế được nối, tránh đem lại các quyết định đã bị spec 10 thay thế.
 
 ## Discover
