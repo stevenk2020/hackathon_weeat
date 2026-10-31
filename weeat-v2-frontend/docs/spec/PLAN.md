@@ -1,6 +1,8 @@
 # Kế hoạch đưa WeEat V2 từ mock lên bản chạy thật
 
-Đối chiếu ngày 31/10/2026: đã đọc `AGENTS.md`, `specs/10_FINAL_DELTA_SPEC.md`, `specs/03_TARGET_SPEC.md`, `docs/API_CONTRACT.md`, spec Ask AI 07/11 và 15 ảnh trong `reference-screens-live/` (390, 820, 1280 px); so với code hiện tại trong `src/`. **Bước này chỉ lập kế hoạch, chưa sửa code.** Code hiện có SPA React, các trang, dữ liệu mock, một số lời gọi API và khung giao diện. Chưa có thư mục `server/`; live mode hiện chưa thể đăng nhập, tra địa chỉ, xem Map hoặc dùng Ask AI đầy đủ.
+Đối chiếu ngày 31/10/2026: đã đọc `AGENTS.md`, `specs/10_FINAL_DELTA_SPEC.md`, `specs/03_TARGET_SPEC.md`, `docs/API_CONTRACT.md`, spec Ask AI 07/11 và 15 ảnh trong `reference-screens-live/` (390, 820, 1280 px); so với code hiện tại trong `src/`. Code hiện có SPA React, các trang, dữ liệu mock, một số lời gọi API và khung giao diện. Chưa có thư mục `server/`; live mode hiện chưa thể đăng nhập, tra địa chỉ, xem Map hoặc dùng Ask AI đầy đủ.
+
+Tiến độ bước 31/10: đã thêm `mapGeometry.ts`, `pinDistance.ts`, `links.ts`, `mapOrigin.ts` đúng import/export của locked tests. Năm file test tương ứng: **37/37 xanh**. `npm run typecheck` còn đỏ do nhiều test ngoài bước này import module chưa tồn tại (`mockData`, `mockApi`, server Ask AI, v.v.); các module vừa thêm được kiểm tra TypeScript riêng. Chưa nối bốn helper vào UI/live flow.
 
 Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec 10 > spec 07 > spec 03 > API contract cũ. Đặc biệt: cookie phiên thay Firebase token; DB chỉ có `is_saved` boolean (API trả 0/1), không dùng `is_save`; Map lọc Library ở client, không gọi `/api/map/places`; Along route lọc bằng ellipse dù vẫn vẽ tuyến xe máy thật; card Ask AI lấy từ event `references` do server chọn theo marker `[[n]]` và quy tắc fallback của spec 11. Ảnh là chuẩn bố cục; số lượng quán, ảnh món và vị trí pin là dữ liệu live nên có thể khác.
 
@@ -22,7 +24,9 @@ Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec
 
 ## Discover
 
-- [ ] Đổi input một URL hiện tại thành textarea nhiều link: tách dấu phẩy/dòng mới/caption chia sẻ, hỗ trợ TikTok và YouTube Shorts/`youtu.be`, chuẩn hóa và khử trùng, tối đa 10 link; xử lý tuần tự, hiển thị `processingProgress`, kết quả cộng dồn, lỗi và Retry riêng từng link. Giữ nút Paste link với trạng thái clipboard bị từ chối.
+- [x] Tạo `extractLinks` tách URL khỏi caption, thêm `https://`, giữ thứ tự/URL đầu tiên và khử trùng theo video. Helper trả mọi link; màn hình Discover áp giới hạn 10 theo locked test.
+
+- [ ] Đổi input một URL hiện tại thành textarea nhiều link, dùng `extractLinks` và giới hạn 10 link tại màn hình; xử lý tuần tự, hiển thị `processingProgress`, kết quả cộng dồn, lỗi và Retry riêng từng link. Giữ nút Paste link với trạng thái clipboard bị từ chối.
 - [ ] Hỗ trợ `?links=`, `?text=`, `?url=` từ share target: điền ô, xóa query khỏi URL, không tự analyze; giữ link qua đăng nhập bằng sessionStorage. Guest/onboarding thấy prompt phù hợp.
 - [ ] Nối sample videos từ `/api/samples` cả trong live mode (hiện chỉ render ở mock); chạm sample mở video gốc. Recent Discoveries dùng quán đã lưu thật và cover proxy; trạng thái loading, không có quán, lỗi URL, video dài, non-food, API lỗi, Save từng quán/Save all hiển thị rõ. Bố cục hero, sample, recent theo ảnh live.
 - [ ] Thêm manifest, icon và iPhone meta/install banner từ assets/spec để Android share-to-WeEat và PWA hoạt động; không tự khởi chạy khi nhận link.
@@ -41,9 +45,11 @@ Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec
 
 ## Map
 
+- [x] Tạo `mapGeometry.ts` (distance, polyline, vòng tròn, bounds, ellipse cùng hệ phẳng cục bộ) và `pinDistance.ts` theo locked tests. Tạo `mapOrigin.ts` lưu/đọc From gần nhất theo user, bỏ qua localStorage lỗi.
+
 - [ ] Giữ bản đồ SVG mock cho test; live mode hiện chỉ hiện `mapBlocked`, cần `GoongMap.tsx` lazy load MapLibre. Lấy `style_url`/`key_tag` từ `/api/map/config`; đổi key một lần khi tile bị 401/403/429. Một map instance mỗi lần vào trang; pin GeoJSON có cluster, số, tên + khoảng cách (thường chỉ từ zoom 15), hover/selected label và các lớp vùng/route đúng thứ tự. Hình bản đồ, vòng tròn nét đứt, điều khiển zoom và dải card theo ảnh live.
 - [ ] Map dùng Library đã load trong trình duyệt; Radius mặc định 5 km. Along route có bán kính riêng: live mặc định 3 km, mock 5 km; chip 1/3/5/10, `?radius=` được snap. `?restaurant=<restaurantKey>` mở Along route với To là quán. Empty state "Expand to 5 km" đặt cả hai bán kính về 5.
-- [ ] Tạo `mapGeometry.ts`: Radius là khoảng cách chim bay; Along route lọc và vẽ ellipse hai tiêu điểm theo `|PA|+|PB| ≤ |AB|+2r`, cùng hệ tọa độ mét cho nét vẽ và phép lọc; thiếu To/A≈B dùng hình tròn. Category lọc pin, count, card cùng lúc; giữ quán đang chọn và báo số quán thiếu tọa độ.
+- [ ] Nối `mapGeometry.ts` vào trang live: Radius là khoảng cách chim bay; Along route lọc và vẽ ellipse hai tiêu điểm theo `|PA|+|PB| ≤ |AB|+2r`; thiếu To/A≈B dùng hình tròn. Category lọc pin, count, card cùng lúc; giữ quán đang chọn và báo số quán thiếu tọa độ.
 - [ ] Tạo `/api/map/route` gọi Goong Direction `vehicle=bike`, cache 24 giờ; vẽ đường thật và tóm tắt km/phút, fit camera cả route lẫn ellipse. Nếu route lỗi/rỗng, báo rõ và hiện quán quanh From, không vẽ đường giả; cảnh báo khi hai điểm cách nhau >40 km.
 - [ ] From/To marker kéo được: vùng/danh sách cập nhật trong lúc kéo, dragend reverse-geocode và tính route lại; chạm nền map trong Along route đặt To, chạm pin chọn quán. Pin/card dùng chung `getPinDistanceLabel` (~km từ From, To dùng km route khi có); card có số pin. Chạm thân card chọn pin và cuộn tới map khi map đang khuất; nút Map trên card ở mọi trang mở Along route với To là quán.
 - [ ] Ask AI location đã xác nhận có thể lưu làm From gần nhất theo user; địa chỉ Home mới hơn được ưu tiên. Map vẫn có From mặc định từ Profile khi chưa có location chat.
@@ -60,6 +66,6 @@ Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec
 
 - [ ] Đồng bộ copy EN/VI, error messages, placeholder To, số lượng/khoảng cách và thông báo route/địa chỉ theo spec; `check:i18n` cần chạy xanh ở bước sửa UI. Kiểm tra `?auth_error=` để người dùng thấy lỗi Google sign-in.
 - [ ] Details hiển thị transcript, highlights comments, thông tin nguồn/giá/địa chỉ thật; không suy ra link đặt món chỉ vì có URL tìm kiếm. Ảnh thiếu dùng fallback. Giữ accessibility của input, drawer, nút và trạng thái lỗi.
-- [ ] Sau mỗi bước code sau này: cập nhật file này, chạy test theo từng file liên quan, đối chiếu screenshot UI ở 390/820/1280 px; chỉ chạy cả suite cuối cùng. Không sửa locked tests, không chạy loop dịch vụ trả phí. Bước hiện tại: chỉ lập tài liệu/kế hoạch, **0 test chạy** vì chưa sửa implementation.
+- [ ] Sau mỗi bước code sau này: cập nhật file này, chạy test theo từng file liên quan, đối chiếu screenshot UI ở 390/820/1280 px; chỉ chạy cả suite cuối cùng. Không sửa locked tests, không chạy loop dịch vụ trả phí.
 
 **Tiếp theo:** làm nền tảng/server auth + API và DB mapping trước; sau đó Discover/Library/Profile/địa chỉ; tiếp Map; cuối cùng Ask AI và polish theo ảnh/test. Mỗi bước triển khai là một commit riêng.
