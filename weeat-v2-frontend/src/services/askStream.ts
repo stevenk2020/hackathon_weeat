@@ -2,6 +2,8 @@ import { config } from './config';
 import { ServiceError } from './errors';
 import type { Reference } from '../types';
 
+export interface AskLocation { label: string; latitude?: number; longitude?: number; source: 'current'|'home'|'autocomplete'|'typed' }
+
 export type AskStreamEvent =
   | { type: 'session'; session_id: string }
   | { type: 'status'; state: string }
@@ -36,7 +38,7 @@ function parseEvent(name: string, value: unknown): AskStreamEvent | null {
 }
 
 export async function streamAsk(
-  input: { message: string; session_id?: string },
+  input: { message: string; session_id?: string; location?: AskLocation },
   onEvent: (event: AskStreamEvent) => void,
   signal?: AbortSignal,
 ): Promise<void> {

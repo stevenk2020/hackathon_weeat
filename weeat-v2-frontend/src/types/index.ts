@@ -8,7 +8,7 @@ export interface Category { cate_id: number; cate_name_en: string; cate_name_vn:
 export interface Address { id: string; label: string; latitude: number; longitude: number; provider: 'mock'|'api'; source?: 'goong'|'vietmap' }
 export interface Reference { video_id: string; restaurant_id: string; doc_id?: string; video_url?: string }
 export interface AskResponse { session_id: string; answer: string; references: Reference[]; demo?: { key: string; count?: number; amount?: string; text?: string; notes?: string } }
-export interface ChatMessage { id: string; role: 'user'|'assistant'; content: string; created_at: string; references?: Reference[]; demo?: AskResponse['demo'] }
+export interface ChatMessage { id: string; role: 'user'|'assistant'; content: string; created_at: string; references?: Reference[]; ui?: { location_prompt?: boolean; suggestions?: string[] }; demo?: AskResponse['demo'] }
 export interface ChatSession { id: string; uid: string; title: string; created_at: string; updated_at: string; messages: ChatMessage[] }
 export interface Snapshot { profile: Profile; restaurants: Restaurant[]; videos: SourceVideo[]; sessions: ChatSession[]; activeSession: string|null }
 export interface Analysis { video: SourceVideo; restaurants: Restaurant[] }

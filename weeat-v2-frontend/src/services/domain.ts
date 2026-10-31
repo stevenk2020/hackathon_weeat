@@ -12,7 +12,7 @@ export function supportedUrl(raw: string) {
   const host = u.hostname.toLowerCase();
   const yt = ['youtube.com','www.youtube.com','m.youtube.com'].includes(host) && /^\/shorts\/[\w-]+\/?$/.test(u.pathname);
   const ytShort = ['youtu.be','www.youtu.be'].includes(host) && /^\/[\w-]{11}\/?$/.test(u.pathname);
-  const tt = ['tiktok.com','www.tiktok.com'].includes(host) && /^\/@[^/]+\/video\/\d+\/?$/.test(u.pathname);
+  const tt = ['tiktok.com','www.tiktok.com','m.tiktok.com'].includes(host) && /^\/@[^/]+\/(?:video|photo)\/\d+\/?$/.test(u.pathname);
   const short = ['vm.tiktok.com','vt.tiktok.com'].includes(host) && /^\/[a-z0-9]+\/?$/i.test(u.pathname);
   if (!yt && !ytShort && !tt && !short) throw new ServiceError('urlUnsupported');
   return { url: u.href, platform: yt || ytShort ? 'youtube' as const : 'tiktok' as const, id: u.pathname.split('/').filter(Boolean).at(-1)! };

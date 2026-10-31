@@ -8,6 +8,7 @@ import { identity } from '../services/domain';
 import { decodePolyline, distanceKm, isInsideEllipse, type LatLng } from '../services/mapGeometry';
 import { getPinDistanceLabel } from '../services/pinDistance';
 import { scrollToMap } from '../services/scrollToMap';
+import { readMapOrigin } from '../services/mapOrigin';
 import { request } from '../services/apiClient';
 import { reverseAddress, resolveAddress, searchAddresses } from '../services/locationService';
 import { AddressPicker } from '../components/AddressPicker';
@@ -40,8 +41,9 @@ export default function LiveFoodMap() {
   const homeAddress = home?.user_address && Number.isFinite(home.user_lat) && Number.isFinite(home.user_long)
     ? { id: 'home', label: home.user_address, latitude: home.user_lat!, longitude: home.user_long!, provider: 'api' as const }
     : null;
-  const [fromText, setFromText] = useState(homeAddress?.label || '');
-  const [from, setFrom] = useState<Address | null>(homeAddress);
+  const recentOrigin = app.user ? readMapOrigin(app.user.uid) : undefined;
+  const [fromText, setFromText] = useState(recentOrigin?.label || homeAddress?.label || '');
+  const [from, setFrom] = useState<Address | null>(recentOrigin || homeAddress);
   const [toText, setToText] = useState('');
   const [to, setTo] = useState<Address | null>(null);
   const [dragFrom, setDragFrom] = useState<LatLng | null>(null);
@@ -248,7 +250,9 @@ export default function LiveFoodMap() {
       <GoongMap from={origin} to={routeOpen ? destination : null} fitFrom={committedOrigin}
         fitTo={routeOpen ? committedDestination : null} ellipse={routeOpen && !routeFailed} routeMode={routeOpen}
         route={routeOpen && !dragFrom && !dragTo ? route?.points : undefined}
-        radiusKm={activeRadius} places={mapPlaces} selectedKey={selected} onSelect={select}
+        radiusKm={activeRadius} places={mapPlaces} selectedKey={selected}
+        onSelect={key => { const place = locatedEntries.find(row => identity(row) === key);
+          if (place) setRestaurantDestination(place); }}
         onPointMove={movePoint} onMapClick={point => commitPoint('to', point)}/>
     </Suspense></div>
     {routeOpen && route && !dragFrom && !dragTo && <div className="route-summary" data-testid="route-summary">

@@ -82,7 +82,7 @@ function addLayers(map: MapLibreMap) {
     layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-font': ['Roboto Medium'], 'text-size': 12 },
     paint: { 'text-color': '#fff' } });
   map.addLayer({ id: 'places-point', type: 'circle', source: 'places', filter: ['!', ['has', 'point_count']],
-    paint: { 'circle-color': '#294d3b', 'circle-radius': 13, 'circle-stroke-color': '#fff', 'circle-stroke-width': 2 } });
+    paint: { 'circle-color': '#197687', 'circle-radius': 13, 'circle-stroke-color': '#fff', 'circle-stroke-width': 2 } });
   map.addLayer({ id: 'places-num', type: 'symbol', source: 'places', filter: ['!', ['has', 'point_count']],
     layout: { 'text-field': ['to-string', ['get', 'number']], 'text-font': ['Roboto Medium'], 'text-size': 10 },
     paint: { 'text-color': '#fff' } });
@@ -108,7 +108,7 @@ function addLayers(map: MapLibreMap) {
     layout: { 'line-join': 'round', 'line-cap': 'round' },
     paint: { 'line-color': '#e84f13', 'line-width': 6 } });
   map.addLayer({ id: 'selected-point', type: 'circle', source: 'selected-place',
-    paint: { 'circle-color': '#ff7224', 'circle-radius': 15, 'circle-stroke-color': '#fff', 'circle-stroke-width': 3 } });
+    paint: { 'circle-color': '#0e5b6a', 'circle-radius': 15, 'circle-stroke-color': '#fff', 'circle-stroke-width': 3 } });
   map.addLayer({ id: 'selected-num', type: 'symbol', source: 'selected-place',
     layout: { 'text-field': ['to-string', ['get', 'number']], 'text-font': ['Roboto Medium'], 'text-size': 11 },
     paint: { 'text-color': '#fff' } });
@@ -189,25 +189,26 @@ export function GoongMap(props: Props) {
             }).catch(() => { if (!disposed) setError(true); });
           } else if (status && status >= 400) setError(true);
         });
-        current.on('click', 'places-cluster', async event => {
-          const cluster = event.features?.[0];
-          const clusterId = Number(cluster?.properties?.cluster_id);
-          const source = current.getSource('places') as GeoJSONSource;
-          if (!Number.isFinite(clusterId)) return;
-          const zoom = await source.getClusterExpansionZoom(clusterId);
-          if (cluster?.geometry.type === 'Point') current.easeTo({ center: cluster.geometry.coordinates as [number, number], zoom });
-        });
-        current.on('click', 'places-point', event => {
-          const key = event.features?.[0]?.properties?.key;
-          if (typeof key === 'string') latest.current.onSelect(key);
-        });
         current.on('click', event => {
-          if (!latest.current.routeMode || !latest.current.onMapClick) return;
           if (Date.now() < suppressClickUntil.current) return;
+          if (!current.getLayer('places-point')) return;
           const hits = current.queryRenderedFeatures(event.point, { layers: [
             'places-cluster', 'places-count', 'places-point', 'places-num', 'selected-point', 'selected-num',
           ] });
-          if (!hits.length) latest.current.onMapClick([event.lngLat.lat, event.lngLat.lng]);
+          const cluster = hits.find(hit => hit.properties?.cluster_id !== undefined);
+          if (cluster?.geometry.type === 'Point') {
+            const source = current.getSource('places') as GeoJSONSource;
+            const clusterId = Number(cluster.properties.cluster_id);
+            const center = cluster.geometry.coordinates as [number, number];
+            if (Number.isFinite(clusterId)) void source.getClusterExpansionZoom(clusterId).then(zoom => {
+              if (!disposed) current.easeTo({ center, zoom });
+            }).catch(() => { /* The source can change while a cluster expands. */ });
+            return;
+          }
+          const key = hits.find(hit => typeof hit.properties?.key === 'string')?.properties?.key;
+          if (typeof key === 'string') { latest.current.onSelect(key); return; }
+          if (latest.current.routeMode && latest.current.onMapClick)
+            latest.current.onMapClick([event.lngLat.lat, event.lngLat.lng]);
         });
         current.on('mousemove', 'places-point', event => {
           const key = event.features?.[0]?.properties?.key;
@@ -220,6 +221,8 @@ export function GoongMap(props: Props) {
         });
         current.on('mouseenter', 'places-cluster', () => { current.getCanvas().style.cursor = 'pointer'; });
         current.on('mouseleave', 'places-cluster', () => { current.getCanvas().style.cursor = ''; });
+        current.on('mouseenter', 'selected-point', () => { current.getCanvas().style.cursor = 'pointer'; });
+        current.on('mouseleave', 'selected-point', () => { current.getCanvas().style.cursor = ''; });
       } catch { if (!disposed) setError(true); }
     })();
     return () => {
