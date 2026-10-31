@@ -7,6 +7,7 @@ import { config, missingConfig, originFor } from './config.mjs';
 import { pool, query } from './db.mjs';
 import { cookie, readCookie, seal, unseal } from './session.mjs';
 import { HttpError, analyze, editPlace, savePlace, savedPlaces, samples, serveCover } from './places.mjs';
+import { GeoError, checkGeoRate, resolveAddress, reverseGeocode, suggestAddresses } from './geo.mjs';
 
 const dist = resolve(fileURLToPath(new URL('../dist/', import.meta.url)));
 const SESSION = 'weeat_session';
@@ -207,6 +208,21 @@ async function handle(req, res) {
     const rows = await query('SELECT cate_id, cate_name_vn, cate_name_en FROM public.cate_dim ORDER BY cate_id');
     return sendJson(res, 200, { categories: rows.rows });
   }
+  if (path === '/api/geo/search' && method === 'GET') {
+    const user = requireUser(req);
+    checkGeoRate(user.uid);
+    return sendJson(res, 200, { suggestions: await suggestAddresses(url.searchParams.get('q') || '', url.searchParams.get('st') || '') });
+  }
+  if (path === '/api/geo/place' && method === 'GET') {
+    const user = requireUser(req);
+    checkGeoRate(user.uid);
+    return sendJson(res, 200, { address: await resolveAddress(url.searchParams.get('ref') || '', url.searchParams.get('st') || '') });
+  }
+  if (path === '/api/geo/reverse' && method === 'GET') {
+    const user = requireUser(req);
+    checkGeoRate(user.uid);
+    return sendJson(res, 200, { address: await reverseGeocode(url.searchParams.get('lat'), url.searchParams.get('lng')) });
+  }
   if (path === '/api/profile' && method === 'GET') return sendJson(res, 200, { profile: await getProfile(requireUser(req).uid) });
   if (path === '/api/profile' && method === 'PATCH') {
     const user = requireUser(req);
@@ -262,7 +278,7 @@ if (absent.length) {
   const server = createServer((req, res) => {
     handle(req, res).catch(error => {
       if (res.headersSent) { res.destroy(); return; }
-      if (!(error instanceof HttpError)) console.error('Request failed:', error);
+      if (!(error instanceof HttpError) && !(error instanceof GeoError)) console.error('Request failed:', error);
       sendJson(res, error.status || 500, { error: { code: error.code || 'internal_error', message: error instanceof HttpError ? error.message : 'Internal server error.' } }, error.headers || {});
     });
   });

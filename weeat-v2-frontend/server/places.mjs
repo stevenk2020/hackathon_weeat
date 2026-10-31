@@ -278,10 +278,12 @@ export async function editPlace(uid, videoId, restaurantId, edits) {
   if (!edits || typeof edits !== 'object' || Array.isArray(edits))
     throw new HttpError(400, 'bad_request', 'Invalid restaurant edits.');
   const limits = { restaurant_name: 120, dish: 200, address: 240, user_note: 500 };
-  const allowed = new Set([...Object.keys(limits), 'price_vnd', 'price_vnd_max']);
-  const fields = Object.keys(edits);
-  if (!fields.length || fields.some(field => !allowed.has(field)))
+  const addressMeta = new Set(['latitude', 'longitude', 'geo_source']);
+  const allowed = new Set([...Object.keys(limits), 'price_vnd', 'price_vnd_max', ...addressMeta]);
+  const supplied = Object.keys(edits);
+  if (!supplied.length || supplied.some(field => !allowed.has(field)))
     throw new HttpError(400, 'bad_request', 'Unsupported restaurant edit.');
+  const fields = supplied.filter(field => !addressMeta.has(field));
   for (const [field, limit] of Object.entries(limits)) {
     if (!(field in edits)) continue;
     if (typeof edits[field] !== 'string' || edits[field].length > limit ||
@@ -297,15 +299,33 @@ export async function editPlace(uid, videoId, restaurantId, edits) {
   const current = await query(`SELECT price_vnd, price_vnd_max, address FROM public.quan_hackathon_video_places
     WHERE user_id = $1 AND video_id = $2 AND restaurant_id = $3 AND is_saved = true`, [uid, videoId, restaurantId]);
   if (!current.rows.length) throw new HttpError(404, 'not_found', 'Saved restaurant not found.');
+  const changedAddress = 'address' in edits && edits.address !== current.rows[0].address;
+  if (changedAddress) {
+    if (typeof edits.latitude !== 'number' || !Number.isFinite(edits.latitude) || Math.abs(edits.latitude) > 90 ||
+        typeof edits.longitude !== 'number' || !Number.isFinite(edits.longitude) || Math.abs(edits.longitude) > 180 ||
+        !['goong', 'vietmap'].includes(edits.geo_source))
+      throw new HttpError(400, 'bad_request', 'Choose an address from the map lookup.');
+  } else if (supplied.some(field => addressMeta.has(field))) {
+    throw new HttpError(400, 'bad_request', 'Coordinates require a changed address.');
+  }
   const min = 'price_vnd' in edits ? edits.price_vnd : current.rows[0].price_vnd;
   const max = 'price_vnd_max' in edits ? edits.price_vnd_max : current.rows[0].price_vnd_max;
   if (min !== null && max !== null && Number(max) < Number(min))
     throw new HttpError(400, 'bad_request', 'Maximum price must be at least minimum price.');
   const values = fields.map(field => edits[field]);
   const assignments = fields.map((field, index) => `${field} = $${index + 4}`);
-  // A changed free-text address cannot keep the old map pin coordinates.
-  if ('address' in edits && edits.address !== current.rows[0].address)
-    assignments.push('latitude = NULL', 'longitude = NULL', 'geo_source = NULL');
+  if (changedAddress) {
+    assignments.push('address_text = $' + (values.length + 4), 'location = $' + (values.length + 4));
+    values.push(edits.address);
+    assignments.push('latitude = $' + (values.length + 4));
+    values.push(edits.latitude);
+    assignments.push('longitude = $' + (values.length + 4));
+    values.push(edits.longitude);
+    assignments.push('geo_source = $' + (values.length + 4));
+    values.push(`${edits.geo_source}_address`);
+    assignments.push('maps_url = $' + (values.length + 4));
+    values.push(`https://www.google.com/maps/search/?api=1&query=${edits.latitude},${edits.longitude}`);
+  }
   const result = await query(`UPDATE public.quan_hackathon_video_places
     SET ${assignments.join(', ')}, update_time = now()
     WHERE user_id = $1 AND video_id = $2 AND restaurant_id = $3 AND is_saved = true

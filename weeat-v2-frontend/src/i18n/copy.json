@@ -488,6 +488,10 @@
                              "vi":  "Đang tìm địa chỉ…",
                              "en":  "Finding addresses…"
                          },
+    "addressSearchMore":  {
+                              "vi":  "Tìm thêm địa chỉ",
+                              "en":  "Search more addresses"
+                          },
     "closeDialog":  {
                         "vi":  "Đóng hộp thoại",
                         "en":  "Close dialog"
