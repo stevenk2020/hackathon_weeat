@@ -130,18 +130,13 @@ numberAndStreet(a) = plain(first comma part of withoutFloor(a)) with leading `so
 ` (?:quan|phuong|q|p|tp|thanh pho|tx|thi xa)(?: .*)?$` removed; valid only if `^\d+[a-z]?(?:[/ ]\d+[a-z]?)* [a-z]`.
 Point = the row's point, else the detail call; must be a valid lat/lng. The result is `{lat, lng, source, provider}`.
 
-ShopeeFood page (when WEB_SEARCH_PROVIDER brave + WEB_SEARCH_KEY): only with a name; street = streetOf(address) or null.
-n = name with `"` and whitespace runs → one space, trimmed, cut 200; s = street, whitespace → one space, cut 100.
-Remembered per `lower(n)|lower(s)` (found only). words(x) = plain(x) words without "/"; nameWords = words(n), dropping
-lone numbers when n has a non-Latin character (outside U+0000–U+024F, U+1E00–U+1EFF). need = nameWords + words(s); none → null.
-distinct = nameWords minus `tea house teahouse cafe coffee quan nha hang restaurant tiem bar shop store the and`.
-Queries in order: `site:shopeefood.vn "<n>"` + (s ? ` <s>` : ""); if nameWords non-empty `site:shopeefood.vn <nameWords joined " ">` + (s ? ` <s>` : "");
-if s: `site:shopeefood.vn "<n>"`. Each query: Brave (PIPELINE.md 9). A result counts as a store page when its url, cut at the
-first `?`, `#` or `&`, matches `^https://shopeefood\.vn/([a-z0-9]+(?:-[a-z0-9]+)*)/([a-z0-9]+(?:-[a-z0-9]+)*)/?$`, the
-second part is not `food drinks danh-sach-dia-diem-giao-tan-noi collections top-food deals` (trailing `/` removed). New
-pages are collected with text = words(title + " " + snippet + " " + last path part with `-` → " "). After each query: the
-first collected page holding every `need` word wins. After all queries, if distinct is non-empty: among pages holding every
-distinct word, the first that also holds every street word (when there is a street), else the first. Else null.
+ShopeeFood lookup requires a restaurant name, address, WEB_SEARCH_PROVIDER=brave and WEB_SEARCH_KEY.
+Search Brave for `site:shopeefood.vn "<name>" <street>`, then name + city when available.
+Remove house numbers/ranges from the street; join a number-only comma segment to its following street first.
+Match all normalized name words in the result title/snippet, plus street or city in the title/snippet or listing URL.
+Do not require an exact numbered address or fetch listing HTML. Reject non-store URLs, brand/collection pages,
+and results marked Not found/404. Return the first matching store, or null; retain the Google search fallback.
+Cache successful matches by normalized name and full address to keep locality contexts separate.
 
 ## 8. Ask (POST /api/ask and POST /api/library/ask)
 Reads the user's saved records (newest first, at most ASK_MAX_RECORDS 100). Question trimmed, 2–300 chars

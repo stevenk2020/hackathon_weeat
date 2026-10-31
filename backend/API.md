@@ -92,3 +92,5 @@ Do not share `.env` or the PostgreSQL password. The API key is for the extract r
 | `POST /api/ask` | Firebase ID token | Ask about saved places. |
 
 Only `POST /api/extract` performs the optional PostgreSQL copy in v0.2.0. The other personal routes still use SQLite. Error responses have `{ "error": { "code": "...", "message": "..." } }`; common statuses are 400 for an invalid link or email, 401 for a missing/wrong key, 404 when the extract route is disabled, 422 when media cannot be analyzed, 429 for rate limits, and 5xx for upstream failures.
+
+ShopeeFood searches use the restaurant name and street or city, without house numbers. Store results must match the name in the title/snippet and a street or city in the title, snippet, or listing URL. Full street-address matching is not required.
