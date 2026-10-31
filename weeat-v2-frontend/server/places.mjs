@@ -274,6 +274,16 @@ export async function savePlace(uid, videoId, restaurantId, saved) {
   return { is_saved: result.rows[0].is_saved ? 1 : 0 };
 }
 
+export async function savedPlaces(uid, q = '', cateId = null) {
+  const search = q.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/gi, 'd').toLowerCase().trim();
+  const result = await query(`SELECT * FROM public.quan_hackathon_video_places
+    WHERE user_id = $1 AND is_saved = true AND ($2::int IS NULL OR cate_id = $2)
+    ORDER BY create_time DESC NULLS LAST, video_id, restaurant_id`, [uid, cateId]);
+  const rows = result.rows.filter(row => typeof row.restaurant_name === 'string' && row.restaurant_name.trim()).map(toRestaurant);
+  return { restaurants: search ? rows.filter(row => [row.restaurant_name, row.dish, row.address]
+    .join(' ').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/gi, 'd').toLowerCase().includes(search)) : rows };
+}
+
 export async function samples() {
   const result = await query(`SELECT latest.*, (SELECT COUNT(DISTINCT restaurant_id)::int
       FROM public.quan_hackathon_video_places p2 WHERE p2.video_id = latest.video_id AND p2.platform = latest.platform) AS place_count
@@ -290,7 +300,12 @@ export async function serveCover(res, name, head = false) {
   try {
     upstream = await fetch(new URL(`/covers/${name}`, config.crawlBaseUrl), { signal: AbortSignal.timeout(10_000) });
   } catch { throw new HttpError(502, 'upstream_unreachable', 'Cover service is unavailable.'); }
-  if (!upstream.ok) throw new HttpError(upstream.status === 404 ? 404 : 502, 'not_found', 'Cover not found.');
+  if (upstream.status === 404) {
+    res.writeHead(302, { Location: '/images/pho-scene.jpg', 'Cache-Control': 'public, max-age=3600' });
+    res.end();
+    return;
+  }
+  if (!upstream.ok) throw new HttpError(502, 'upstream_error', 'Cover service is unavailable.');
   const kind = upstream.headers.get('content-type') || '';
   if (!kind.startsWith('image/')) throw new HttpError(502, 'upstream_error', 'Invalid cover response.');
   res.writeHead(200, { 'Content-Type': kind, 'Cache-Control': 'public, max-age=86400' });

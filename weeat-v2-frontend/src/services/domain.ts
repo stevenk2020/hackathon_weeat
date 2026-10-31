@@ -10,10 +10,11 @@ export function supportedUrl(raw: string) {
   if (u.protocol !== 'https:' || u.username || u.password) throw new ServiceError('urlInvalid');
   const host = u.hostname.toLowerCase();
   const yt = ['youtube.com','www.youtube.com','m.youtube.com'].includes(host) && /^\/shorts\/[\w-]+\/?$/.test(u.pathname);
+  const ytShort = ['youtu.be','www.youtu.be'].includes(host) && /^\/[\w-]{11}\/?$/.test(u.pathname);
   const tt = ['tiktok.com','www.tiktok.com'].includes(host) && /^\/@[^/]+\/video\/\d+\/?$/.test(u.pathname);
   const short = ['vm.tiktok.com','vt.tiktok.com'].includes(host) && /^\/[a-z0-9]+\/?$/i.test(u.pathname);
-  if (!yt && !tt && !short) throw new ServiceError('urlUnsupported');
-  return { url: u.href, platform: yt ? 'youtube' as const : 'tiktok' as const, id: u.pathname.split('/').filter(Boolean).at(-1)! };
+  if (!yt && !ytShort && !tt && !short) throw new ServiceError('urlUnsupported');
+  return { url: u.href, platform: yt || ytShort ? 'youtube' as const : 'tiktok' as const, id: u.pathname.split('/').filter(Boolean).at(-1)! };
 }
 export function deliveryUrl(r: Restaurant) { if(r.shopeefood_kinds !== 'store' || !r.shopeefood_url) return null; try { const u = new URL(r.shopeefood_url); return u.protocol === 'https:' && !u.username && !u.password && ['shopeefood.vn','www.shopeefood.vn'].includes(u.hostname) && u.pathname.split('/').filter(Boolean).length >= 2 ? u.href : null; } catch { return null; } }
 export const validAddress = (a: Address|null): a is Address => !!a && !!a.id && !!a.label.trim() && ['mock','api'].includes(a.provider) && Number.isFinite(a.latitude) && Math.abs(a.latitude)<=90 && Number.isFinite(a.longitude) && Math.abs(a.longitude)<=180;

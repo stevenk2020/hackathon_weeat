@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { config, missingConfig, originFor } from './config.mjs';
 import { pool, query } from './db.mjs';
 import { cookie, readCookie, seal, unseal } from './session.mjs';
-import { HttpError, analyze, savePlace, samples, serveCover } from './places.mjs';
+import { HttpError, analyze, savePlace, savedPlaces, samples, serveCover } from './places.mjs';
 
 const dist = resolve(fileURLToPath(new URL('../dist/', import.meta.url)));
 const SESSION = 'weeat_session';
@@ -158,6 +158,7 @@ async function googleCallback(req, res, url, origin) {
 const mime = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8',
   '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8',
+  '.webmanifest': 'application/manifest+json; charset=utf-8',
   '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.woff2': 'font/woff2', '.ico': 'image/x-icon',
 };
@@ -216,7 +217,16 @@ async function handle(req, res) {
     const result = await analyze(user, (await jsonBody(req)).url);
     return sendJson(res, 200, { video: result.video, restaurants: result.restaurants }, { 'X-Weeat-Source': result.source });
   }
-  if (path === '/api/samples' && method === 'GET') return sendJson(res, 200, await samples(requireUser(req)));
+  if (path === '/api/samples' && method === 'GET') return sendJson(res, 200, await samples());
+  if (path === '/api/library' && method === 'GET') {
+    const cateRaw = url.searchParams.get('cate_id');
+    const cateId = cateRaw === null ? null : Number(cateRaw);
+    if (cateRaw !== null && (!Number.isInteger(cateId) || cateId < 1))
+      throw new HttpError(400, 'bad_request', 'Invalid category.');
+    const q = url.searchParams.get('q') || '';
+    if (q.length > 200) throw new HttpError(400, 'bad_request', 'Search is too long.');
+    return sendJson(res, 200, await savedPlaces(requireUser(req).uid, q, cateId));
+  }
   const save = path.match(/^\/api\/library\/([^/]+)\/([^/]+)\/save$/);
   if (save && (method === 'PUT' || method === 'DELETE')) {
     const user = requireUser(req);

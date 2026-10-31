@@ -140,16 +140,16 @@
                               "en":  "Manage separate personal memories for this account in this browser. Backend sync and use in AI replies are not connected yet."
                           },
     "urlPlaceholder":  {
-                           "vi":  "Dán liên kết video ẩm thực tại đây…",
-                           "en":  "Paste a food video link here…"
+                           "vi":  "Dán một hoặc nhiều liên kết video, cách nhau bằng dấu phẩy hoặc xuống dòng…",
+                           "en":  "Paste one or more video links, separated by commas or new lines…"
                        },
     "recenter":  {
                      "vi":  "Về giữa bản đồ",
                      "en":  "Recenter map"
                  },
     "stepPasteHint":  {
-                          "vi":  "Video món ăn, quán ngon trên YouTube Shorts / TikTok",
-                          "en":  "YouTube Shorts / TikTok of food \u0026 restaurants"
+                          "vi":  "Một hoặc nhiều video món ăn, quán ngon trên YouTube Shorts / TikTok",
+                          "en":  "One or many YouTube Shorts / TikTok links of food \u0026 restaurants"
                       },
     "suggestedQuestions":  {
                                "vi":  "Gợi ý câu hỏi",
@@ -408,9 +408,18 @@
                           "en":  "Your Library, your answers."
                       },
     "pasteLink":  {
-                      "vi":  "Dán liên kết",
-                      "en":  "Paste Link"
+                      "vi":  "Dán link",
+                      "en":  "Paste link"
                   },
+    "pasteNoLink": {"vi":"Không tìm thấy link video trong bộ nhớ tạm.","en":"No video link was found in the clipboard."},
+    "installTitle": {"vi":"Thêm WeEat vào Màn hình chính","en":"Add WeEat to your Home Screen"},
+    "installBody": {"vi":" Bấm Chia sẻ, rồi chọn “Thêm vào Màn hình chính”. WeEat sẽ mở toàn màn hình như một ứng dụng. Lần đầu bạn cần đăng nhập lại trong đó.","en":" Tap Share, then “Add to Home Screen”. It opens full screen like an app. The first time, sign in again inside it."},
+    "installDismiss": {"vi":"Đóng","en":"Close"},
+    "unsave": {"vi":"Bỏ lưu","en":"Unsave"},
+    "pasteBlocked": {"vi":"Chưa được cấp quyền dán. Hãy dán link vào ô phía trên.","en":"Paste permission was not given. Paste the link into the box above."},
+    "tooManyLinks": {"vi":"Mỗi lần chỉ dán tối đa 10 liên kết.","en":"Paste at most 10 links at a time."},
+    "processingProgress": {"vi":"Đang phân tích liên kết {current}/{total}","en":"Analyzing link {current} of {total}"},
+    "samplePlaces": {"vi":"{count} quán","en":"{count} places"},
     "sortSaved":  {
                       "vi":  "Sắp xếp quán đã lưu",
                       "en":  "Sort saved places"
@@ -684,8 +693,8 @@
                      "en":  "This is a deterministic demo that searches your saved sample videos. It doesn’t call an AI service or search the web."
                  },
     "sampleLiveHint":  {
-                           "vi":  "Dán liên kết video của bạn ở trên",
-                           "en":  "Paste your own video URL above"
+                           "vi":  "Video mới nhất do người dùng WeEat tìm quán. Bấm để xem.",
+                           "en":  "Latest videos found by WeEat users. Tap to watch."
                        },
     "routeUnavailable":  {
                              "vi":  "Lập tuyến đường hiện chưa khả dụng.",
