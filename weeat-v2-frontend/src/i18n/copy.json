@@ -904,6 +904,18 @@
                             "vi":  "{count} quán trong danh sách đã lưu",
                             "en":  "{count} places in your Library"
                         },
+    "mapWithinLive":  {
+                           "vi":  "{count} quán đã lưu trong bán kính {radius} km",
+                           "en":  "{count} saved places within {radius} km"
+                       },
+    "mapNoLocation":  {
+                            "vi":  "{count} quán chưa có vị trí trên bản đồ",
+                            "en":  "{count} saved places have no map location"
+                        },
+    "mapLiveHint":  {
+                         "vi":  "Bán kính tính theo đường chim bay. Quán dọc đường nằm trong khoảng cách đã chọn quanh tuyến xe máy.",
+                         "en":  "Radius is measured in a straight line. Along-route places are within the chosen distance of the motorbike route."
+                     },
     "savedInLibrary":  {
                            "vi":  "Đã lưu trong danh sách của bạn",
                            "en":  "Saved in your Library"

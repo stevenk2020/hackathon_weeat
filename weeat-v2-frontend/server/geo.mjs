@@ -179,9 +179,21 @@ export async function routeBetween(fromLat, fromLng, toLat, toLng) {
 
 export async function mapConfig(failed = '') {
   if (!tiles.size) throw new GeoError(503, 'map_unavailable', 'Map tiles are not configured.');
-  if (failed && tiles.keyByTag(failed)) tiles.restByTag(failed, 'browser tile failure', 60_000);
+  if (failed) {
+    if (!/^[A-Za-z0-9]{4}$/.test(failed)) throw new GeoError(400, 'bad_request', 'Invalid tile key tag.');
+    const tag = `…${failed}`;
+    const refused = tiles.keyByTag(tag);
+    if (refused) {
+      try {
+        const probe = await fetch(`https://tiles.goong.io/assets/goong_map_web.json?api_key=${encodeURIComponent(refused)}`,
+          { signal: AbortSignal.timeout(5_000) });
+        if ([401, 403, 429].includes(probe.status)) tiles.restByTag(tag, `HTTP ${probe.status}`,
+          probe.status === 429 ? 60_000 : 3_600_000);
+      } catch { /* A network failure does not prove that the key is bad. */ }
+    }
+  }
   const key = tiles.acquire();
   if (!key) throw new GeoError(503, 'map_unavailable', 'Map tiles are unavailable.');
-  // A tile proxy can use this tag without disclosing the key to the browser.
-  return { style_url: `/api/map/style?key_tag=${encodeURIComponent(keyTag(key))}`, key_tag: keyTag(key) };
+  return { style_url: `https://tiles.goong.io/assets/goong_map_web.json?api_key=${encodeURIComponent(key)}`,
+    key_tag: key.slice(-4) };
 }

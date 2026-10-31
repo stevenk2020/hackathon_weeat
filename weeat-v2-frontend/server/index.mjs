@@ -7,7 +7,7 @@ import { config, missingConfig, originFor } from './config.mjs';
 import { pool, query } from './db.mjs';
 import { cookie, readCookie, seal, unseal } from './session.mjs';
 import { HttpError, analyze, editPlace, savePlace, savedPlaces, samples, serveCover } from './places.mjs';
-import { GeoError, checkGeoRate, resolveAddress, reverseGeocode, suggestAddresses } from './geo.mjs';
+import { GeoError, checkGeoRate, mapConfig, resolveAddress, reverseGeocode, suggestAddresses } from './geo.mjs';
 
 const dist = resolve(fileURLToPath(new URL('../dist/', import.meta.url)));
 const SESSION = 'weeat_session';
@@ -222,6 +222,10 @@ async function handle(req, res) {
     const user = requireUser(req);
     checkGeoRate(user.uid);
     return sendJson(res, 200, { address: await reverseGeocode(url.searchParams.get('lat'), url.searchParams.get('lng')) });
+  }
+  if (path === '/api/map/config' && method === 'GET') {
+    requireUser(req);
+    return sendJson(res, 200, await mapConfig(url.searchParams.get('failed') || ''));
   }
   if (path === '/api/profile' && method === 'GET') return sendJson(res, 200, { profile: await getProfile(requireUser(req).uid) });
   if (path === '/api/profile' && method === 'PATCH') {
