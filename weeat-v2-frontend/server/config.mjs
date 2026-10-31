@@ -11,6 +11,7 @@ const configuredOrigins = list(env.BASE_URLS).map(value => {
   try { return new URL(value).origin; } catch { return ''; }
 }).filter(Boolean);
 const baseUrls = configuredOrigins.length ? configuredOrigins : [`http://localhost:${port}`];
+const models = [...new Set([env.OPENAI_MODEL_DEFAULT, ...list(env.OPENAI_MODEL_LIST)].filter(Boolean))];
 
 export const config = {
   port,
@@ -31,6 +32,17 @@ export const config = {
   },
   pgPoolMax: Number(env.PGPOOL_MAX) || 10,
   openaiApiKey: env.OPENAI_API_KEY || '',
+  openaiBaseUrl: env.OPENAI_BASE_URL || 'https://api.openai.com/v1',
+  openaiTrackingKeyId: env.OPENAI_TRACKING_KEY_ID || '',
+  openaiTrackingHeader: env.OPENAI_TRACKING_HEADER || '',
+  models,
+  reasoningEffort: env.OPENAI_REASONING_EFFORT ?? 'none',
+  embedModel: env.OPENAI_EMBED_MODEL || 'text-embedding-3-small',
+  askEmbeddings: env.ASK_EMBEDDINGS === '1',
+  askRateLimit: Number(env.ASK_RATE_LIMIT_PER_10MIN) || 20,
+  askMaxTokensPerDay: Number(env.ASK_MAX_TOKENS_PER_DAY) || 200000,
+  askTimeoutMs: Number(env.ASK_TIMEOUT_MS) || 45000,
+  askTraceDays: Number(env.ASK_TRACE_DAYS) || 30,
   goongApiKeys: list(env.GOONG_API_KEY),
   goongTileKeys: list(env.GOONG_MAPTILES_KEY),
   vietmapKey: env.VIETMAP_SERVICES_KEY || '',

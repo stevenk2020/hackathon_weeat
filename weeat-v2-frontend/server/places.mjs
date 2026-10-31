@@ -3,6 +3,7 @@ import { Readable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 import { config } from './config.mjs';
 import { pool, query } from './db.mjs';
+import { syncIndexSafe } from './placeIndex.mjs';
 
 export class HttpError extends Error {
   constructor(status, code, message, headers = {}) {
@@ -252,12 +253,14 @@ export async function analyze(user, rawUrl) {
     if (String(found.user_id) !== String(user.uid)) {
       const sourceRows = await videoRows(found.user_id, found.video_id, found.platform);
       await copyVideo(sourceRows, user.uid);
+      await syncIndexSafe(user.uid, found.video_id);
     }
     const rows = await videoRows(user.uid, found.video_id, found.platform);
     if (rows.length) return analysis(rows, 'database');
   }
   const result = await crawl(link, user);
   await insertRows(result.places.map((place, index) => crawlRow(place, result.row, link, user.uid, index)));
+  await syncIndexSafe(user.uid);
   const videoId = text(result.row.video_id) || idFrom(link);
   const rows = videoId ? await videoRows(user.uid, videoId, result.row.platform || platformFrom(link)) : [];
   return rows.length ? analysis(rows, 'crawl') : {
@@ -271,6 +274,7 @@ export async function savePlace(uid, videoId, restaurantId, saved) {
     WHERE user_id = $1 AND video_id = $2 AND restaurant_id = $3 RETURNING is_saved`,
   [uid, videoId, restaurantId, saved]);
   if (!result.rows.length) throw new HttpError(404, 'not_found', 'Restaurant not found.');
+  await syncIndexSafe(uid, videoId, restaurantId);
   return { is_saved: result.rows[0].is_saved ? 1 : 0 };
 }
 
@@ -331,6 +335,7 @@ export async function editPlace(uid, videoId, restaurantId, edits) {
     WHERE user_id = $1 AND video_id = $2 AND restaurant_id = $3 AND is_saved = true
     RETURNING *`, [uid, videoId, restaurantId, ...values]);
   if (!result.rows.length) throw new HttpError(404, 'not_found', 'Saved restaurant not found.');
+  await syncIndexSafe(uid, videoId, restaurantId);
   return { restaurant: toRestaurant(result.rows[0]) };
 }
 

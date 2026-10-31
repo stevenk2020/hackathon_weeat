@@ -1,0 +1,237 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "get_user_context",
+      "description": "The user's home address with coordinates and the preferences already saved in memory. Call before answering questions about 'near me' or budget.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "request_location",
+      "description": "Show the user a location picker (their current position, their saved home, or any address they type) and wait for the answer. Use it when the question depends on where they are and no location was chosen in this chat yet. After calling it, write ONE short question and stop: do not search until they answer.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "geocode_place",
+      "description": "Turn a place the user names (e.g. 'Ben Thanh market', 'Quan 7') into coordinates, to search around it instead of their home.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "search_saved_places",
+      "description": "Search ONLY the restaurants this user has saved from videos. All filters are optional and combine with AND. Returns at most 5 matches; the matches are also shown to the user as cards.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "The dish or restaurant words the user said, as short as possible, e.g. 'bún bò mỡ nổi'. No filler words and no whole sentences. Never a taste or feeling word (đắng, ngọt, cay, chua, béo, mát...): turn those into concrete dishes in keywords. Omit when only filtering by distance or price."
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "3-6 concrete dish names that satisfy an abstract wish. 'something sweet' -> ['chè','bánh flan','kem','tàu hũ','bánh ngọt']; 'soup' -> ['canh','súp','lẩu','phở']. A place matching ANY one is returned. Use together with, or instead of, text."
+          },
+          "area": {
+            "type": "string",
+            "description": "A named region to restrict to by address text: province, city, district or ward, e.g. 'Bình Dương', 'Thủ Đức', 'quận 7'. Works even for places saved without coordinates. Prefer it over near for administrative areas."
+          },
+          "near": {
+            "type": "object",
+            "description": "A point and radius, for 'near me' or 'near <landmark>'. Not for provinces or cities.",
+            "properties": {
+              "lat": {
+                "type": "number"
+              },
+              "lng": {
+                "type": "number"
+              },
+              "radius_m": {
+                "type": "number",
+                "description": "Default 5000"
+              }
+            },
+            "required": [
+              "lat",
+              "lng"
+            ],
+            "additionalProperties": false
+          },
+          "max_price_vnd": {
+            "type": "integer"
+          },
+          "min_price_vnd": {
+            "type": "integer"
+          },
+          "category_ids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "Restrict to these categories (ids are listed in the system prompt). Use the drink categories when the user wants something to drink."
+          },
+          "online_order": {
+            "type": "boolean",
+            "description": "true = only places with a verified ShopeeFood store page (order online / delivery)."
+          },
+          "well_reviewed": {
+            "type": "boolean",
+            "description": "true = only places whose video comments are mostly positive (people praised them)."
+          },
+          "price_known": {
+            "type": "boolean",
+            "description": "true = only places with a price; false = only places whose price is missing."
+          },
+          "platform": {
+            "type": "string",
+            "enum": [
+              "tiktok",
+              "youtube"
+            ],
+            "description": "Only places saved from this video platform."
+          },
+          "channel": {
+            "type": "string",
+            "description": "Only places from videos of this creator/channel name (partial match)."
+          },
+          "added_within_days": {
+            "type": "integer",
+            "description": "Only places the user added in the last N days ('recently saved', 'this week')."
+          },
+          "sort": {
+            "type": "string",
+            "enum": [
+              "recent",
+              "oldest",
+              "price_asc",
+              "price_desc",
+              "nearest",
+              "praised",
+              "random"
+            ],
+            "description": "Override the order: cheapest/priciest, newest/oldest saved, nearest (needs near), most praised in comments, or random for 'pick one for me / what should I eat'."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "1-5, default 3"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_place_details",
+      "description": "Everything known about up to 3 saved places: price range, source video (platform, channel, title, link), what the video said, what commenters said, whether it can be ordered online, map link, the user's note, and which fields are missing. Use it for 'tell me about X', 'is X good', 'where did I find X', 'compare A and B', 'what did people say'. Pass places from a previous search, or a restaurant name.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "places": {
+            "type": "array",
+            "maxItems": 3,
+            "items": {
+              "type": "object",
+              "properties": {
+                "video_id": {
+                  "type": "string"
+                },
+                "restaurant_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "video_id",
+                "restaurant_id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "name": {
+            "type": "string",
+            "description": "Restaurant name words, when ids are not known."
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "wiki_stats",
+      "description": "Counts and overview of ALL the user's saved places (optionally inside an area): total, by category, by platform, price range, how many can be ordered online, recently added, top channels. Use for 'how many places did I save', 'what kinds of food do I have', 'how many in district 7', 'my cheapest/most expensive'.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "area": {
+            "type": "string",
+            "description": "Optional province/city/district/ward to restrict the counts, e.g. 'Bình Dương'."
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "save_memory",
+      "description": "Remember a stable food preference the user stated (taste, diet, usual budget, favourite area). Never store sensitive personal data or anything the user did not say.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "taste",
+              "diet",
+              "budget",
+              "area",
+              "other"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "description": "One short sentence in the user's language"
+          }
+        },
+        "required": [
+          "kind",
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+]

@@ -8,6 +8,8 @@ import { pool, query } from './db.mjs';
 import { cookie, readCookie, seal, unseal } from './session.mjs';
 import { HttpError, analyze, editPlace, savePlace, savedPlaces, samples, serveCover } from './places.mjs';
 import { GeoError, checkGeoRate, mapConfig, resolveAddress, reverseGeocode, routeBetween, suggestAddresses } from './geo.mjs';
+import { runAsk, listSessions, deleteSession, listMemory, deleteMemory } from './ask.mjs';
+import { purgeTraces } from './askTrace.mjs';
 
 const dist = resolve(fileURLToPath(new URL('../dist/', import.meta.url)));
 const SESSION = 'weeat_session';
@@ -237,6 +239,37 @@ async function handle(req, res) {
     const user = requireUser(req);
     return sendJson(res, 200, { profile: await patchProfile(user.uid, await jsonBody(req)) });
   }
+  if (path === '/api/ask/stream' && method === 'POST') {
+    const user = requireUser(req), input = await jsonBody(req), controller = new AbortController();
+    res.on('close', () => { if (!res.writableEnded) controller.abort(); });
+    const emit = (event, data) => {
+      if (!res.headersSent) res.writeHead(200, { 'Content-Type': 'text/event-stream; charset=utf-8',
+        'Cache-Control': 'no-store, no-transform', 'X-Accel-Buffering': 'no', Connection: 'keep-alive' });
+      res.write(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`);
+    };
+    const heartbeat = setInterval(() => { if (res.headersSent && !res.writableEnded) res.write(': heartbeat\n\n'); }, 15000);
+    try { await runAsk(user, input, emit, controller.signal); if (!res.writableEnded) res.end(); }
+    catch (error) {
+      if (!res.headersSent) throw error;
+      if (!controller.signal.aborted) emit('error', { code: error.code || 'ai_failed', message: error.message });
+      res.end();
+    } finally { clearInterval(heartbeat); }
+    return;
+  }
+  if (path === '/api/ask' && method === 'POST') {
+    const result = await runAsk(requireUser(req), await jsonBody(req), () => {});
+    return sendJson(res, 200, result);
+  }
+  if (path === '/api/chat/sessions' && method === 'GET')
+    return sendJson(res, 200, await listSessions(requireUser(req).uid));
+  const chatDelete = path.match(/^\/api\/chat\/sessions\/([^/]+)$/);
+  if (chatDelete && method === 'DELETE')
+    return sendJson(res, 200, await deleteSession(requireUser(req).uid, chatDelete[1]));
+  if (path === '/api/memory' && method === 'GET')
+    return sendJson(res, 200, await listMemory(requireUser(req).uid));
+  const memoryDelete = path.match(/^\/api\/memory\/([^/]+)$/);
+  if (memoryDelete && method === 'DELETE')
+    return sendJson(res, 200, await deleteMemory(requireUser(req).uid, memoryDelete[1]));
   if (path === '/api/analyze' && method === 'POST') {
     const user = requireUser(req);
     const result = await analyze(user, (await jsonBody(req)).url);
@@ -284,6 +317,7 @@ if (absent.length) {
   console.error(`Missing configuration: ${absent.join(', ')}`);
   process.exitCode = 1;
 } else {
+  purgeTraces().catch(error => console.warn('Ask trace purge skipped:', error.code || error.name));
   const server = createServer((req, res) => {
     handle(req, res).catch(error => {
       if (res.headersSent) { res.destroy(); return; }
