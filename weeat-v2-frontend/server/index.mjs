@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { config, missingConfig, originFor } from './config.mjs';
 import { pool, query } from './db.mjs';
 import { cookie, readCookie, seal, unseal } from './session.mjs';
-import { HttpError, analyze, savePlace, savedPlaces, samples, serveCover } from './places.mjs';
+import { HttpError, analyze, editPlace, savePlace, savedPlaces, samples, serveCover } from './places.mjs';
 
 const dist = resolve(fileURLToPath(new URL('../dist/', import.meta.url)));
 const SESSION = 'weeat_session';
@@ -234,6 +234,15 @@ async function handle(req, res) {
     try { videoId = decodeURIComponent(save[1]); restaurantId = decodeURIComponent(save[2]); }
     catch { throw new HttpError(400, 'bad_request', 'Invalid restaurant ID.'); }
     return sendJson(res, 200, await savePlace(user.uid, videoId, restaurantId, method === 'PUT'));
+  }
+  const edit = path.match(/^\/api\/library\/([^/]+)\/([^/]+)$/);
+  if (edit && method === 'PATCH') {
+    const user = requireUser(req);
+    let videoId, restaurantId;
+    try { videoId = decodeURIComponent(edit[1]); restaurantId = decodeURIComponent(edit[2]); }
+    catch { throw new HttpError(400, 'bad_request', 'Invalid restaurant ID.'); }
+    const body = await jsonBody(req);
+    return sendJson(res, 200, await editPlace(user.uid, videoId, restaurantId, body.edits));
   }
   if (path.startsWith('/covers/') && (method === 'GET' || method === 'HEAD'))
     return serveCover(res, path.slice('/covers/'.length), method === 'HEAD');

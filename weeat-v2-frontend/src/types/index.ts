@@ -12,4 +12,4 @@ export interface ChatMessage { id: string; role: 'user'|'assistant'; content: st
 export interface ChatSession { id: string; uid: string; title: string; created_at: string; updated_at: string; messages: ChatMessage[] }
 export interface Snapshot { profile: Profile; restaurants: Restaurant[]; videos: SourceVideo[]; sessions: ChatSession[]; activeSession: string|null }
 export interface Analysis { video: SourceVideo; restaurants: Restaurant[] }
-export type Edits = Pick<Restaurant,'restaurant_name'|'dish'|'price_vnd'|'address'|'user_note'>;
+export type Edits = Partial<Pick<Restaurant,'restaurant_name'|'dish'|'price_vnd'|'price_vnd_max'|'address'|'user_note'>>;

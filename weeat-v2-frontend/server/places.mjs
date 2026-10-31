@@ -50,7 +50,7 @@ function thumbnail(value) {
   if (!text(value)) return null;
   try {
     const url = new URL(value);
-    if (['localhost', '127.0.0.1'].includes(url.hostname) && url.pathname.startsWith('/covers/') &&
+    if (url.pathname.startsWith('/covers/') &&
         coverFile(url.pathname.slice('/covers/'.length))) return url.pathname;
   } catch { /* A relative cover path is handled below. */ }
   if (value.startsWith('/covers/') && coverFile(value.slice('/covers/'.length))) return value;
@@ -272,6 +272,46 @@ export async function savePlace(uid, videoId, restaurantId, saved) {
   [uid, videoId, restaurantId, saved]);
   if (!result.rows.length) throw new HttpError(404, 'not_found', 'Restaurant not found.');
   return { is_saved: result.rows[0].is_saved ? 1 : 0 };
+}
+
+export async function editPlace(uid, videoId, restaurantId, edits) {
+  if (!edits || typeof edits !== 'object' || Array.isArray(edits))
+    throw new HttpError(400, 'bad_request', 'Invalid restaurant edits.');
+  const limits = { restaurant_name: 120, dish: 200, address: 240, user_note: 500 };
+  const allowed = new Set([...Object.keys(limits), 'price_vnd', 'price_vnd_max']);
+  const fields = Object.keys(edits);
+  if (!fields.length || fields.some(field => !allowed.has(field)))
+    throw new HttpError(400, 'bad_request', 'Unsupported restaurant edit.');
+  for (const [field, limit] of Object.entries(limits)) {
+    if (!(field in edits)) continue;
+    if (typeof edits[field] !== 'string' || edits[field].length > limit ||
+        (field !== 'user_note' && !edits[field].trim()))
+      throw new HttpError(400, 'bad_request', `Invalid ${field}.`);
+    if (field !== 'user_note') edits[field] = edits[field].trim();
+  }
+  for (const field of ['price_vnd', 'price_vnd_max']) {
+    if (field in edits && edits[field] !== null &&
+        (!Number.isSafeInteger(edits[field]) || edits[field] < 0))
+      throw new HttpError(400, 'bad_request', `Invalid ${field}.`);
+  }
+  const current = await query(`SELECT price_vnd, price_vnd_max, address FROM public.quan_hackathon_video_places
+    WHERE user_id = $1 AND video_id = $2 AND restaurant_id = $3 AND is_saved = true`, [uid, videoId, restaurantId]);
+  if (!current.rows.length) throw new HttpError(404, 'not_found', 'Saved restaurant not found.');
+  const min = 'price_vnd' in edits ? edits.price_vnd : current.rows[0].price_vnd;
+  const max = 'price_vnd_max' in edits ? edits.price_vnd_max : current.rows[0].price_vnd_max;
+  if (min !== null && max !== null && Number(max) < Number(min))
+    throw new HttpError(400, 'bad_request', 'Maximum price must be at least minimum price.');
+  const values = fields.map(field => edits[field]);
+  const assignments = fields.map((field, index) => `${field} = $${index + 4}`);
+  // A changed free-text address cannot keep the old map pin coordinates.
+  if ('address' in edits && edits.address !== current.rows[0].address)
+    assignments.push('latitude = NULL', 'longitude = NULL', 'geo_source = NULL');
+  const result = await query(`UPDATE public.quan_hackathon_video_places
+    SET ${assignments.join(', ')}, update_time = now()
+    WHERE user_id = $1 AND video_id = $2 AND restaurant_id = $3 AND is_saved = true
+    RETURNING *`, [uid, videoId, restaurantId, ...values]);
+  if (!result.rows.length) throw new HttpError(404, 'not_found', 'Saved restaurant not found.');
+  return { restaurant: toRestaurant(result.rows[0]) };
 }
 
 export async function savedPlaces(uid, q = '', cateId = null) {

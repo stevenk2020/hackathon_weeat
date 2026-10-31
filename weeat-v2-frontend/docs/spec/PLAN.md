@@ -14,6 +14,8 @@ Tiến độ live Analyze: client nhận `duration_seconds` thiếu/null ở liv
 
 Tiến độ Discover live: textarea nhận tối đa 10 link, xử lý tuần tự và cộng dồn kết quả; từng link có tiến độ, lỗi và Retry. Paste link phân biệt không có link/quyền clipboard bị chặn. Share target đọc `?links=`, `?text=`, `?url=`, xóa query và không tự phân tích; draft được giữ qua Google sign-in. Đã thêm manifest/icon, meta iPhone, install banner, video mẫu live và Recent Discoveries từ các quán đã lưu thật. `/api/library` GET phục vụ saved rows, lọc tên/món/địa chỉ không dấu; bỏ hai dòng thiếu tên quán vì client yêu cầu tên hợp lệ. Cover upstream 404 chuyển sang ảnh dự phòng để không làm hỏng trang. Mock tests Discover UX/share/i18n dòng 335/links **22/22 xanh**. Chụp live 390 và 1280: **2/2 sạch** console/network/overflow, pixel diff 14.37%/4.42%; sai khác lớn nhất là cover nguồn đã mất nên hiện ảnh dự phòng và video mẫu mới hơn snapshot. Kiểm tra UI Analyze tuần tự hai link đã có của test user: **2/2** trả 200 `X-Weeat-Source: database`, tổng 2 card, không gọi crawl.
 
+Tiến độ Library live: PATCH `/api/library/:video_id/:restaurant_id` chỉ sửa quán đã lưu của đúng user, xác thực tên/món/địa chỉ/giá và ghi chú ≤500 ký tự; client chỉ gửi field đổi. Khi địa chỉ free text thay đổi, server xóa tọa độ cũ để Map không dùng pin sai; picker địa chỉ và geocode live còn ở bước Địa chỉ. Search server và mock/client chỉ xét tên quán, món, địa chỉ không dấu; category gửi `cate_id` lên server, Clear filters bỏ cả category. Card có class/nút theo test, link ShopeeFood chỉ cho cửa hàng thật, cover `/covers` cùng origin. Kiểm tra API với test user: **68** quán đã lưu hợp lệ, category chỉ trả đúng loại, từ chỉ có trong title trả **0** kết quả, PATCH hợp lệ **200** và ghi chú 501 ký tự **400**. Mock `action-buttons` **2/2**, `alignment` **5/5**, `product-updates` **6/11**. Năm ca còn đỏ thuộc Map, Discover guest, Chat, carousel comment, migration; không sửa/skip test. Chụp live Library 390/1280: **2/2 sạch** console/network/overflow; pixel diff 18.35%/16.25% do ảnh bìa và nội dung live khác snapshot, lưới/nút đúng bố cục.
+
 `tests/journeys.spec.ts` chạy đầy đủ **7/14 xanh**: hai ca Discover liên quan luồng trích xuất và URL đã xanh sau sửa; bảy ca còn đỏ thuộc Map, Ask AI, Profile và một ca audit tài nguyên của cấu hình test chạy ở cổng 4174 thay vì 5173. Không sửa/skip test; tiếp tục ở bước tính năng tương ứng.
 
 Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec 10 > spec 07 > spec 03 > API contract cũ. Đặc biệt: cookie phiên thay Firebase token; DB chỉ có `is_saved` boolean (API trả 0/1), không dùng `is_save`; Map lọc Library ở client, không gọi `/api/map/places`; Along route lọc bằng ellipse dù vẫn vẽ tuyến xe máy thật; card Ask AI lấy từ event `references` do server chọn theo marker `[[n]]` và quy tắc fallback của spec 11. Ảnh là chuẩn bố cục; số lượng quán, ảnh món và vị trí pin là dữ liệu live nên có thể khác.
@@ -34,7 +36,8 @@ Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec
 - [x] Analyze DB trước: tìm video của user hiện tại hoặc user khác, sao chép mọi quán thành bản chưa lưu không có `user_note`; chỉ video chưa có mới gọi crawl service. Chuẩn hóa link/ID; insert idempotent trong transaction với `doc_id` ổn định và các cột NOT NULL (`has_conflict`, `incomplete`), giữ save khi analyze lại. Ánh xạ lỗi video dài, non-food, giới hạn và upstream; video không có quán trả danh sách rỗng. Proxy cover TikTok qua `/covers/`.
 - [x] Save/Unsave idempotent, chỉ cập nhật `is_saved` và không xóa bản ghi; `/api/samples` trả hai video gần nhất từ DB cho cả khách chưa đăng nhập. `toRestaurant` ánh xạ giá, transcript, comments và ShopeeFood; chỉ bật link cửa hàng hợp lệ.
 - [x] GET `/api/library` với `q`, `cate_id` và bản ghi đã lưu của đúng user. Search server chỉ khớp tên quán, món, địa chỉ không dấu. Recent Discoveries lấy danh sách này lúc mở trang.
-- [ ] PATCH edit Library. PATCH chỉ cập nhật field được sửa; địa chỉ đổi phải có tọa độ và nguồn geocode được chọn; giới hạn ghi chú theo server. `libraryMatches` phía mock/client vẫn cần bỏ title/note khỏi điều kiện để thống nhất với server. Trả category thật, không hardcode sáu loại.
+- [x] PATCH edit Library chỉ cho saved row của user phiên hiện tại, chỉ cập nhật field đổi, xác thực giá và ghi chú ≤500 ký tự. Search client/mock bỏ title/note; category từ `/api/categories`.
+- [ ] Nối picker địa chỉ live vào Edit khi có `/api/geo/*`; khi địa chỉ free text đổi, API hiện xóa tọa độ cũ thay vì giữ pin sai.
 - [ ] Giữ đối chiếu API ở spec 10 trong các bước triển khai: `/api/map/places` không sử dụng; `/api/ask` là fallback còn `/api/ask/stream` là luồng chính. Cập nhật tài liệu API cũ khi API thực tế được nối, tránh đem lại các quyết định đã bị spec 10 thay thế.
 
 ## Discover
@@ -50,9 +53,9 @@ Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec
 
 ## Library
 
-- [ ] `/api/library` GET đã nối để tải saved/Recent; vẫn cần hoàn tất đồng bộ sau edit, kiểm tra lọc platform/category/sort và chỉnh `libraryMatches` trong mock/client bỏ title/note. Tránh đếm/lưới lệch khi server trả kết quả search mới.
-- [ ] Dùng category 14 loại từ `/api/categories`; duy trì trạng thái loading, rỗng, lỗi/retry, count và card grid như ảnh. Identity của quán luôn là bộ ba khóa; Details và Map deep link dùng ID ổn định.
-- [ ] Nối Edit trên quán đã lưu: tên, món, giá, ghi chú và địa chỉ qua picker live; gửi tọa độ/`geo_source` khi đổi địa chỉ, không gửi free text thiếu tọa độ. Unsave chỉ đổi `is_saved`. Card giữ Details → Map → Watch → ShopeeFood và fallback ảnh khi thumbnail null; chỉ hiện link ShopeeFood cửa hàng thật.
+- [x] `/api/library` chỉ tải saved của user; search server và client chỉ tên/món/địa chỉ không dấu; category gửi `cate_id` đến server. Clear filters xóa query, platform, category và sort. Edit đồng bộ card từ PATCH; Unsave chỉ đổi `is_saved`.
+- [x] Category từ `/api/categories`, loading/rỗng/lỗi/retry, count và grid theo ảnh; card có Details → Map → Watch → ShopeeFood, slot trống giữ canh nút. Cover hợp lệ đi qua `/covers` cùng origin. Identity/deep link dùng bộ ba khóa.
+- [ ] Sau khi có `/api/geo/*`, Edit dùng picker chọn địa chỉ có tọa độ/`geo_source` để pin Map cập nhật đúng thay vì mất tọa độ.
 
 ## Địa chỉ
 
@@ -85,4 +88,4 @@ Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec
 - [ ] Details hiển thị transcript, highlights comments, thông tin nguồn/giá/địa chỉ thật; không suy ra link đặt món chỉ vì có URL tìm kiếm. Ảnh thiếu dùng fallback. Giữ accessibility của input, drawer, nút và trạng thái lỗi.
 - [ ] Sau mỗi bước code sau này: cập nhật file này, chạy test theo từng file liên quan, đối chiếu screenshot UI ở 390/820/1280 px; chỉ chạy cả suite cuối cùng. Không sửa locked tests, không chạy loop dịch vụ trả phí.
 
-**Tiếp theo:** hoàn tất Library PATCH/Edit và đồng bộ tìm kiếm, Profile/địa chỉ live; tiếp Map và Ask AI theo spec 11. Mỗi bước triển khai là một commit riêng.
+**Tiếp theo:** Profile/địa chỉ live và picker Edit; tiếp Map và Ask AI theo spec 11. Mỗi bước triển khai là một commit riêng.
