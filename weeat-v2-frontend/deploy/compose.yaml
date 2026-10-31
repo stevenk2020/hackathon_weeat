@@ -1,0 +1,21 @@
+services:
+  app:
+    image: node:22-bookworm-slim
+    container_name: weeat-hackathon-app
+    user: "1000:1000"
+    working_dir: /app
+    network_mode: host
+    init: true
+    restart: unless-stopped
+    stop_grace_period: 10s
+    environment:
+      PORT: "31031"
+      HOST: "127.0.0.1"
+    volumes:
+      - ..:/app
+    command: ["node", "deploy/watch.mjs"]
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:31031/api/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
