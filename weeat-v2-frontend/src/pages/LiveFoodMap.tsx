@@ -250,7 +250,9 @@ export default function LiveFoodMap() {
       <GoongMap from={origin} to={routeOpen ? destination : null} fitFrom={committedOrigin}
         fitTo={routeOpen ? committedDestination : null} ellipse={routeOpen && !routeFailed} routeMode={routeOpen}
         route={routeOpen && !dragFrom && !dragTo ? route?.points : undefined}
-        radiusKm={activeRadius} places={mapPlaces} selectedKey={selected} onSelect={select}
+        radiusKm={activeRadius} places={mapPlaces} selectedKey={selected}
+        onSelect={key => { const place = locatedEntries.find(row => identity(row) === key);
+          if (place) setRestaurantDestination(place); }}
         onPointMove={movePoint} onMapClick={point => commitPoint('to', point)}/>
     </Suspense></div>
     {routeOpen && route && !dragFrom && !dragTo && <div className="route-summary" data-testid="route-summary">
