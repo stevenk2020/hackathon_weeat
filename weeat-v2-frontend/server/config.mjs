@@ -12,10 +12,23 @@ const configuredOrigins = list(env.BASE_URLS).map(value => {
 }).filter(Boolean);
 const baseUrls = configuredOrigins.length ? configuredOrigins : [`http://localhost:${port}`];
 const models = [...new Set([env.OPENAI_MODEL_DEFAULT, ...list(env.OPENAI_MODEL_LIST)].filter(Boolean))];
+const dbTarget = env.WEEAT_DB_TARGET || 'old';
+if (!['old', 'prod'].includes(dbTarget)) throw new Error('WEEAT_DB_TARGET must be old or prod.');
+const prodPassword = env.PGPASSWORD_PROD || env.PGASSWORD_PROD;
+if (dbTarget === 'prod') {
+  const missing = ['PGHOST_PROD', 'PGPORT_PROD', 'PGDATABASE_PROD', 'PGUSER_PROD']
+    .filter(name => !env[name]);
+  if (!prodPassword) missing.push('PGPASSWORD_PROD');
+  if (missing.length) throw new Error(`Missing production database configuration: ${missing.join(', ')}`);
+  const prodPort = Number(env.PGPORT_PROD);
+  if (!Number.isInteger(prodPort) || prodPort < 1 || prodPort > 65535)
+    throw new Error('PGPORT_PROD must be a valid TCP port.');
+}
 
 export const config = {
   port,
   host: env.HOST || '127.0.0.1',
+  dbTarget,
   baseUrls,
   baseUrl: baseUrls[0],
   googleClientId: env.GOOGLE_CLIENT_ID || '',
@@ -23,7 +36,13 @@ export const config = {
   sessionSecret: env.SESSION_SECRET || '',
   crawlBaseUrl: env.CRAWL_API_BASE_URL || '',
   crawlApiKey: env.CRAWL_API_KEY || '',
-  pg: {
+  pg: dbTarget === 'prod' ? {
+    host: env.PGHOST_PROD,
+    port: Number(env.PGPORT_PROD),
+    database: env.PGDATABASE_PROD,
+    user: env.PGUSER_PROD,
+    password: prodPassword,
+  } : {
     host: env.PGHOST || '127.0.0.1',
     port: Number(env.PGPORT) || 5432,
     database: env.PGDATABASE || 'we_eat_ai',

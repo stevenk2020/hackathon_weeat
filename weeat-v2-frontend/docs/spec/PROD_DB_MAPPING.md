@@ -36,4 +36,4 @@ node server/sync-prod.mjs --apply --expect=11
 # hoặc: node server/sync-prod.mjs --apply --include-test-user --expect=121
 ```
 
-Các chat/memory/log chưa nằm trong lệnh ghi trên. App hiện vẫn kết nối bằng `PGHOST/PGPORT/PGDATABASE/PGUSER/PGPASSWORD`; thêm `PG*_PROD` một mình chưa đổi DB mà server đang dùng.
+Các chat/memory/log chưa nằm trong lệnh ghi trên. Server chọn kết nối bằng `WEEAT_DB_TARGET` (`old` mặc định, `prod` dùng `PG*_PROD`); thêm `PG*_PROD` một mình chưa đổi DB mà server đang dùng. Bản hackathon đã được chuyển sang `prod` trong `.env.local`; file bí mật này không nằm trong Git. Xem `deploy/README.md` để chuyển lại nếu cần.

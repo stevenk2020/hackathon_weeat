@@ -11,6 +11,18 @@ It runs as UID/GID 1000 and reads `.env.local` from the mounted workspace. Keep
 the `.env.local` file out of Git. The Caddyfile lives in the existing Caddy
 container; this service does not own or change it.
 
+Database selection is controlled by `WEEAT_DB_TARGET` in `.env.local`:
+
+- `WEEAT_DB_TARGET=prod` uses the `PGHOST_PROD`, `PGPORT_PROD`, `PGDATABASE_PROD`,
+  `PGUSER_PROD`, and `PGPASSWORD_PROD` connection. The existing misspelling
+  `PGASSWORD_PROD` is accepted until the secret is renamed.
+- `WEEAT_DB_TARGET=old` (or no setting) uses the original `PG*` connection.
+
+The app refuses to start with incomplete production settings; it never silently
+falls back to the old database. The watcher rebuilds and restarts the app when
+`.env.local` changes. Manual `npm start` in this directory uses the same target.
+Use only the old target for local checks that intentionally write test data.
+
 Google sign-in needs `https://hackathon.weeat.site/api/auth/google/callback`
 listed as an authorized redirect URI for the configured Google OAuth client.
 
