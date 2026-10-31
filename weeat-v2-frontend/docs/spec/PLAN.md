@@ -6,6 +6,8 @@ Tiến độ bước 31/10: đã thêm `mapGeometry.ts`, `pinDistance.ts`, `link
 
 Tiến độ server/auth: đã có `server/config.mjs`, `db.mjs`, `session.mjs`, `index.mjs`, Google OAuth xác minh email qua tokeninfo, Profile GET/PATCH và Categories từ DB; live client dùng cookie cùng origin và khôi phục `/api/auth/me`. Unit config/session **17/17 xanh**, smoke chọn lọc tại cổng 32031 **7/7 xanh**, PATCH Home giữ nguyên dữ liệu trả 200; đã tắt server kiểm tra. `npm run build` kiểm tra TypeScript của ứng dụng qua `tsconfig.build.json`; `npm run typecheck` vẫn kiểm tra cả locked tests và còn đỏ vì module của các bước sau chưa có. Sửa chuẩn hóa đường dẫn `dist/` để server phục vụ được trang `/` và assets sau build.
 
+Tái kiểm tra sau sửa build: `tests/unit/config.spec.ts` **6/6**, `tests/unit/session.spec.ts` **11/11**; `PORT=32031 BASE_URLS=http://localhost:32031 ONLY='health|auth|profile|categories|unknown|cross' bash docs/spec/tools/live-smoke.sh` **7/7**. Server kiểm tra đã tắt, cổng 32031 trống. Mã server/auth của bước này ở commit `170a3c6`; chưa phát hiện lỗi mới trong phạm vi kiểm tra.
+
 Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec 10 > spec 07 > spec 03 > API contract cũ. Đặc biệt: cookie phiên thay Firebase token; DB chỉ có `is_saved` boolean (API trả 0/1), không dùng `is_save`; Map lọc Library ở client, không gọi `/api/map/places`; Along route lọc bằng ellipse dù vẫn vẽ tuyến xe máy thật; card Ask AI lấy từ event `references` do server chọn theo marker `[[n]]` và quy tắc fallback của spec 11. Ảnh là chuẩn bố cục; số lượng quán, ảnh món và vị trí pin là dữ liệu live nên có thể khác.
 
 ## Nền tảng
