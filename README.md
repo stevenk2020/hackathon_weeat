@@ -14,11 +14,9 @@
   <img src="https://img.shields.io/badge/Tests-Playwright-2e7d32" alt="Tested with Playwright" />
 </p>
 
-WeEat AI connects food-video inspiration with places worth visiting. Paste a YouTube Shorts or TikTok video or photo link, review discovered restaurants, save favorites, and explore your collection through search, a food map and conversation. Built by **Four of a Kind** for the **Sea × OpenAI Codex Hackathon 2026**, this repository contains the live app and its separate extraction backend.
+WeEat AI connects food-video inspiration with places worth visiting. Paste a YouTube Shorts or TikTok link, review discovered restaurants, save favorites, and explore your collection through search, a food map and conversation. Built by **Four of a Kind** for the **Sea × OpenAI Codex Hackathon 2026**, this repository delivers a responsive English/Vietnamese frontend with typed backend integration boundaries.
 
 > **Live app:** [hackathon.weeat.site](https://hackathon.weeat.site/)
-
-The React app and its Node API server are in [`weeat-v2-frontend/`](weeat-v2-frontend/). The video extraction service is in [`backend-api/backend/`](backend-api/backend/). These are separate servers; starting the app does not start the extraction service.
 
 ## The Problem
 
@@ -32,18 +30,18 @@ WeEat AI organizes discoveries around restaurants and their original videos. Rev
 
 | Capability | Implemented experience |
 | --- | --- |
-| **Video discovery** | YouTube Shorts and TikTok video/photo validation, clipboard paste, progress and recoverable errors. |
+| **Video discovery** | YouTube Shorts/TikTok validation, clipboard paste, progress and recoverable errors. |
 | **Analysis results** | Multiple restaurants, source preview, dishes, addresses and prices. Development extraction uses fixed fixtures. |
 | **Personal Library** | Individual/save-all actions, composite-key duplicate prevention and sibling-preserving removal. |
 | **Details & transcripts** | Source links, transcript expansion, comment highlights and personal notes. |
-| **Search & organization** | Accent-insensitive name/dish/address search, platform/category filters and sorting. Transcript search belongs to Ask AI, not Library. |
-| **Food Map** | Live Goong/MapLibre map with radius and Along Route exploration; mock mode uses an illustrative SVG map. |
-| **Ask WeEat AI** | Streaming answers and reference cards grounded in saved places. Mock chat searches saved fixtures without a model call. |
-| **Memory & history** | Live sessions and memories are stored on the server; mock mode keeps demo data in the browser. |
-| **Profile & localization** | Home-address onboarding, Google sign-in for the live app, English/Vietnamese controls and responsive layouts. |
+| **Search & organization** | Accent-insensitive name/dish/address/title/note search, platform/category filters and sorting. Transcript search is excluded from Library. |
+| **Food Map** | Development radius/Along Route exploration with confirmed endpoints. SVG routes are illustrative; road navigation and travel times are unavailable. |
+| **Ask WeEat AI** | Recommendation cards, duplicate-send guards and failed-draft recovery. Development chat searches saved fixtures deterministically, without a model call. |
+| **Memory & history** | Explicit remember requests, confirmed Memory deletion, New Chat and session switching; development persistence is browser-local. |
+| **Profile & localization** | Selected-home onboarding, optional name, English/Vietnamese controls and responsive layouts. Demo sign-in is local. |
 | **Multimodal extraction — backend** | Gemini & OpenAI analysis of video, images and captions from TikTok, YouTube Shorts. |
 | **Data enrichment — backend** | Price normalization, food categorization, evidence checks, conflict flags, coordinates, map/ShopeeFood links and comment sentiment. |
-| **Personal data APIs — app server** | Authenticated Library operations, notes, saved-data question answering and PostgreSQL persistence. |
+| **Personal data APIs — backend** | Team-reported authenticated Library operations, notes, saved-data question answering, persistence and result caching. |
 
 ## User Journey
 
@@ -70,15 +68,14 @@ Copy a link below into Discover to test the submission flow.
 | --- | --- |
 | Frontend | React 19, TypeScript 5.7, React Router 7, Vite 6 and the Vite React plugin |
 | UI | Custom CSS, Lucide icons, local Inter/Playfair Display fonts and supplied imagery |
-| Integration | Typed fetch client, runtime validation, same-origin session cookie and request timeouts |
+| Integration | Typed fetch client, runtime validation, bearer-token adapter and 15-second HTTP timeout |
 | Testing | Playwright domain tests and Chrome browser tests |
-| App server | Node.js, PostgreSQL, Google OAuth session cookies and OpenAI |
-| Extraction service | Node.js, SQLite, PostgreSQL integration, Gemini and media readers |
-| Maps and external APIs | Goong, VietMap and YouTube Data API |
+| Backend (team-reported) | Node.js APIs, SQLite, node-postgres (`pg`), self-hosted PostgreSQL, Google OAuth and result caching |
+| Third-party APIs (team-reported) | Google Gemini API, YouTube Data API, Goong, VietMap and OpenAI |
 
 ## Testing & Quality Assurance
 
-The repository includes Playwright browser and unit tests. See the [project plan](weeat-v2-frontend/docs/spec/PLAN.md) for recorded checks and remaining work; this README update does not claim a fresh full-suite run.
+The latest complete QA runs on **31 October 2026** recorded **~500 unique cases passed, 0 failed, 0 skipped**: Strict TypeScript and the production build passed. Counts include viewport variants, without counting reruns.
 
 ## Hackathon Development
 
@@ -98,7 +95,7 @@ The backend turns social food content into structured restaurant information tha
 
 #### Multimodal Food Discovery
 
-Extraction APIs process **TikTok and YouTube Shorts**. Gemini and OpenAI analyze video, images and captions to identify restaurant names, signature dishes, prices and addresses. Structured results give the frontend restaurant-level information to review and save, rather than leaving users to search through the original post again.
+Extraction APIs process **TikTok, YouTube Shorts**. Gemini & OpenAI analyzes video, images and captions to identify restaurant names, signature dishes, prices and addresses. Structured results give the frontend restaurant-level information to review and save, rather than leaving users to search through the original post again.
 
 #### Data Quality & Evidence
 
@@ -114,18 +111,21 @@ The backend provides APIs for saving and unsaving restaurants, searching persona
 
 #### Authentication, Persistence & Integration
 
-The app server uses **Google OAuth**, signed session cookies and **PostgreSQL** for personal data. The separate extraction service includes **SQLite**, optional PostgreSQL writing and result caching. Error handling, tests and API documentation support integration between the two services.
+Backend infrastructure includes **Google authentication**, **SQLite storage**, **PostgreSQL integration** and **result caching**. Error handling, backend tests and API documentation support integration between team members. Together, these services provide the data and API layer consumed by the frontend's discovery, Library and conversational workflows.
 
-The extraction backend source and its tests are available in [`backend-api/backend/`](backend-api/backend/). The app server source is in [`weeat-v2-frontend/server/`](weeat-v2-frontend/server/).
+The backend description reflects the team's implementation summary. Backend source is not present in this checkout, and the frontend QA evidence does not establish backend test coverage or live-service correctness. Backend ingestion covers more platforms than the current frontend URL validator, which accepts YouTube Shorts and TikTok video links.
 
 ## Open-Source Projects, Preparation & Third-Party Services
 
 ### Backend
 
-The extraction service uses **Node.js**, **SQLite** and **node-postgres (`pg`)**. Its personal routes use Firebase ID tokens; the separate app server uses Google OAuth sessions. PostgreSQL is self-hosted on the server.
+The backend uses **Node.js**, **SQLite** and **node-postgres (`pg`)** to build APIs and store data. **PostgreSQL is self-hosted on the server**, and authentication uses **Google OAuth**.
 
 - **Optional TikTok content retrieval:** `yt-dlp` and `gallery-dl`.
+- **Demo-video generation scripts:** FFmpeg, imageio-ffmpeg, NumPy, Pillow and edge-tts. These tools support demonstration-video production.
 - **Third-party services and APIs:** Google Gemini API, YouTube Data API, Goong, VietMap and OpenAI.
+
+Pre-prepared assets: https://github.com/nhule-lab/weeat-ai-asset
 
 ### Frontend
 
