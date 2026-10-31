@@ -6,15 +6,12 @@ import { fileURLToPath } from 'node:url';
 import { config, missingConfig, originFor } from './config.mjs';
 import { pool, query } from './db.mjs';
 import { cookie, readCookie, seal, unseal } from './session.mjs';
+import { HttpError, analyze, savePlace, samples, serveCover } from './places.mjs';
 
 const dist = resolve(fileURLToPath(new URL('../dist/', import.meta.url)));
 const SESSION = 'weeat_session';
 const OAUTH = 'weeat_oauth';
 const SESSION_SECONDS = 7 * 24 * 60 * 60;
-
-class HttpError extends Error {
-  constructor(status, code, message) { super(message); this.status = status; this.code = code; }
-}
 
 const sendJson = (res, status, data, headers = {}) => {
   const body = JSON.stringify(data);
@@ -214,6 +211,22 @@ async function handle(req, res) {
     const user = requireUser(req);
     return sendJson(res, 200, { profile: await patchProfile(user.uid, await jsonBody(req)) });
   }
+  if (path === '/api/analyze' && method === 'POST') {
+    const user = requireUser(req);
+    const result = await analyze(user, (await jsonBody(req)).url);
+    return sendJson(res, 200, { video: result.video, restaurants: result.restaurants }, { 'X-Weeat-Source': result.source });
+  }
+  if (path === '/api/samples' && method === 'GET') return sendJson(res, 200, await samples(requireUser(req)));
+  const save = path.match(/^\/api\/library\/([^/]+)\/([^/]+)\/save$/);
+  if (save && (method === 'PUT' || method === 'DELETE')) {
+    const user = requireUser(req);
+    let videoId, restaurantId;
+    try { videoId = decodeURIComponent(save[1]); restaurantId = decodeURIComponent(save[2]); }
+    catch { throw new HttpError(400, 'bad_request', 'Invalid restaurant ID.'); }
+    return sendJson(res, 200, await savePlace(user.uid, videoId, restaurantId, method === 'PUT'));
+  }
+  if (path.startsWith('/covers/') && (method === 'GET' || method === 'HEAD'))
+    return serveCover(res, path.slice('/covers/'.length), method === 'HEAD');
   if (path.startsWith('/api/')) {
     if (/^\/api\/(?:library|analyze|samples|geo|map|ask|chat|memory)(?:\/|$)/.test(path)) requireUser(req);
     throw new HttpError(501, 'not_implemented', 'This API is not implemented yet.');
@@ -231,7 +244,7 @@ if (absent.length) {
     handle(req, res).catch(error => {
       if (res.headersSent) { res.destroy(); return; }
       if (!(error instanceof HttpError)) console.error('Request failed:', error);
-      sendJson(res, error.status || 500, { error: { code: error.code || 'internal_error', message: error instanceof HttpError ? error.message : 'Internal server error.' } });
+      sendJson(res, error.status || 500, { error: { code: error.code || 'internal_error', message: error instanceof HttpError ? error.message : 'Internal server error.' } }, error.headers || {});
     });
   });
   server.listen(config.port, config.host, () => console.log(`WeEat server listening on ${config.host}:${config.port}`));
