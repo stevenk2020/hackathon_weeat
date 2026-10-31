@@ -1,0 +1,257 @@
+﻿{
+    "categories":  [
+                       {
+                           "cate_name_vn":  "Chay",
+                           "cate_name_en":  "Vegetarian",
+                           "cate_id":  1
+                       },
+                       {
+                           "cate_name_vn":  "Bánh mì",
+                           "cate_name_en":  "Banh mi",
+                           "cate_id":  2
+                       },
+                       {
+                           "cate_name_vn":  "Phở, mì, miến",
+                           "cate_name_en":  "Noodles",
+                           "cate_id":  3
+                       },
+                       {
+                           "cate_name_vn":  "Cơm",
+                           "cate_name_en":  "Rice dishes",
+                           "cate_id":  4
+                       },
+                       {
+                           "cate_name_vn":  "Đồ ăn nhanh",
+                           "cate_name_en":  "Fast food",
+                           "cate_id":  5
+                       },
+                       {
+                           "cate_name_vn":  "Pizza",
+                           "cate_name_en":  "Pizza",
+                           "cate_id":  6
+                       },
+                       {
+                           "cate_name_vn":  "Trà",
+                           "cate_name_en":  "Tea",
+                           "cate_id":  7
+                       },
+                       {
+                           "cate_name_vn":  "Cafe",
+                           "cate_name_en":  "Coffee",
+                           "cate_id":  8
+                       },
+                       {
+                           "cate_name_vn":  "Hải sản",
+                           "cate_name_en":  "Seafood",
+                           "cate_id":  9
+                       },
+                       {
+                           "cate_name_vn":  "Quán nướng",
+                           "cate_name_en":  "BBQ \u0026 grill",
+                           "cate_id":  10
+                       },
+                       {
+                           "cate_name_vn":  "Quán Hàn",
+                           "cate_name_en":  "Korean food",
+                           "cate_id":  11
+                       },
+                       {
+                           "cate_name_vn":  "Quán Nhật",
+                           "cate_name_en":  "Japanese food",
+                           "cate_id":  12
+                       },
+                       {
+                           "cate_name_vn":  "Ẩm thực quốc tế",
+                           "cate_name_en":  "International food",
+                           "cate_id":  13
+                       },
+                       {
+                           "cate_name_vn":  "Khác",
+                           "cate_name_en":  "Other",
+                           "cate_id":  14
+                       }
+                   ],
+    "addresses":  [
+                      {
+                          "label":  "123 Lê Lợi, Bến Nghé, District 1, HCMC",
+                          "longitude":  106.7006,
+                          "provider":  "mock",
+                          "id":  "demo-le-loi",
+                          "latitude":  10.7731
+                      },
+                      {
+                          "label":  "42 Nguyễn Huệ, District 1, HCMC",
+                          "longitude":  106.7031,
+                          "provider":  "mock",
+                          "id":  "demo-nguyen-hue",
+                          "latitude":  10.7747
+                      },
+                      {
+                          "label":  "45 Pasteur, Bến Nghé, District 1, HCMC",
+                          "longitude":  106.7014,
+                          "provider":  "mock",
+                          "id":  "demo-pasteur",
+                          "latitude":  10.7757
+                      },
+                      {
+                          "label":  "13 Lò Đúc, Hai Bà Trưng, Hà Nội",
+                          "longitude":  105.8554,
+                          "provider":  "mock",
+                          "id":  "demo-hanoi",
+                          "latitude":  21.0154
+                      }
+                  ],
+    "videos":  [
+                   {
+                       "title":  "Vietnam Street Food Tour — 3 Hidden Food Spots!",
+                       "thumbnail_url":  "/images/pho-scene.jpg",
+                       "platform":  "youtube",
+                       "script_text":  "00:00 – 00:18 · Hôm nay dẫn cả nhà đi ăn Phở Thìn Lò Đúc trứ danh Hà Nội! Phở tái lăn áp chảo thơm nức, nước dùng béo ngậy. Một bát đầy đặn giá 65k đến 90k. The beef pho is rich with garlic, spring onions and stir-fried beef.\r\n\r\n00:18 – 00:28 · Đặc biệt gọi tô tái lăn buổi sáng được tặng kèm đĩa quẩy giòn tan miễn phí! Free crispy quẩy (crullers) with morning orders.\r\n\r\n00:29 – 00:40 · Điểm dừng chân thứ hai là Bánh mì Huỳnh Hoa. Special pate and pork terrine baguette with pickles, butter and fresh herbs. Bánh nướng nóng hổi, giá 62k đến 68k.\r\n\r\n00:41 – 00:52 · Cơm tấm Ba Ghiền: honey and lemongrass grilled pork ribs, broken rice and egg meatloaf. 75k đến 110k. Ghé trước 7h tối nhé!",
+                       "is_food_beverage":  true,
+                       "video_id":  "WeEatDemo01",
+                       "duration_seconds":  52,
+                       "video_url":  "https://www.youtube.com/shorts/WeEatDemo01"
+                   },
+                   {
+                       "title":  "Cơm tấm sườn khổng lồ Sài Gòn — Ba Ghiền",
+                       "thumbnail_url":  "/images/com-tam-scene.jpg",
+                       "platform":  "tiktok",
+                       "script_text":  "00:00 – 00:45 · Cơm tấm Ba Ghiền ở 84 Đặng Văn Ngữ, Phú Nhuận. Miếng sườn khổng lồ ướp mật ong với sả nướng trên than hồng. Honey glazed pork ribs, broken rice, egg meatloaf and sweet fish sauce. Một phần 75k đến 110k. Come before 7pm for the best grilled ribs. A hearty dinner in Saigon.",
+                       "is_food_beverage":  true,
+                       "video_id":  "7280000000000000001",
+                       "duration_seconds":  45,
+                       "video_url":  "https://www.tiktok.com/@weeat/video/7280000000000000001"
+                   },
+                   {
+                       "title":  "Bún ốc cô Huệ — a Hanoi old quarter favorite",
+                       "thumbnail_url":  "/images/bun-oc.jpg",
+                       "platform":  "tiktok",
+                       "script_text":  null,
+                       "is_food_beverage":  true,
+                       "video_id":  "7280000000000000002",
+                       "duration_seconds":  30,
+                       "video_url":  "https://www.tiktok.com/@weeat/video/7280000000000000002"
+                   }
+               ],
+    "profile":  [
+                    {
+                        "user_lat":  null,
+                        "user_name":  "Le Hoang",
+                        "user_long":  null,
+                        "food_interests":  [
+
+                                           ],
+                        "food_notes":  "",
+                        "user_email":  "le.hoang@gmail.com",
+                        "budget":  "any",
+                        "user_address":  "",
+                        "user_id":  "1"
+                    }
+                ],
+    "restaurants":  [
+                        {
+                            "latitude":  10.787119027175789,
+                            "restaurant_name":  "Phở Thìn Lò Đúc",
+                            "dish":  "Phở tái lăn áp chảo thơm lừng",
+                            "shopeefood_kinds":  "search",
+                            "script_text":  "00:00 – 00:18 · Hôm nay dẫn cả nhà đi ăn Phở Thìn Lò Đúc trứ danh Hà Nội! Phở tái lăn áp chảo thơm nức, nước dùng béo ngậy. Một bát đầy đặn giá 65k đến 90k. The beef pho is rich with garlic, spring onions and stir-fried beef.\r\n\r\n00:18 – 00:28 · Đặc biệt gọi tô tái lăn buổi sáng được tặng kèm đĩa quẩy giòn tan miễn phí! Free crispy quẩy (crullers) with morning orders.\r\n\r\n00:29 – 00:40 · Điểm dừng chân thứ hai là Bánh mì Huỳnh Hoa. Special pate and pork terrine baguette with pickles, butter and fresh herbs. Bánh nướng nóng hổi, giá 62k đến 68k.\r\n\r\n00:41 – 00:52 · Cơm tấm Ba Ghiền: honey and lemongrass grilled pork ribs, broken rice and egg meatloaf. 75k đến 110k. Ghé trước 7h tối nhé!",
+                            "is_saved":  0,
+                            "address":  "13 Lò Đúc, Hai Bà Trưng, Hà Nội",
+                            "user_id":  "1",
+                            "update_time":  "2026-10-20T12:00:00.000Z",
+                            "longitude":  106.70883910233006,
+                            "platform":  "youtube",
+                            "cate_id":  3,
+                            "price_vnd":  65000,
+                            "match_score":  98,
+                            "user_note":  "",
+                            "doc_id":  "mock-pho",
+                            "price_vnd_max":  90000,
+                            "create_time":  "2026-10-20T12:00:00.000Z",
+                            "thumbnail_url":  "/images/pho.jpg",
+                            "video_url":  "https://www.youtube.com/shorts/WeEatDemo01",
+                            "title":  "Vietnam Street Food Tour — 3 Hidden Food Spots!",
+                            "shopeefood_url":  "https://shopeefood.vn/ha-noi",
+                            "video_id":  "WeEatDemo01",
+                            "restaurant_id":  "pho"
+                        },
+                        {
+                            "latitude":  10.767694714114766,
+                            "restaurant_name":  "Bánh mì Huỳnh Hoa",
+                            "dish":  "Bánh mì thập cẩm đặc biệt giòn rụm",
+                            "shopeefood_kinds":  "store",
+                            "script_text":  "00:00 – 00:18 · Hôm nay dẫn cả nhà đi ăn Phở Thìn Lò Đúc trứ danh Hà Nội! Phở tái lăn áp chảo thơm nức, nước dùng béo ngậy. Một bát đầy đặn giá 65k đến 90k. The beef pho is rich with garlic, spring onions and stir-fried beef.\r\n\r\n00:18 – 00:28 · Đặc biệt gọi tô tái lăn buổi sáng được tặng kèm đĩa quẩy giòn tan miễn phí! Free crispy quẩy (crullers) with morning orders.\r\n\r\n00:29 – 00:40 · Điểm dừng chân thứ hai là Bánh mì Huỳnh Hoa. Special pate and pork terrine baguette with pickles, butter and fresh herbs. Bánh nướng nóng hổi, giá 62k đến 68k.\r\n\r\n00:41 – 00:52 · Cơm tấm Ba Ghiền: honey and lemongrass grilled pork ribs, broken rice and egg meatloaf. 75k đến 110k. Ghé trước 7h tối nhé!",
+                            "is_saved":  0,
+                            "address":  "26 Lê Thị Riêng, P. Bến Thành, Q.1, TP.HCM",
+                            "user_id":  "1",
+                            "update_time":  "2026-10-20T11:00:00.000Z",
+                            "longitude":  106.69509773737866,
+                            "platform":  "youtube",
+                            "cate_id":  2,
+                            "price_vnd":  62000,
+                            "match_score":  95,
+                            "user_note":  "",
+                            "doc_id":  "mock-banh-mi",
+                            "price_vnd_max":  68000,
+                            "create_time":  "2026-10-20T11:00:00.000Z",
+                            "thumbnail_url":  "/images/banh-mi.jpg",
+                            "video_url":  "https://www.youtube.com/shorts/WeEatDemo01",
+                            "title":  "Vietnam Street Food Tour — 3 Hidden Food Spots!",
+                            "shopeefood_url":  "https://shopeefood.vn/ho-chi-minh/banh-mi-huynh-hoa",
+                            "video_id":  "WeEatDemo01",
+                            "restaurant_id":  "banh-mi"
+                        },
+                        {
+                            "latitude":  10.765717938360703,
+                            "restaurant_name":  "Cơm tấm Ba Ghiền",
+                            "dish":  "Cơm tấm sườn bì chả nướng than",
+                            "shopeefood_kinds":  "store",
+                            "script_text":  "00:00 – 00:45 · Cơm tấm Ba Ghiền ở 84 Đặng Văn Ngữ, Phú Nhuận. Miếng sườn khổng lồ ướp mật ong với sả nướng trên than hồng. Honey glazed pork ribs, broken rice, egg meatloaf and sweet fish sauce. Một phần 75k đến 110k. Come before 7pm for the best grilled ribs. A hearty dinner in Saigon.",
+                            "is_saved":  0,
+                            "address":  "84 Đặng Văn Ngữ, P.10, Phú Nhuận, TP.HCM",
+                            "user_id":  "1",
+                            "update_time":  "2026-10-20T10:00:00.000Z",
+                            "longitude":  106.72124592976388,
+                            "platform":  "tiktok",
+                            "cate_id":  4,
+                            "price_vnd":  75000,
+                            "match_score":  92,
+                            "user_note":  "",
+                            "doc_id":  "mock-com-tam",
+                            "price_vnd_max":  110000,
+                            "create_time":  "2026-10-20T10:00:00.000Z",
+                            "thumbnail_url":  "/images/com-tam.jpg",
+                            "video_url":  "https://www.tiktok.com/@weeat/video/7280000000000000001",
+                            "title":  "Cơm tấm sườn khổng lồ Sài Gòn — Ba Ghiền",
+                            "shopeefood_url":  "https://shopeefood.vn/ho-chi-minh/com-tam-ba-ghien",
+                            "video_id":  "7280000000000000001",
+                            "restaurant_id":  "com-tam"
+                        },
+                        {
+                            "latitude":  10.797379040970219,
+                            "restaurant_name":  "Bún ốc cô Huệ",
+                            "dish":  "Bún ốc nguội giấm bỗng gia truyền",
+                            "shopeefood_kinds":  null,
+                            "script_text":  null,
+                            "is_saved":  0,
+                            "address":  "43 Nguyễn Siêu, Hoàn Kiếm, Hà Nội",
+                            "user_id":  "1",
+                            "update_time":  "2026-10-20T09:00:00.000Z",
+                            "longitude":  106.67114624673758,
+                            "platform":  "tiktok",
+                            "cate_id":  3,
+                            "price_vnd":  null,
+                            "match_score":  89,
+                            "user_note":  "",
+                            "doc_id":  "mock-bun-oc",
+                            "price_vnd_max":  null,
+                            "create_time":  "2026-10-20T09:00:00.000Z",
+                            "thumbnail_url":  "/images/bun-oc.jpg",
+                            "video_url":  "https://www.tiktok.com/@weeat/video/7280000000000000002",
+                            "title":  "Bún ốc cô Huệ — a Hanoi old quarter favorite",
+                            "shopeefood_url":  null,
+                            "video_id":  "7280000000000000002",
+                            "restaurant_id":  "bun-oc"
+                        }
+                    ]
+}

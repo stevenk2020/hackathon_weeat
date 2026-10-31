@@ -1,0 +1,6 @@
+import type { ReactNode } from 'react';
+import { Navigate } from 'react-router-dom';
+import { useApp } from '../services/AppContext';
+import { useI18n } from '../i18n';
+import { Button,EmptyState,ErrorNotice } from './ui';
+export function PersonalGate({children,screen}:{children:ReactNode;screen:string}){const app=useApp(),{t}=useI18n();if(app.loading)return <div className="page narrow" role="status">{t('loadingData')}</div>;if(!app.user)return <div className="page narrow"><div className="collection-hero"><span className="eyebrow">{t('collectionBadge')}</span><h1>{t(screen==='map'?'guestMapTitle':screen==='chat'?'chatTitle':'guestLibraryTitle')}</h1></div><EmptyState title={t('signIn')} action={<Button onClick={()=>app.setAuthOpen(true)}>{t('signIn')}</Button>}>{t(screen==='map'?'guestMapHint':screen==='chat'?'guestChatHint':'guestLibraryHint')}</EmptyState></div>;if(app.error&&!app.profile)return <div className="page narrow"><ErrorNotice message={app.error} retry={app.reload}/></div>;if(!app.profile)return <div className="page narrow" role="status">{t('loadingData')}</div>;if(screen!=='profile'&&(!app.profile.user_address||app.profile.user_lat===null||app.profile.user_long===null))return <Navigate to="/profile" replace/>;return children;}

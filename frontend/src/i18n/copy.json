@@ -1,0 +1,1578 @@
+﻿{
+    "tapAsk":  {
+                   "vi":  "Chạm để hỏi",
+                   "en":  "Tap to ask"
+               },
+    "loadingData":  {
+                        "vi":  "Đang tải các quán của bạn…",
+                        "en":  "Loading your places…"
+                    },
+    "navAsk":  {
+                   "vi":  "Hỏi AI",
+                   "en":  "Ask AI"
+               },
+    "readingVideo":  {
+                         "vi":  "Đang đọc nội dung video",
+                         "en":  "Reading video content"
+                     },
+    "budgetMid":  {
+                      "vi":  "100–250 nghìn",
+                      "en":  "100k – 250k"
+                  },
+    "locatingAddress":  {
+                            "vi":  "Đang tìm vị trí của bạn…",
+                            "en":  "Finding your location…"
+                        },
+    "storageWarning":  {
+                           "vi":  "Không thể lưu trên trình duyệt. Thay đổi chỉ được giữ trong phiên này.",
+                           "en":  "Browser storage is unavailable. Changes will last for this session only."
+                       },
+    "toastRemoved":  {
+                         "vi":  "Đã xóa khỏi danh sách đã lưu",
+                         "en":  "Removed from your Library"
+                     },
+    "mockAccountNotice":  {
+                              "vi":  "Dùng tài khoản Google mẫu. Không gửi yêu cầu đăng nhập.",
+                              "en":  "Uses a sample Google account. No sign-in request is sent."
+                          },
+    "categoryLabel":  {
+                          "vi":  "Danh mục quán ăn",
+                          "en":  "Restaurant category"
+                      },
+    "clipboardUnavailable":  {
+                                 "vi":  "Không thể truy cập bộ nhớ tạm. Chạm vào ô URL và dán liên kết video thủ công.",
+                                 "en":  "Clipboard access is unavailable. Tap the URL field and paste your video link manually."
+                             },
+    "dismissResults":  {
+                           "vi":  "Đóng kết quả khám phá",
+                           "en":  "Dismiss discovered results"
+                       },
+    "addressLookupError":  {
+                               "vi":  "Không thể tìm địa chỉ. Vui lòng thử lại.",
+                               "en":  "Could not find an address. Please try again."
+                           },
+    "signInRequired":  {
+                           "vi":  "Đăng nhập để lưu quán này nhé.",
+                           "en":  "Sign in to save this place."
+                       },
+    "toPlaceholder":  {
+                          "vi":  "Chọn một quán trên bản đồ",
+                          "en":  "Select a restaurant on the map"
+                      },
+    "showTranscript":  {
+                           "vi":  "Xem lời thoại",
+                           "en":  "Show video transcript"
+                       },
+    "gettingLocation":  {
+                            "vi":  "Đang lấy vị trí…",
+                            "en":  "Getting location…"
+                        },
+    "documentTitle":  {
+                          "vi":  "WeEat AI — Món ngon xứng đáng được tìm thấy.",
+                          "en":  "WeEat AI — Good food deserves to be found."
+                      },
+    "aiBudgetMatch":  {
+                          "vi":  "Mình tìm thấy {count} quán đã lưu có mức giá dưới {amount}. Thông tin đến từ video mẫu bạn đã lưu.",
+                          "en":  "I found {count} saved place with a listed price range under {amount}. These details come from your saved demo videos."
+                      },
+    "placeNotFound":  {
+                          "vi":  "Không tìm thấy quán",
+                          "en":  "Place not found"
+                      },
+    "locationDenied":  {
+                           "vi":  "Quyền truy cập vị trí bị từ chối. Vui lòng tìm địa chỉ của bạn.",
+                           "en":  "Location access was denied. Search for your address instead."
+                       },
+    "savedNearby":  {
+                        "vi":  "Quán đã lưu gần bạn",
+                        "en":  "Saved places near you"
+                    },
+    "confirmRemove":  {
+                          "vi":  "Xóa quán",
+                          "en":  "Yes, Remove"
+                      },
+    "libraryFootnote":  {
+                            "vi":  "Thông tin mẫu từ video ẩm thực.",
+                            "en":  "Sample details from social food videos."
+                        },
+    "addressChoose":  {
+                          "vi":  "Chọn một địa chỉ trong danh sách gợi ý để tiếp tục.",
+                          "en":  "Select an address from the suggestions to continue."
+                      },
+    "locationLabel":  {
+                          "vi":  "Địa chỉ / vị trí",
+                          "en":  "Address / location"
+                      },
+    "foodPreferences":  {
+                            "vi":  "Sở thích ăn uống",
+                            "en":  "Food preferences"
+                        },
+    "chatWelcomeHint":  {
+                            "vi":  "Hỏi về quán đã lưu, món yêu thích hoặc chỗ nên ăn tiếp theo từ video của bạn nhé.",
+                            "en":  "Ask me about places you’ve saved, dishes you love, or where to eat next based on your videos."
+                        },
+    "chatWelcomeEnd":  {
+                           "vi":  "ăn gì nhỉ?",
+                           "en":  "craving today?"
+                       },
+    "aiBudgetMatches":  {
+                            "vi":  "Mình tìm thấy {count} quán đã lưu có mức giá dưới {amount}. Thông tin đến từ video mẫu bạn đã lưu.",
+                            "en":  "I found {count} saved places with a listed price range under {amount}. These details come from your saved demo videos."
+                        },
+    "routeHint":  {
+                      "vi":  "Chạm ghim quán hoặc Chỉ đường để xem tuyến minh họa.",
+                      "en":  "Tap a restaurant pin or Directions to preview a route."
+                  },
+    "fromLabel":  {
+                      "vi":  "TỪ:",
+                      "en":  "FROM:"
+                  },
+    "navDiscover":  {
+                        "vi":  "Khám phá",
+                        "en":  "Discover"
+                    },
+    "testSigningIn":  {
+                          "vi":  "Đang đăng nhập…",
+                          "en":  "Signing in…"
+                      },
+    "memoryLocalNotice":  {
+                              "vi":  "Quản lý ghi nhớ riêng cho tài khoản trên trình duyệt này. Chưa kết nối đồng bộ máy chủ hoặc sử dụng trong câu trả lời AI.",
+                              "en":  "Manage separate personal memories for this account in this browser. Backend sync and use in AI replies are not connected yet."
+                          },
+    "urlPlaceholder":  {
+                           "vi":  "Dán liên kết video ẩm thực tại đây…",
+                           "en":  "Paste a food video link here…"
+                       },
+    "recenter":  {
+                     "vi":  "Về giữa bản đồ",
+                     "en":  "Recenter map"
+                 },
+    "stepPasteHint":  {
+                          "vi":  "Video món ăn, quán ngon trên YouTube Shorts / TikTok",
+                          "en":  "YouTube Shorts / TikTok of food \u0026 restaurants"
+                      },
+    "suggestedQuestions":  {
+                               "vi":  "Gợi ý câu hỏi",
+                               "en":  "Suggested Questions"
+                           },
+    "videoTooLong":  {
+                         "vi":  "Video này dài hơn 5 phút. Vui lòng chọn video không quá 5 phút.",
+                         "en":  "This video is longer than 5 minutes. Please use a video of 5 minutes or less."
+                     },
+    "budgetAny":  {
+                      "vi":  "Không giới hạn",
+                      "en":  "No preference"
+                  },
+    "accountBadge":  {
+                         "vi":  "TÀI KHOẢN WEEAT · THỬ NGHIỆM",
+                         "en":  "WEEAT ACCOUNT · DEMO"
+                     },
+    "confirmDeleteMemory":  {
+                                "vi":  "Xóa vĩnh viễn",
+                                "en":  "Delete permanently"
+                            },
+    "locationBlocked":  {
+                            "vi":  "Tìm địa chỉ hiện chưa khả dụng. Vui lòng thử lại sau.",
+                            "en":  "Address search is currently unavailable. Please try again later."
+                        },
+    "pauseComments":  {
+                          "vi":  "Tạm dừng bình luận",
+                          "en":  "Pause comments"
+                      },
+    "testInvalidCredentials":  {
+                                   "vi":  "Tên đăng nhập hoặc mật khẩu thử nghiệm không đúng.",
+                                   "en":  "Incorrect test username or password."
+                               },
+    "clearDestination":  {
+                             "vi":  "Xóa điểm đến",
+                             "en":  "Clear destination"
+                         },
+    "durationUnknown":  {
+                            "vi":  "Không thể xác minh độ dài video này. Vui lòng thử video khác.",
+                            "en":  "We could not verify this video\u0027s length. Please try another video."
+                        },
+    "deleteMemoryConfirm":  {
+                                "vi":  "Xóa vĩnh viễn ghi nhớ này? WeEat AI sẽ không dùng thông tin này trong các câu trả lời sau.",
+                                "en":  "Delete this memory permanently? WeEat AI will no longer use it in future replies."
+                            },
+    "demoComments":  {
+                         "vi":  "Bình luận minh họa cho bản mẫu",
+                         "en":  "Sample comments for this demo"
+                     },
+    "groundedCount":  {
+                          "vi":  "Dựa trên {count} quán bạn đã lưu",
+                          "en":  "Grounded in your {count} saved places"
+                      },
+    "removeTitle":  {
+                        "vi":  "Xóa khỏi danh sách đã lưu?",
+                        "en":  "Remove from Library?"
+                    },
+    "selectRestaurant":  {
+                             "vi":  "Chọn {name}",
+                             "en":  "Select {name}"
+                         },
+    "connectedService":  {
+                             "vi":  "Đã kết nối",
+                             "en":  "Connected"
+                         },
+    "aiEmpty":  {
+                    "vi":  "Bạn chưa lưu quán nào. Lưu một quán ở mục Khám phá trước nhé, rồi mình sẽ giúp tìm lại món ngon.",
+                    "en":  "Your Library is empty. Save a place in Discover first, then I can help you search your food finds."
+                },
+    "processingTranscript":  {
+                                 "vi":  "Đang tải lời thoại mẫu",
+                                 "en":  "Loading sample transcript"
+                             },
+    "showingCount":  {
+                         "vi":  "Hiển thị {count}/{total} quán",
+                         "en":  "Showing {count} of {total} places"
+                     },
+    "categoryDrinks":  {
+                           "vi":  "Đồ uống",
+                           "en":  "Drinks"
+                       },
+    "memoryStorageError":  {
+                               "vi":  "Không lưu được ghi nhớ. Hãy kiểm tra bộ nhớ trình duyệt và thử lại.",
+                               "en":  "Could not save memories. Check browser storage and try again."
+                           },
+    "promptBudget":  {
+                         "vi":  "Dưới 100 nghìn thì ăn gì?",
+                         "en":  "What can I eat under 100k?"
+                     },
+    "mapLocationFailed":  {
+                              "vi":  "Không lấy được vị trí. Hãy cấp quyền và thử lại. Điểm đi trước đó được giữ nguyên.",
+                              "en":  "Location unavailable. Allow location access and try again. Your previous origin is unchanged."
+                          },
+    "mainNavigation":  {
+                           "vi":  "Điều hướng chính",
+                           "en":  "Main navigation"
+                       },
+    "routeInitialRadius":  {
+                               "vi":  "Khoảng cách từ Nhà",
+                               "en":  "Distance from Home"
+                           },
+    "aiDietary":  {
+                      "vi":  "Video chưa xác nhận độ phù hợp với chế độ ăn. Bạn nhớ hỏi quán về nguyên liệu nhé.",
+                      "en":  "Dietary safety is not verified by these videos; check ingredients with the restaurant."
+                  },
+    "workHint":  {
+                     "vi":  "Giúp gợi ý bữa trưa gần chỗ làm",
+                     "en":  "Great for lunch suggestions around the workplace"
+                 },
+    "clearSearch":  {
+                        "vi":  "Xóa tìm kiếm",
+                        "en":  "Clear search"
+                    },
+    "orderShopeeFood":  {
+                            "vi":  "ShopeeFood",
+                            "en":  "ShopeeFood"
+                        },
+    "routePreviewHint":  {
+                             "vi":  "Đang hiển thị tuyến đường mẫu. Bộ lọc khoảng cách dùng dữ liệu minh họa.",
+                             "en":  "Demo route shown. Distance filters use illustrative data."
+                         },
+    "extractionFootnote":  {
+                               "vi":  "Kết quả thử nghiệm dùng dữ liệu mẫu cố định, không phân tích nội dung liên kết.",
+                               "en":  "Demo extraction uses fixed sample data, not the contents of your link."
+                           },
+    "urlSingle":  {
+                      "vi":  "Mỗi lần chỉ nhập một liên kết YouTube Shorts hoặc TikTok có https://.",
+                      "en":  "Enter one secure YouTube Shorts or TikTok URL at a time."
+                  },
+    "categoryBanhMi":  {
+                           "vi":  "Bánh mì",
+                           "en":  "Bánh mì"
+                       },
+    "continueGoogle":  {
+                           "vi":  "Tiếp tục với Google",
+                           "en":  "Continue with Google"
+                       },
+    "zoomOut":  {
+                    "vi":  "Thu nhỏ",
+                    "en":  "Zoom out"
+                },
+    "routePlanner":  {
+                         "vi":  "Lên tuyến đường",
+                         "en":  "Route planner"
+                     },
+    "accountDescription":  {
+                               "vi":  "Lưu địa chỉ nhà và những quán yêu thích trên thiết bị này.",
+                               "en":  "Keep your home address and favorite finds together on this device."
+                           },
+    "chatWelcomeStart":  {
+                             "vi":  "Hôm nay",
+                             "en":  "What are we"
+                         },
+    "saveContinue":  {
+                         "vi":  "Lưu và tiếp tục",
+                         "en":  "Save \u0026 Continue"
+                     },
+    "localDemo":  {
+                      "vi":  "Bản thử nghiệm",
+                      "en":  "Local demo"
+                  },
+    "accountConnected":  {
+                             "vi":  "Tài khoản WeEat của bạn",
+                             "en":  "Your WeEat account"
+                         },
+    "completeProfile":  {
+                            "vi":  "Hoàn tất hồ sơ",
+                            "en":  "Complete your profile"
+                        },
+    "toastAllSaved":  {
+                          "vi":  "Đã lưu tất cả quán",
+                          "en":  "All places saved to your Library"
+                      },
+    "heroStart":  {
+                      "vi":  "Món ngon",
+                      "en":  "Good food"
+                  },
+    "mapTitle":  {
+                     "vi":  "Bản đồ ăn uống",
+                     "en":  "Food Map"
+                 },
+    "memoryNote":  {
+                       "vi":  "Nội dung ghi nhớ",
+                       "en":  "Memory note"
+                   },
+    "dismissError":  {
+                         "vi":  "Đóng thông báo lỗi",
+                         "en":  "Dismiss error"
+                     },
+    "profileBadge":  {
+                         "vi":  "WeEat hiểu bạn hơn",
+                         "en":  "Personalize WeEat"
+                     },
+    "guestLibraryTitle":  {
+                              "vi":  "Quán yêu thích tiếp theo đang chờ bạn.",
+                              "en":  "Your next favorite is waiting."
+                          },
+    "categoryRice":  {
+                         "vi":  "Cơm",
+                         "en":  "Rice dishes"
+                     },
+    "priceValidation":  {
+                            "vi":  "Giá cao nhất phải bằng hoặc lớn hơn giá thấp nhất.",
+                            "en":  "Maximum price must be at least the minimum price."
+                        },
+    "stepDiscoverHint":  {
+                             "vi":  "Tìm quán, món ăn, địa chỉ và giá",
+                             "en":  "Restaurants, dishes, locations and price details"
+                         },
+    "distanceFromCurrent":  {
+                                "vi":  "Khoảng cách từ vị trí hiện tại",
+                                "en":  "Distance from current location"
+                            },
+    "routeTo":  {
+                    "vi":  "Tuyến minh họa đến {name}",
+                    "en":  "Demo route to {name}"
+                },
+    "dietaryPlaceholder":  {
+                               "vi":  "Ăn chay, không đậu phộng…",
+                               "en":  "Vegetarian, no peanuts…"
+                           },
+    "playComments":  {
+                         "vi":  "Phát bình luận",
+                         "en":  "Play comments"
+                     },
+    "noteLabel":  {
+                      "vi":  "Ghi chú:",
+                      "en":  "Note:"
+                  },
+    "aiMatches":  {
+                      "vi":  "Mình tìm thấy {count} quán đã lưu phù hợp với câu hỏi. Thông tin đến từ video mẫu bạn đã lưu.",
+                      "en":  "I found {count} saved places matching your question. These details come from your saved demo videos."
+                  },
+    "commaHint":  {
+                      "vi":  "Ngăn cách bằng dấu phẩy",
+                      "en":  "Separate with commas"
+                  },
+    "watch":  {
+                  "vi":  "Xem video",
+                  "en":  "Watch"
+              },
+    "allSaved":  {
+                     "vi":  "Đã lưu tất cả",
+                     "en":  "All places saved"
+                 },
+    "sortRecent":  {
+                       "vi":  "Mới nhất",
+                       "en":  "Newest First"
+                   },
+    "budgetUnderHint":  {
+                            "vi":  "Dưới 100.000 ₫",
+                            "en":  "\u003c 100,000 VND"
+                        },
+    "aiNoticeTitle":  {
+                          "vi":  "Quán bạn lưu, câu trả lời cho bạn.",
+                          "en":  "Your Library, your answers."
+                      },
+    "pasteLink":  {
+                      "vi":  "Dán liên kết",
+                      "en":  "Paste Link"
+                  },
+    "sortSaved":  {
+                      "vi":  "Sắp xếp quán đã lưu",
+                      "en":  "Sort saved places"
+                  },
+    "stepDiscover":  {
+                         "vi":  "AI tìm quán",
+                         "en":  "AI discovers"
+                     },
+    "categoryVegetarian":  {
+                               "vi":  "Món chay",
+                               "en":  "Vegetarian"
+                           },
+    "you":  {
+                "vi":  "Bạn",
+                "en":  "You"
+            },
+    "messagePlaceholder":  {
+                               "vi":  "Hỏi mình về món ngon nhé…",
+                               "en":  "Ask me anything about food…"
+                           },
+    "maps":  {
+                 "vi":  "Bản đồ",
+                 "en":  "Map"
+             },
+    "viewOriginal":  {
+                         "vi":  "Xem video gốc ↗",
+                         "en":  "View original ↗"
+                     },
+    "notesPlaceholder":  {
+                             "vi":  "Món muốn thử, thời điểm nên ghé…",
+                             "en":  "A dish to try, the best time to visit…"
+                         },
+    "removedRecommendations":  {
+                                   "vi":  "Những quán này đã được xóa khỏi danh sách đã lưu.",
+                                   "en":  "These places have since been removed from your Library."
+                               },
+    "deleteMemory":  {
+                         "vi":  "Xóa ghi nhớ",
+                         "en":  "Delete memory"
+                     },
+    "locationUnavailable":  {
+                                "vi":  "Không thể xác định địa chỉ tại vị trí này. Chọn địa chỉ từ danh sách gợi ý.",
+                                "en":  "Could not resolve this location. Choose an address from search suggestions."
+                            },
+    "noMatchesHint":  {
+                          "vi":  "Thử tên quán, món ăn, địa chỉ, tiêu đề video cá nhân nhé.",
+                          "en":  "Try another restaurant name, dish, address, video title, or personal note."
+                      },
+    "addressPlaceholder":  {
+                               "vi":  "Tìm hoặc nhập địa chỉ nhà",
+                               "en":  "Search or enter your address"
+                           },
+    "commentGood":  {
+                        "vi":  "Tích cực",
+                        "en":  "Good"
+                    },
+    "routeRadius":  {
+                        "vi":  "Bán kính tìm kiếm",
+                        "en":  "Search radius"
+                    },
+    "guestChatHint":  {
+                          "vi":  "Đăng nhập để hỏi về video đã lưu, món yêu thích và những quán đáng ghé.",
+                          "en":  "Sign in to ask about your saved food videos, dishes you love, and places worth visiting."
+                      },
+    "addressSearching":  {
+                             "vi":  "Đang tìm địa chỉ…",
+                             "en":  "Finding addresses…"
+                         },
+    "closeDialog":  {
+                        "vi":  "Đóng hộp thoại",
+                        "en":  "Close dialog"
+                    },
+    "urlRequired":  {
+                        "vi":  "Dán đường dẫn video trước khi tìm món ăn.",
+                        "en":  "Paste a video URL before finding food."
+                    },
+    "openLibrary":  {
+                        "vi":  "Mở danh sách đã lưu",
+                        "en":  "Open Library"
+                    },
+    "videoNotFood":  {
+                         "vi":  "Video này không liên quan đến ẩm thực hoặc đồ uống. Vui lòng thử video về ẩm thực.",
+                         "en":  "This video is not about food or beverages. Please try a food video."
+                     },
+    "commentLikes":  {
+                         "vi":  "{count} lượt thích",
+                         "en":  "{count} likes"
+                     },
+    "librarySubtitleEnd":  {
+                               "vi":  "cùng địa chỉ, món nổi bật và giá.",
+                               "en":  "with locations, signatures and prices."
+                           },
+    "heroMiddle":  {
+                       "vi":  "xứng đáng được",
+                       "en":  "deserves to be"
+                   },
+    "headerDemo":  {
+                       "vi":  "Bản thử nghiệm · Không kết nối tài khoản hay API",
+                       "en":  "Local demo · No account or API required"
+                   },
+    "navMap":  {
+                   "vi":  "Bản đồ",
+                   "en":  "Map"
+               },
+    "change":  {
+                   "vi":  "Đổi",
+                   "en":  "Change"
+               },
+    "details":  {
+                    "vi":  "Chi tiết",
+                    "en":  "Details"
+                },
+    "searchPlaceholder":  {
+                              "vi":  "Tìm tên quán, món ăn, địa chỉ…",
+                              "en":  "Search restaurants, dishes, or addresses…"
+                          },
+    "fromAddressLabel":  {
+                             "vi":  "Điểm xuất phát:",
+                             "en":  "From address:"
+                         },
+    "motorbike":  {
+                      "vi":  "Xe máy",
+                      "en":  "Motorbike"
+                  },
+    "restaurantName":  {
+                           "vi":  "Tên quán",
+                           "en":  "Restaurant name"
+                       },
+    "collectionBadge":  {
+                            "vi":  "✦ Bộ sưu tập của bạn",
+                            "en":  "✦ Your Collection"
+                        },
+    "budgetUnder":  {
+                        "vi":  "Dưới 100 nghìn",
+                        "en":  "Under 100k"
+                    },
+    "signatureDish":  {
+                          "vi":  "Món nổi bật",
+                          "en":  "Signature dish"
+                      },
+    "testAccountNotice":  {
+                              "vi":  "Chỉ dành cho phát triển nội bộ. Tài khoản và dữ liệu lưu trên trình duyệt, tách khỏi Google/Firebase. Dùng mật khẩu thử nghiệm riêng, không dùng mật khẩu thật.",
+                              "en":  "Internal development only. Accounts and data stay in this browser, separate from Google/Firebase. Use a unique test password, never a real account password."
+                          },
+    "noMatches":  {
+                      "vi":  "Chưa tìm thấy kết quả",
+                      "en":  "No matches found"
+                  },
+    "libraryTitle":  {
+                         "vi":  "Quán đã lưu",
+                         "en":  "My Food Library"
+                     },
+    "categoryNoodles":  {
+                            "vi":  "Phở \u0026 bún",
+                            "en":  "Noodles"
+                        },
+    "profilePrivacy":  {
+                           "vi":  "Bản thử nghiệm dùng tài khoản Google mẫu. Hồ sơ chỉ lưu trong trình duyệt, không gửi địa chỉ hay dữ liệu tài khoản đến dịch vụ nào.",
+                           "en":  "This demo uses a mock Google account. Your profile is saved only in this browser; no address or account data is sent to a service."
+                       },
+    "mapDestination":  {
+                           "vi":  "Điểm đến: {address}",
+                           "en":  "Destination: {address}"
+                       },
+    "addressDemo":  {
+                        "vi":  "Gợi ý địa chỉ mẫu",
+                        "en":  "Demo address suggestions"
+                    },
+    "openFoodMap":  {
+                        "vi":  "Mở bản đồ ăn uống",
+                        "en":  "Open Food Map"
+                    },
+    "heroEnd":  {
+                    "vi":  "tìm thấy.",
+                    "en":  "found."
+                },
+    "saveMemory":  {
+                       "vi":  "Lưu ghi nhớ",
+                       "en":  "Save memory"
+                   },
+    "foodie":  {
+                   "vi":  "bạn",
+                   "en":  "foodie"
+               },
+    "foodPlaceholder":  {
+                            "vi":  "Bún phở, món đường phố, cà phê…",
+                            "en":  "Noodles, street food, coffee…"
+                        },
+    "recentEmpty":  {
+                        "vi":  "Quán yêu thích tiếp theo có thể nằm trong một video. Thử video mẫu phía trên nhé.",
+                        "en":  "Your next favorite is one video away. Try a sample above."
+                    },
+    "fromAddress":  {
+                        "vi":  "Địa chỉ xuất phát",
+                        "en":  "From address"
+                    },
+    "pickStop":  {
+                     "vi":  "Chọn quán muốn ghé tiếp theo",
+                     "en":  "Pick your next food stop"
+                 },
+    "commentHighlights":  {
+                              "vi":  "Bình luận nổi bật từ video",
+                              "en":  "Video comment highlights"
+                          },
+    "seeAll":  {
+                   "vi":  "Xem tất cả",
+                   "en":  "See all"
+               },
+    "all":  {
+                "vi":  "Tất cả",
+                "en":  "All"
+            },
+    "processingDescription":  {
+                                  "vi":  "Đang mô phỏng xử lý video bằng dữ liệu mẫu.",
+                                  "en":  "Simulating video processing with our sample dataset."
+                              },
+    "transcriptUnavailable":  {
+                                  "vi":  "Video chỉ có nhạc nền, không có lời thoại. Thông tin mẫu được lấy từ chữ hiển thị trong video.",
+                                  "en":  "This video uses background music without speech. No transcript is available; details are from the sample on-screen captions."
+                              },
+    "toastSaved":  {
+                       "vi":  "Đã lưu quán vào danh sách",
+                       "en":  "Saved to My Food Library"
+                   },
+    "testUsername":  {
+                         "vi":  "Tên đăng nhập thử nghiệm",
+                         "en":  "Test username"
+                     },
+    "editSpot":  {
+                     "vi":  "Sửa quán đã lưu",
+                     "en":  "Edit Saved Spot"
+                 },
+    "stepPaste":  {
+                      "vi":  "Dán video",
+                      "en":  "Paste a video"
+                  },
+    "memoryRecall":  {
+                         "vi":  "Đây là những điều tôi ghi nhớ:\r\n{notes}",
+                         "en":  "Here\u0027s what I remember:\r\n{notes}"
+                     },
+    "budgetOver":  {
+                       "vi":  "Trên 250 nghìn",
+                       "en":  "Above 250k"
+                   },
+    "budgetAnyHint":  {
+                          "vi":  "Hiện mọi mức giá",
+                          "en":  "Show all prices"
+                      },
+    "recentDiscoveries":  {
+                              "vi":  "Khám phá gần đây",
+                              "en":  "Recent Discoveries"
+                          },
+    "mapDisclaimer":  {
+                          "vi":  "Ghim, bán kính, khoảng cách (*) và tuyến đường chỉ để minh họa, không phải vị trí hay hướng dẫn đi thực tế. Chưa kết nối API bản đồ.",
+                          "en":  "Pins, radii, distances (*) and routes are illustrative and do not represent real geography or navigation. No Maps API is connected."
+                      },
+    "testPasswordRule":  {
+                             "vi":  "Dùng mật khẩu thử nghiệm dài từ 10 đến 128 ký tự.",
+                             "en":  "Use a test password between 10 and 128 characters."
+                         },
+    "goDiscover":  {
+                       "vi":  "Khám phá món ngon",
+                       "en":  "Go to Discover"
+                   },
+    "sampleTiktok":  {
+                         "vi":  "TikTok · 1 quán",
+                         "en":  "TikTok · 1 place"
+                     },
+    "aiNotice":  {
+                     "vi":  "Bản thử nghiệm tìm kiếm theo quy tắc trong video mẫu đã lưu. Không gọi dịch vụ AI hay tìm trên mạng.",
+                     "en":  "This is a deterministic demo that searches your saved sample videos. It doesn’t call an AI service or search the web."
+                 },
+    "sampleLiveHint":  {
+                           "vi":  "Dán liên kết video của bạn ở trên",
+                           "en":  "Paste your own video URL above"
+                       },
+    "routeUnavailable":  {
+                             "vi":  "Lập tuyến đường hiện chưa khả dụng.",
+                             "en":  "Route planning is currently unavailable."
+                         },
+    "budgetOverHint":  {
+                           "vi":  "Trải nghiệm cao cấp",
+                           "en":  "Premium spots"
+                       },
+    "toLabel":  {
+                    "vi":  "ĐẾN:",
+                    "en":  "TO:"
+                },
+    "mapDisclaimerTitle":  {
+                               "vi":  "Bản đồ tương tác mô phỏng.",
+                               "en":  "Interactive mock map."
+                           },
+    "aiNoticeLive":  {
+                         "vi":  "Câu trả lời dựa trên các quán đã lưu. Hãy kiểm tra thông tin trước khi ghé quán.",
+                         "en":  "Answers use your saved places. Check restaurant details before visiting."
+                     },
+    "saveAll":  {
+                    "vi":  "Lưu tất cả quán",
+                    "en":  "Save all places"
+                },
+    "mapAccessible":  {
+                          "vi":  "Bản đồ ăn uống mô phỏng có thể tương tác",
+                          "en":  "Interactive mock food map"
+                      },
+    "notFoundTitle":  {
+                          "vi":  "Hình như bạn đi lạc một chút",
+                          "en":  "A little off the food trail"
+                      },
+    "guestMapTitle":  {
+                          "vi":  "Món ngon, gần bạn hơn.",
+                          "en":  "Good food, closer to you."
+                      },
+    "editDescription":  {
+                            "vi":  "Cập nhật thông tin và thêm ghi chú của bạn.",
+                            "en":  "Update the details and add your personal tasting notes."
+                        },
+    "saved":  {
+                  "vi":  "Đã lưu",
+                  "en":  "Saved"
+              },
+    "cancel":  {
+                   "vi":  "Hủy",
+                   "en":  "Cancel"
+               },
+    "promptCity":  {
+                       "vi":  "Có quán nào đã lưu ở Sài Gòn?",
+                       "en":  "Which saved places are in Saigon?"
+                   },
+    "trySample":  {
+                      "vi":  "Thử một video mẫu",
+                      "en":  "Try a sample video"
+                  },
+    "dietary":  {
+                    "vi":  "Chế độ ăn, món cần tránh",
+                    "en":  "Dietary restrictions"
+                },
+    "profilePrivacyLive":  {
+                               "vi":  "Hồ sơ được lưu vào tài khoản của bạn.",
+                               "en":  "Your profile is saved to your account."
+                           },
+    "langEnglish":  {
+                        "vi":  "Tiếng Anh",
+                        "en":  "English"
+                    },
+    "retry":  {
+                  "vi":  "Thử lại",
+                  "en":  "Retry"
+              },
+    "discoverFootnote":  {
+                             "vi":  "Cùng bạn tìm món ngon tiếp theo.",
+                             "en":  "Made for your next delicious discovery."
+                         },
+    "personalNotes":  {
+                          "vi":  "Ghi chú riêng",
+                          "en":  "Personal notes"
+                      },
+    "accountHeadingEnd":  {
+                              "vi":  "Cả thế giới món ngon.",
+                              "en":  "A world of good food."
+                          },
+    "promptTranscript":  {
+                             "vi":  "Tìm quán phở có tặng quẩy.",
+                             "en":  "Find the phở place with free quẩy."
+                         },
+    "onboardingHint":  {
+                           "vi":  "Hoàn tất hồ sơ để bắt đầu khám phá món ngon dành cho bạn.",
+                           "en":  "Complete your profile to use your personal food companion."
+                       },
+    "getCurrentLocation":  {
+                               "vi":  "Lấy vị trí hiện tại",
+                               "en":  "Get Current Location"
+                           },
+    "testAuthDisabled":  {
+                             "vi":  "Đăng nhập thử nghiệm đã bị tắt.",
+                             "en":  "Test authentication is disabled."
+                         },
+    "analysisSignInRequired":  {
+                                   "vi":  "Đăng nhập trước khi phân tích video. Đường dẫn của bạn sẽ được giữ lại.",
+                                   "en":  "Sign in before analyzing a video. Your URL will be kept."
+                               },
+    "processingTitle":  {
+                            "vi":  "Đang tìm quán trong video…",
+                            "en":  "Finding the food in your video…"
+                        },
+    "addressSearchHint":  {
+                              "vi":  "Chọn một địa chỉ gợi ý hoặc dùng vị trí hiện tại.",
+                              "en":  "Choose a suggested address or use your current location."
+                          },
+    "expandRadius":  {
+                         "vi":  "Mở rộng đến 5 km",
+                         "en":  "Expand to 5 km"
+                     },
+    "memorySaved":  {
+                        "vi":  "Tôi sẽ ghi nhớ: {text}",
+                        "en":  "I\u0027ll remember: {text}"
+                    },
+    "mapBlocked":  {
+                       "vi":  "Bản đồ hiện chưa khả dụng. Vui lòng thử lại sau.",
+                       "en":  "The map is currently unavailable. Please try again later."
+                   },
+    "save":  {
+                 "vi":  "Lưu",
+                 "en":  "Save"
+             },
+    "backDiscover":  {
+                         "vi":  "Về Khám phá",
+                         "en":  "Back to Discover"
+                     },
+    "savedCountOne":  {
+                          "vi":  "{count} quán đã lưu",
+                          "en":  "{count} saved place"
+                      },
+    "toastProfile":  {
+                         "vi":  "Đã lưu hồ sơ. Cùng tìm món ngon nhé!",
+                         "en":  "Profile saved. Let’s find something delicious!"
+                     },
+    "closeMenu":  {
+                      "vi":  "Đóng trình đơn",
+                      "en":  "Close menu"
+                  },
+    "videoFootnote":  {
+                          "vi":  "Liên kết video mở ở thẻ mới và có thể là liên kết minh họa.",
+                          "en":  "Video links open externally and may be demo placeholders."
+                      },
+    "coordinatesLocation":  {
+                                "vi":  "Vị trí hiện tại ({lat}, {lng})",
+                                "en":  "Current location ({lat}, {lng})"
+                            },
+    "sortName":  {
+                     "vi":  "Tên (A – Z)",
+                     "en":  "Name (A – Z)"
+                 },
+    "profileHeadingStart":  {
+                                "vi":  "Dành cho",
+                                "en":  "Make it"
+                            },
+    "findNoodles":  {
+                        "vi":  "Tìm quán bún phở",
+                        "en":  "Find noodle places"
+                    },
+    "workAddress":  {
+                        "vi":  "Địa chỉ công ty",
+                        "en":  "Work address"
+                    },
+    "homeRequired":  {
+                         "vi":  "Địa chỉ nhà *",
+                         "en":  "Home address *"
+                     },
+    "detailFootnote":  {
+                           "vi":  "Thông tin quán là dữ liệu mẫu từ thiết kế đã duyệt.",
+                           "en":  "Restaurant details are sample data from the approved designs."
+                       },
+    "deleteRestaurant":  {
+                             "vi":  "Xóa {name}",
+                             "en":  "Delete {name}"
+                         },
+    "aiMatch":  {
+                    "vi":  "Mình tìm thấy {count} quán đã lưu phù hợp với câu hỏi. Thông tin đến từ video mẫu bạn đã lưu.",
+                    "en":  "I found {count} saved place matching your question. These details come from your saved demo videos."
+                },
+    "watchVideo":  {
+                       "vi":  "Xem video",
+                       "en":  "Watch Video"
+                   },
+    "chatHistory":  {
+                        "vi":  "Lịch sử trò chuyện",
+                        "en":  "Chat history"
+                    },
+    "confirmDetails":  {
+                           "vi":  "Nhớ kiểm tra giá và giờ mở cửa trước khi ghé nhé.",
+                           "en":  "Always confirm prices and opening hours before visiting."
+                       },
+    "sortBy":  {
+                   "vi":  "Sắp xếp:",
+                   "en":  "Sort by:"
+               },
+    "mapLibraryCount":  {
+                            "vi":  "{count} quán trong danh sách đã lưu",
+                            "en":  "{count} places in your Library"
+                        },
+    "savedInLibrary":  {
+                           "vi":  "Đã lưu trong danh sách của bạn",
+                           "en":  "Saved in your Library"
+                       },
+    "googleAccount":  {
+                          "vi":  "Tài khoản Google",
+                          "en":  "Google Account"
+                      },
+    "age":  {
+                "vi":  "Tuổi",
+                "en":  "Age"
+            },
+    "accountHeadingStart":  {
+                                "vi":  "Một hồ sơ nhỏ.",
+                                "en":  "One little profile."
+                            },
+    "promptRibsHint":  {
+                           "vi":  "Nhớ món ăn, tìm lại quán",
+                           "en":  "Remember a dish, find the place"
+                       },
+    "accountSave":  {
+                        "vi":  "Lưu quán từ YouTube Shorts và TikTok",
+                        "en":  "Save places from YouTube Shorts \u0026 TikTok"
+                    },
+    "removeStart":  {
+                        "vi":  "Xóa",
+                        "en":  "Remove"
+                    },
+    "directions":  {
+                       "vi":  "Chỉ đường",
+                       "en":  "Directions"
+                   },
+    "searchSaved":  {
+                        "vi":  "Tìm trong quán đã lưu",
+                        "en":  "Search saved places"
+                    },
+    "mapEmpty":  {
+                     "vi":  "Bắt đầu bản đồ món ngon của bạn",
+                     "en":  "Your food map starts here"
+                 },
+    "chatFootnote":  {
+                         "vi":  "AI mô phỏng · Chỉ tìm trong video đã lưu",
+                         "en":  "Mock AI · Searches your saved videos only"
+                     },
+    "fromPlaceholder":  {
+                            "vi":  "Nhập địa chỉ xuất phát",
+                            "en":  "Enter a starting address"
+                        },
+    "signIn":  {
+                   "vi":  "Đăng nhập",
+                   "en":  "Sign in"
+               },
+    "noodlePlaces":  {
+                         "vi":  "Quán bún phở",
+                         "en":  "Noodle places"
+                     },
+    "extractionSaveNotice":  {
+                                 "vi":  "Đã tìm thấy các quán ăn! Hãy lưu những quán bạn thích để giữ chúng trong Thư viện.",
+                                 "en":  "Found your food spots! Save the places you like to keep them in your Library."
+                             },
+    "findFood":  {
+                     "vi":  "Tìm quán ngay",
+                     "en":  "Find the food"
+                 },
+    "mapWithin":  {
+                      "vi":  "{count} quán đã lưu trong {radius} km (ước tính mẫu)",
+                      "en":  "{count} saved places within {radius} km (demo)"
+                  },
+    "libraryEmptyHint":  {
+                             "vi":  "Dán video ẩm thực ở mục Khám phá để lưu quán yêu thích tiếp theo nhé.",
+                             "en":  "Paste a food video into Discover and save your next favorite spot."
+                         },
+    "promptBudgetHint":  {
+                             "vi":  "Tìm quán đã lưu theo giá",
+                             "en":  "Search your saved spots by price"
+                         },
+    "addressNoResults":  {
+                             "vi":  "Không có địa chỉ phù hợp. Thử Lê Lợi, Nguyễn Huệ, Pasteur hoặc Lò Đúc trong bản mẫu.",
+                             "en":  "No matching address. Try Lê Lợi, Nguyễn Huệ, Pasteur, or Lò Đúc in this demo."
+                         },
+    "originalVideo":  {
+                          "vi":  "Từ video gốc",
+                          "en":  "From the original video"
+                      },
+    "stepSave":  {
+                     "vi":  "Lưu quán yêu thích",
+                     "en":  "Save your favorites"
+                 },
+    "filterPlatform":  {
+                           "vi":  "Lọc theo nền tảng",
+                           "en":  "Filter by platform"
+                       },
+    "saveChanges":  {
+                        "vi":  "Lưu thay đổi",
+                        "en":  "Save Changes"
+                    },
+    "optional":  {
+                     "vi":  "Không bắt buộc",
+                     "en":  "Optional"
+                 },
+    "testAccountExists":  {
+                              "vi":  "Tên thử nghiệm này đã tồn tại trên trình duyệt.",
+                              "en":  "That test username already exists in this browser."
+                          },
+    "youCurrent":  {
+                       "vi":  "Bạn (Vị trí hiện tại)",
+                       "en":  "You (Current location)"
+                   },
+    "authBlocked":  {
+                        "vi":  "Đăng nhập hiện chưa khả dụng. Vui lòng thử lại sau.",
+                        "en":  "Sign-in is currently unavailable. Please try again later."
+                    },
+    "testAccount":  {
+                        "vi":  "Tài khoản thử nghiệm",
+                        "en":  "Test account"
+                    },
+    "sourceLabel":  {
+                        "vi":  "Nguồn:",
+                        "en":  "Source:"
+                    },
+    "processingMatch":  {
+                            "vi":  "Đang ghép quán và món ăn mẫu",
+                            "en":  "Matching sample restaurants \u0026 dishes"
+                        },
+    "profileSubtitle":  {
+                            "vi":  "Vài thông tin nhỏ giúp tìm những quán đáng ghé gần bạn.",
+                            "en":  "A few details help us find food worth visiting, near you."
+                        },
+    "languageLabel":  {
+                          "vi":  "Ngôn ngữ giao diện",
+                          "en":  "Interface language"
+                      },
+    "sampleHint":  {
+                       "vi":  "Chưa có liên kết? Thử tại đây.",
+                       "en":  "No link? Start here."
+                   },
+    "homeSaved":  {
+                      "vi":  "Đã lưu nhà",
+                      "en":  "Home saved"
+                  },
+    "libraryEmptyPeriod":  {
+                               "vi":  "Chưa có quán nào được lưu.",
+                               "en":  "No saved places yet."
+                           },
+    "savedCount":  {
+                       "vi":  "{count} quán đã lưu",
+                       "en":  "{count} saved places"
+                   },
+    "videoNoRestaurant":  {
+                              "vi":  "Không tìm thấy quán ăn trong video này. Vui lòng thử video ẩm thực khác.",
+                              "en":  "No restaurant could be found in this video. Please try another food video."
+                          },
+    "guestMapHint":  {
+                         "vi":  "Đăng nhập để xem quán đã lưu trên bản đồ và chọn quán muốn ghé tiếp theo.",
+                         "en":  "Sign in to see your saved places on the map and find your next food stop."
+                     },
+    "priceNonnegative":  {
+                             "vi":  "Nhập giá hợp lệ, từ 0 trở lên nhé.",
+                             "en":  "Enter a valid price of zero or more."
+                         },
+    "testPassword":  {
+                         "vi":  "Mật khẩu thử nghiệm",
+                         "en":  "Test password"
+                     },
+    "promptRibs":  {
+                       "vi":  "Quán nào có sườn nướng ngon?",
+                       "en":  "Where can I find grilled pork ribs?"
+                   },
+    "morePreferences":  {
+                            "vi":  "Thêm sở thích ăn uống",
+                            "en":  "More food preferences"
+                        },
+    "bgmOnly":  {
+                    "vi":  "Chỉ có nhạc nền",
+                    "en":  "BGM only"
+                },
+    "addressSuggestions":  {
+                               "vi":  "Địa chỉ gợi ý",
+                               "en":  "Suggested addresses"
+                           },
+    "budgetLabel":  {
+                        "vi":  "Ngân sách mỗi người",
+                        "en":  "Food budget per person"
+                    },
+    "navLibrary":  {
+                       "vi":  "Đã lưu",
+                       "en":  "Library"
+                   },
+    "messageLabel":  {
+                         "vi":  "Nhắn WeEat AI",
+                         "en":  "Message WeEat AI"
+                     },
+    "saveForNotes":  {
+                         "vi":  "Lưu quán này để thêm ghi chú riêng nhé.",
+                         "en":  "Save this place to add your personal notes."
+                     },
+    "videoUrlLabel":  {
+                          "vi":  "TikTok / YouTube Shorts",
+                          "en":  "TikTok / YouTube Shorts"
+                      },
+    "greeting":  {
+                     "vi":  "Chào {name}.",
+                     "en":  "Hi, {name}."
+                 },
+    "matchConfidence":  {
+                            "vi":  "Khớp {count}%",
+                            "en":  "{count}% match"
+                        },
+    "commentNeutral":  {
+                           "vi":  "Trung lập",
+                           "en":  "Neutral"
+                       },
+    "processingLive":  {
+                           "vi":  "Đang phân tích video và tìm quán ăn.",
+                           "en":  "Analyzing your video and finding restaurants."
+                       },
+    "sampleYoutube":  {
+                          "vi":  "YouTube · 3 quán",
+                          "en":  "YouTube · 3 places"
+                      },
+    "sendMessage":  {
+                        "vi":  "Gửi tin nhắn",
+                        "en":  "Send message"
+                    },
+    "editRequired":  {
+                         "vi":  "Tên quán, món ăn và địa chỉ không được để trống.",
+                         "en":  "Name, dish and address cannot be blank."
+                     },
+    "homeHint":  {
+                     "vi":  "Cần để tìm quán gần bạn",
+                     "en":  "Required to find restaurants near you"
+                 },
+    "editMemory":  {
+                       "vi":  "Sửa ghi nhớ",
+                       "en":  "Edit memory"
+                   },
+    "clearUrl":  {
+                     "vi":  "Xóa liên kết video",
+                     "en":  "Clear video URL"
+                 },
+    "urlInvalid":  {
+                       "vi":  "Dán đầy đủ liên kết YouTube Shorts hoặc TikTok, gồm cả https://.",
+                       "en":  "Paste a complete YouTube Shorts or TikTok link, including https://."
+                   },
+    "resultsDescription":  {
+                               "vi":  "Kết quả mẫu cho liên kết của bạn · {title}",
+                               "en":  "Sample results for your link · {title}"
+                           },
+    "sortOldest":  {
+                       "vi":  "Cũ nhất trước",
+                       "en":  "Oldest First"
+                   },
+    "savedFrom":  {
+                      "vi":  "Lưu từ:",
+                      "en":  "Saved from:"
+                  },
+    "addressSelected":  {
+                            "vi":  "Đã chọn địa chỉ",
+                            "en":  "Address selected"
+                        },
+    "stepSaveHint":  {
+                         "vi":  "Gom những quán muốn thử vào danh sách riêng",
+                         "en":  "Build and organize your own Food Library"
+                     },
+    "memoryTitle":  {
+                        "vi":  "Những điều tôi ghi nhớ",
+                        "en":  "What I remember"
+                    },
+    "toastSignedOut":  {
+                           "vi":  "Đã đăng xuất",
+                           "en":  "Signed out"
+                       },
+    "extractionError":  {
+                            "vi":  "Chưa xử lý được liên kết này. Bạn thử lại nhé.",
+                            "en":  "The demo could not process this link. Please try again."
+                        },
+    "chatFootnoteLive":  {
+                             "vi":  "Dựa trên quán đã lưu · Kiểm tra thông tin trước khi ghé",
+                             "en":  "Based on your saved places · Verify details before visiting"
+                         },
+    "testSignIn":  {
+                       "vi":  "Đăng nhập tài khoản thử nghiệm",
+                       "en":  "Sign in to test account"
+                   },
+    "libraryEmpty":  {
+                         "vi":  "Chưa có quán nào được lưu",
+                         "en":  "No saved places yet"
+                     },
+    "sampleVideos":  {
+                         "vi":  "Video mẫu",
+                         "en":  "Sample videos"
+                     },
+    "setHome":  {
+                    "vi":  "Đặt địa chỉ nhà",
+                    "en":  "Set home"
+                },
+    "toAddress":  {
+                      "vi":  "Địa chỉ đích đến",
+                      "en":  "To address"
+                  },
+    "promptTranscriptHint":  {
+                                 "vi":  "Tìm trong lời thoại của video",
+                                 "en":  "Search inside your video transcripts"
+                             },
+    "deletingMemory":  {
+                           "vi":  "Đang xóa…",
+                           "en":  "Deleting…"
+                       },
+    "toastEdited":  {
+                        "vi":  "Đã lưu thay đổi",
+                        "en":  "Your changes are saved"
+                    },
+    "aiNoMatch":  {
+                      "vi":  "Mình chưa tìm thấy quán phù hợp trong danh sách đã lưu. Thử tên quán, món ăn, thành phố, từ trong lời thoại hoặc lưu thêm video ở mục Khám phá nhé.",
+                      "en":  "I couldn\u0027t find a match in your saved places. Try a restaurant name, dish, city, or a transcript keyword, or save another video in Discover."
+                  },
+    "testStorageError":  {
+                             "vi":  "Không dùng được bộ nhớ tài khoản thử nghiệm. Hãy dùng localhost và bật bộ nhớ trình duyệt.",
+                             "en":  "Test account storage is unavailable. Use localhost with browser storage enabled."
+                         },
+    "accountAsk":  {
+                       "vi":  "Hỏi về những video bạn đã lưu",
+                       "en":  "Ask questions about your saved videos"
+                   },
+    "budgetMidHint":  {
+                          "vi":  "Bữa ăn thường ngày",
+                          "en":  "Casual dining"
+                      },
+    "foundCount":  {
+                       "vi":  "Tìm thấy {count} quán",
+                       "en":  "{count} restaurants found"
+                   },
+    "categoryAll":  {
+                        "vi":  "Tất cả danh mục",
+                        "en":  "All categories"
+                    },
+    "brandHome":  {
+                      "vi":  "Khám phá cùng WeEat AI",
+                      "en":  "WeEat AI Discover"
+                  },
+    "minPrice":  {
+                     "vi":  "Giá thấp nhất (₫)",
+                     "en":  "Minimum price (VND)"
+                 },
+    "tapPin":  {
+                   "vi":  "Chạm một ghim",
+                   "en":  "Tap a pin"
+               },
+    "profileStep":  {
+                        "vi":  "Bước 1/1",
+                        "en":  "Step 1 of 1"
+                    },
+    "deleteMemoryNote":  {
+                             "vi":  "Xóa ghi nhớ: {text}",
+                             "en":  "Delete memory: {text}"
+                         },
+    "langVietnamese":  {
+                           "vi":  "Tiếng Việt",
+                           "en":  "Vietnamese"
+                       },
+    "youHome":  {
+                    "vi":  "Bạn (Nhà)",
+                    "en":  "You (Home)"
+                },
+    "editProfile":  {
+                        "vi":  "Sửa hồ sơ",
+                        "en":  "Edit your profile"
+                    },
+    "librarySubtitleStart":  {
+                                 "vi":  "Những quán bạn đã lưu từ video,",
+                                 "en":  "All the places you’ve saved from video,"
+                             },
+    "radiusEmpty":  {
+                        "vi":  "Chưa có quán đã lưu trong bán kính này",
+                        "en":  "No saved spots in this radius"
+                    },
+    "openMenu":  {
+                     "vi":  "Mở trình đơn",
+                     "en":  "Open menu"
+                 },
+    "placeNotFoundHint":  {
+                              "vi":  "Không có quán này trong dữ liệu thử nghiệm của trình duyệt.",
+                              "en":  "This place isn’t available in this browser’s demo data."
+                          },
+    "routeSummaryHint":  {
+                             "vi":  "Chỉ để minh họa · chưa có thời gian đi hay hướng dẫn đường",
+                             "en":  "Illustration only · travel time and road directions unavailable"
+                         },
+    "dinnerIdeas":  {
+                        "vi":  "Gợi ý bữa tối",
+                        "en":  "Dinner ideas"
+                    },
+    "editRestaurant":  {
+                           "vi":  "Sửa {name}",
+                           "en":  "Edit {name}"
+                       },
+    "removeEnd":  {
+                      "vi":  "khỏi danh sách đã lưu? Các quán khác và lời thoại dùng chung vẫn được giữ lại.",
+                      "en":  "from your Library? Other places and the shared video transcript will stay saved."
+                  },
+    "signOut":  {
+                    "vi":  "Đăng xuất",
+                    "en":  "Sign out"
+                },
+    "sampleTour":  {
+                       "vi":  "Dạo phố tìm món ngon",
+                       "en":  "Street food tour"
+                   },
+    "edit":  {
+                 "vi":  "Sửa",
+                 "en":  "Edit"
+             },
+    "discoverFood":  {
+                         "vi":  "Khám phá món ngon",
+                         "en":  "Discover food"
+                     },
+    "chatSubtitle":  {
+                         "vi":  "Người bạn đồng hành ăn uống",
+                         "en":  "Your personal food companion"
+                     },
+    "mapEmptyHint":  {
+                         "vi":  "Lưu quán ở mục Khám phá để thêm vào bản đồ nhé.",
+                         "en":  "Save a place in Discover to add it to your map."
+                     },
+    "newChat":  {
+                    "vi":  "Trò chuyện mới",
+                    "en":  "New Chat"
+                },
+    "clearFilters":  {
+                         "vi":  "Xóa tìm kiếm và bộ lọc",
+                         "en":  "Clear search \u0026 filters"
+                     },
+    "hideTranscript":  {
+                           "vi":  "Ẩn lời thoại",
+                           "en":  "Hide video transcript"
+                       },
+    "notesEmpty":  {
+                       "vi":  "Muốn thử món gì, nên ghé lúc nào? Thêm ghi chú để nhớ nhé.",
+                       "en":  "A dish to try? A time to go? Add a note to make this spot yours."
+                   },
+    "maxPriceBlocked":  {
+                            "vi":  "Hiện chưa thể đổi giá tối đa. Giữ nguyên giá tối đa để lưu các thay đổi khác.",
+                            "en":  "Changing the maximum price is currently unavailable. Keep the current maximum to save your other changes."
+                        },
+    "skipContent":  {
+                        "vi":  "Chuyển đến nội dung",
+                        "en":  "Skip to content"
+                    },
+    "discoveryBadge":  {
+                           "vi":  "Khám phá món ngon với AI",
+                           "en":  "AI Food Discovery"
+                       },
+    "foundOne":  {
+                     "vi":  "Tìm thấy {count} quán",
+                     "en":  "{count} restaurant found"
+                 },
+    "memoryUnavailable":  {
+                              "vi":  "Bộ nhớ chưa được kết nối với dịch vụ trực tuyến.",
+                              "en":  "Memory is not connected to the live service yet."
+                          },
+    "workPlaceholder":  {
+                            "vi":  "Địa chỉ công ty hoặc nơi thường ăn trưa",
+                            "en":  "Office or secondary lunch spot"
+                        },
+    "ageValidation":  {
+                          "vi":  "Nhập tuổi từ 1 đến 120 nhé.",
+                          "en":  "Enter an age between 1 and 120."
+                      },
+    "routeModeHint":  {
+                          "vi":  "Tuyến {mode} minh họa · không có dữ liệu dẫn đường",
+                          "en":  "Illustrative {mode} route · no navigation data"
+                      },
+    "maxPrice":  {
+                     "vi":  "Giá cao nhất (₫)",
+                     "en":  "Maximum price (VND)"
+                 },
+    "saveToLibrary":  {
+                          "vi":  "Lưu quán",
+                          "en":  "Save to Library"
+                      },
+    "noMemories":  {
+                       "vi":  "Chưa có ghi nhớ. Hãy nhờ WeEat AI ghi nhớ thông tin trong cuộc trò chuyện.",
+                       "en":  "No memories yet. Ask WeEat AI to remember something in your chat."
+                   },
+    "byRadius":  {
+                     "vi":  "Theo bán kính",
+                     "en":  "By Radius"
+                 },
+    "sourceVideoPreview":  {
+                               "vi":  "Video gốc",
+                               "en":  "Source video"
+                           },
+    "notFoundHint":  {
+                         "vi":  "Cùng tìm quán ngon tiếp theo nhé.",
+                         "en":  "Let’s find your next delicious spot."
+                     },
+    "guestLibraryHint":  {
+                             "vi":  "Đăng nhập để lưu quán vừa khám phá và gom món ngon vào một chỗ.",
+                             "en":  "Sign in to save the places you discover and keep all your food finds together."
+                         },
+    "viewRestaurant":  {
+                           "vi":  "Xem {name}",
+                           "en":  "View {name}"
+                       },
+    "maxRadius":  {
+                      "vi":  "Bán kính tìm kiếm",
+                      "en":  "Search radius"
+                  },
+    "configurationBlocked":  {
+                                 "vi":  "Dịch vụ chưa được cấu hình. Vui lòng thử lại sau.",
+                                 "en":  "The service is not configured yet. Please try again later."
+                             },
+    "findingFood":  {
+                        "vi":  "Đang tìm món ngon…",
+                        "en":  "Finding your food…"
+                    },
+    "heroSubtitle":  {
+                         "vi":  "Biến video ẩm thực thành những quán đáng ghé.",
+                         "en":  "Turn food videos into places worth visiting."
+                     },
+    "memory":  {
+                   "vi":  "Bộ nhớ",
+                   "en":  "Memory"
+               },
+    "categoryOther":  {
+                          "vi":  "Khác",
+                          "en":  "Other"
+                      },
+    "memoryAlreadySaved":  {
+                               "vi":  "Tôi đã ghi nhớ: {text}",
+                               "en":  "I already remember: {text}"
+                           },
+    "radiusEmptyHint":  {
+                            "vi":  "Thử bán kính lớn hơn để thấy thêm ghim mẫu nhé.",
+                            "en":  "Try a larger radius to see more sample pins."
+                        },
+    "justDiscovered":  {
+                           "vi":  "Vừa khám phá",
+                           "en":  "Just Discovered"
+                       },
+    "promptCityHint":  {
+                           "vi":  "Tìm quán theo thành phố hoặc địa chỉ",
+                           "en":  "Find a food stop by city or address"
+                       },
+    "pinSelected":  {
+                        "vi":  "Đã chọn quán",
+                        "en":  "Pin selected"
+                    },
+    "transcriptMeta":  {
+                           "vi":  "Lời thoại gốc dùng chung · Dữ liệu mẫu",
+                           "en":  "Shared original video transcript · Demo"
+                       },
+    "testUseExisting":  {
+                            "vi":  "Dùng tài khoản thử nghiệm đã có",
+                            "en":  "Use an existing test account"
+                        },
+    "createTestAccount":  {
+                              "vi":  "Tạo tài khoản thử nghiệm",
+                              "en":  "Create test account"
+                          },
+    "aiNearby":  {
+                     "vi":  "Khoảng cách và tuyến đường trong bản thử nghiệm chỉ để minh họa. Mở Bản đồ ăn uống để xem các ghim mẫu nhé.",
+                     "en":  "Proximity and routes in this demo are illustrative. Open Food Map to explore the sample pins."
+                 },
+    "foodDiscovery":  {
+                          "vi":  "Quán bạn vừa khám phá",
+                          "en":  "Your food discovery"
+                      },
+    "memoryContext":  {
+                          "vi":  "Dựa trên những điều bạn đã nhờ ghi nhớ: {notes}",
+                          "en":  "Keeping your saved memories in mind: {notes}"
+                      },
+    "sampleRibs":  {
+                       "vi":  "Sườn khổng lồ Sài Gòn",
+                       "en":  "Saigon’s giant ribs"
+                   },
+    "testUsernameRule":  {
+                             "vi":  "Dùng 3–32 chữ thường, số, dấu gạch dưới hoặc gạch nối; bắt đầu bằng chữ hoặc số.",
+                             "en":  "Use 3–32 lowercase letters, numbers, underscores or hyphens; start with a letter or number."
+                         },
+    "chatTitle":  {
+                      "vi":  "Hỏi WeEat AI",
+                      "en":  "Ask WeEat AI"
+                  },
+    "addMemory":  {
+                      "vi":  "Thêm ghi nhớ",
+                      "en":  "Add memory"
+                  },
+    "closeMemory":  {
+                        "vi":  "Đóng bộ nhớ",
+                        "en":  "Close memory"
+                    },
+    "mapMode":  {
+                    "vi":  "Chế độ bản đồ",
+                    "en":  "Map mode"
+                },
+    "savedSpot":  {
+                      "vi":  "Quán đã lưu",
+                      "en":  "Saved spot"
+                  },
+    "serviceError":  {
+                         "vi":  "Đã xảy ra lỗi. Vui lòng thử lại.",
+                         "en":  "Something went wrong. Please try again."
+                     },
+    "walk":  {
+                 "vi":  "Đi bộ",
+                 "en":  "Walk"
+             },
+    "documentDescription":  {
+                                "vi":  "Biến video ẩm thực thành những quán đáng ghé. Người bạn đồng hành ăn uống của bạn.",
+                                "en":  "Turn food videos into places worth visiting. Your personal food companion."
+                            },
+    "useCurrentLocation":  {
+                               "vi":  "Dùng vị trí hiện tại",
+                               "en":  "Use current location"
+                           },
+    "orderShopeeFoodFor":  {
+                               "vi":  "Đặt món tại {name} trên ShopeeFood (mở tab mới)",
+                               "en":  "Order from {name} on ShopeeFood (opens a new tab)"
+                           },
+    "displayName":  {
+                        "vi":  "Tên hiển thị",
+                        "en":  "Display name"
+                    },
+    "mapAttribution":  {
+                           "vi":  "Bản đồ mô phỏng · ghim minh họa",
+                           "en":  "Interactive mock map · illustrative pins"
+                       },
+    "editNotes":  {
+                      "vi":  "Sửa ghi chú",
+                      "en":  "Edit notes"
+                  },
+    "car":  {
+                "vi":  "Ô tô",
+                "en":  "Car"
+            },
+    "mockMap":  {
+                    "vi":  "Bản đồ mô phỏng",
+                    "en":  "Mock map"
+                },
+    "conversation":  {
+                         "vi":  "Cuộc trò chuyện",
+                         "en":  "Conversation"
+                     },
+    "commentSlide":  {
+                         "vi":  "Bình luận {number} trên {count}",
+                         "en":  "Comment {number} of {count}"
+                     },
+    "urlUnsupported":  {
+                           "vi":  "Hãy dùng liên kết YouTube /shorts/ hoặc video TikTok. Chưa hỗ trợ trang khác hay video YouTube thông thường.",
+                           "en":  "Use a YouTube /shorts/ link or a TikTok video link. Other websites and regular YouTube videos are not supported."
+                       },
+    "priceUnknown":  {
+                         "vi":  "Video chưa nhắc đến giá",
+                         "en":  "Price not mentioned in video"
+                     },
+    "noSessions":  {
+                       "vi":  "Các cuộc trò chuyện của bạn sẽ được lưu ở đây.",
+                       "en":  "Your chats will be saved here."
+                   },
+    "profileHeadingEnd":  {
+                              "vi":  "riêng bạn.",
+                              "en":  "yours."
+                          },
+    "home":  {
+                 "vi":  "Nhà",
+                 "en":  "Home"
+             },
+    "alongRoute":  {
+                       "vi":  "Theo tuyến đường",
+                       "en":  "Along Route"
+                   },
+    "homeValidation":  {
+                           "vi":  "Nhập địa chỉ nhà để tiếp tục nhé.",
+                           "en":  "Please enter your home address to continue."
+                       },
+    "recentSessions":  {
+                           "vi":  "Trò chuyện gần đây",
+                           "en":  "Recent chats"
+                       },
+    "zoomIn":  {
+                   "vi":  "Phóng to",
+                   "en":  "Zoom in"
+               }
+}
