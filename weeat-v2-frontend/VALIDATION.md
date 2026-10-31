@@ -1,5 +1,18 @@
 # Frontend implementation validation — 31 October 2026
 
+## Directory rename verification
+
+Renamed `frontend/` in place to `weeat-v2-frontend/` on `feature/frontend`. All 74 tracked files were preserved; application source, assets, manifests, lockfile, configuration and tests are unchanged. Updated the startup path and directory references in documentation. Installed dependencies moved intact, so `npm install` was not needed. No duplicate `frontend/` directory remains.
+
+Executed from `weeat-v2-frontend/` after the rename:
+
+- `npm run build`: passed, including strict TypeScript.
+- `npm test`: all 26 development tests passed.
+- `npm test -- --config playwright.live.config.ts`: all 3 intercepted HTTP integration tests passed.
+- `git diff --cached --check`: passed.
+
+The earlier implementation validation below is retained as historical context; this full post-rename run supersedes its partial-rerun test count.
+
 All application/configuration/test source was authored in this repository during this session. The approved static assets and bilingual/fixture catalog data were reused. Original preparation documents were preserved. Only `weeat-v2-frontend/` is staged in implementation commits on `feature/frontend`.
 
 ## Executed checks
