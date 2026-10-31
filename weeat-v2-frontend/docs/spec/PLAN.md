@@ -69,6 +69,7 @@ Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec
 - [x] Tạo `/api/geo/search?q=&st=`, `/api/geo/place?ref=`, `/api/geo/reverse?lat=&lng=`. Autocomplete chỉ trả label/ref; gọi Place Detail **một lần khi chọn**; GPS dùng reverse. Goong ưu tiên, VietMap fallback; key pool/rotation, cache, session token và giới hạn 40 geo calls/phút/user theo `docs/MAP_AND_GEO.md`.
 - [x] Sửa `locationService.ts` và `AddressPicker.tsx` cho live: tìm sau 600 ms khi ≥4 ký tự (≥3 nếu có số), địa chỉ của user trước, "Search more addresses", không tự chọn khi gõ/blur/Enter nếu chưa chọn suggestion. Trạng thái đang tìm/không có kết quả/lỗi và chống kết quả cũ ghi đè. Cùng picker dùng cho Profile, Edit và Map; Ask AI location prompt còn ở bước Ask AI.
 - [x] Map From/To chọn địa chỉ; card Map thiếu tọa độ tra địa chỉ và chọn suggestion đầu tiên, hiển thị trạng thái resolving, không để picker phát thêm request trùng. Kiểm tra live Bánh Cuốn Bách Hoa: đúng 1 `/api/geo/search` + 1 `/api/geo/place`.
+- [x] Along Route live: gõ vào To tự hiện gợi ý từ `/api/geo/search` sau 600 ms, địa chỉ của user đứng trước; chọn một gợi ý mới gọi `/api/geo/place` và tính tuyến. From/Profile/Edit vẫn có nút "Search more addresses" để người dùng chủ động tìm. Kiểm tra live trên màn 390 px bằng chuột và chạm: đúng 1 search + 1 place, không có lỗi console; mock `map-addresses` 7/7, build xanh.
 - [ ] Profile bắt buộc Home address đã chọn hoặc GPS có label + lat/lng.
 
 ## Map

@@ -10,7 +10,7 @@ import { useApp } from '../services/AppContext';
 import { errorKey } from '../services/errors';
 import { ErrorNotice } from './ui';
 
-export function AddressPicker({value,selected,onChange,label,ariaLabel,variant='profile',gps=true,clear=false,resolving=false}:{value:string;selected:Address|null;onChange:(text:string,address:Address|null)=>void;label:string;ariaLabel?:string;variant?:'profile'|'map';gps?:boolean;clear?:boolean;resolving?:boolean}) {
+export function AddressPicker({value,selected,onChange,label,ariaLabel,variant='profile',gps=true,clear=false,resolving=false,autoSearch=false}:{value:string;selected:Address|null;onChange:(text:string,address:Address|null)=>void;label:string;ariaLabel?:string;variant?:'profile'|'map';gps?:boolean;clear?:boolean;resolving?:boolean;autoSearch?:boolean}) {
   const {t}=useI18n(),app=useApp(),id=useId();
   const [items,setItems]=useState<AddressOption[]>([]),[open,setOpen]=useState(false),[pending,setPending]=useState(false),
     [locating,setLocating]=useState(false),[error,setError]=useState(''),[index,setIndex]=useState(-1),[more,setMore]=useState(false);
@@ -37,7 +37,8 @@ export function AddressPicker({value,selected,onChange,label,ariaLabel,variant='
     setPending(true);
     const timer=setTimeout(()=>{
       const local=ownAddresses().filter(address=>fold(address.label).includes(fold(value.trim())));
-      if(!isMock&&!more){if(request===generation.current){setItems(local);setPending(false);}return;}
+      if(request===generation.current)setItems(local);
+      if(!isMock&&!autoSearch&&!more){if(request===generation.current)setPending(false);return;}
       void searchAddresses(value,session.current).then(rows=>{
         if(request!==generation.current)return;
         setItems([...new Map([...local,...rows].map(row=>[fold(row.label),row])).values()]);
@@ -45,7 +46,7 @@ export function AddressPicker({value,selected,onChange,label,ariaLabel,variant='
         .finally(()=>{if(request===generation.current)setPending(false);});
     },more?0:600);
     return()=>{clearTimeout(timer);generation.current++;};
-  },[value,selected,resolving,more,app.user?.uid,app.profile?.user_address,app.restaurants.length]);
+  },[value,selected,resolving,autoSearch,more,app.user?.uid,app.profile?.user_address,app.restaurants.length]);
   const choose=async(option:AddressOption)=>{
     const request=++generation.current;
     setPending(true);setError('');
@@ -67,6 +68,6 @@ export function AddressPicker({value,selected,onChange,label,ariaLabel,variant='
   const gpsButton=<button type="button" className="icon-button" disabled={locating} aria-label={t('getCurrentLocation')} onClick={()=>void locate()}><LocateFixed size={16}/></button>;
   return <div className={`address-picker ${variant}`}><div className="address-row"><span className={variant==='map'?'endpoint-dot':''}>{variant==='profile'&&<MapPin size={18}/>}</span><div><label htmlFor={id}>{label}</label><input ref={input} id={id} role="combobox" aria-label={ariaLabel} aria-autocomplete="list" aria-expanded={open&&!selected&&ready&&!resolving} aria-controls={`${id}-list`} aria-activedescendant={open&&index>=0&&items[index]?`${id}-${index}`:undefined} maxLength={240} autoComplete="off" placeholder={t(variant==='profile'?'addressPlaceholder':clear?'toPlaceholder':'fromPlaceholder')} value={value} onFocus={()=>setOpen(true)} onBlur={()=>setOpen(false)} onChange={event=>{generation.current++;setError('');setOpen(true);setMore(false);onChange(event.target.value,null);}} onKeyDown={event=>{if(event.key==='Escape'){setOpen(false);return;}if(event.key==='ArrowDown'||event.key==='ArrowUp'){event.preventDefault();setOpen(true);setIndex(current=>Math.max(0,Math.min(items.length-1,current+(event.key==='ArrowDown'?1:-1))));}if(event.key==='Enter'&&open&&index>=0&&items[index]){event.preventDefault();void choose(items[index]);}}}/></div>{variant==='map'&&gps?gpsButton:clear&&value?<button type="button" className="icon-button" aria-label={t('clearDestination')} onClick={()=>{generation.current++;onChange('',null);setMore(false);session.current=crypto.randomUUID();}}><X size={15}/></button>:selected&&validAddress(selected)?<Check size={16}/>:<span/>}</div>
   {resolving&&<small role="status">{t('addressSearching')}</small>}
-  {open&&!selected&&ready&&!resolving&&<div className="suggestions" id={`${id}-list`} role="listbox" aria-label={t('addressSuggestions')}>{pending?<p role="status">{t('addressSearching')}</p>:items.length?items.map((option,i)=><div id={`${id}-${i}`} role="option" aria-selected={i===index} className={i===index?'highlight':''} key={option.id} onMouseDown={event=>event.preventDefault()} onClick={()=>void choose(option)}>{option.label}</div>):<p>{t('addressNoResults')}</p>}{!isMock&&!more&&<button type="button" className="text-button address-search-more" onMouseDown={event=>event.preventDefault()} onClick={()=>setMore(true)}>{t('addressSearchMore')}</button>}</div>}
+  {open&&!selected&&ready&&!resolving&&<div className="suggestions" id={`${id}-list`} role="listbox" aria-label={t('addressSuggestions')}>{items.map((option,i)=><div id={`${id}-${i}`} role="option" aria-selected={i===index} className={i===index?'highlight':''} key={option.id} onMouseDown={event=>event.preventDefault()} onClick={()=>void choose(option)}>{option.label}</div>)}{pending?<p role="status">{t('addressSearching')}</p>:!items.length?<p>{t('addressNoResults')}</p>:null}{!isMock&&!autoSearch&&!more&&<button type="button" className="text-button address-search-more" onMouseDown={event=>event.preventDefault()} onClick={()=>setMore(true)}>{t('addressSearchMore')}</button>}</div>}
   {variant==='profile'&&gps&&<button type="button" className="text-button gps-text" disabled={locating} onClick={()=>void locate()}><LocateFixed size={14}/>{t(locating?'locatingAddress':'useCurrentLocation')}</button>}{locating&&variant==='map'&&<small role="status">{t('locatingAddress')}</small>}{error&&<ErrorNotice message={error}/>}</div>;
 }

@@ -227,7 +227,7 @@ export default function LiveFoodMap() {
         ariaLabel={t('fromAddress')} onChange={(text, address) => { ++addressGeneration.current;
           ++reverseGeneration.current.from;
           setFromText(text); setFrom(address); setDragFrom(null); setSelected(null); }}/>
-      {routeOpen && <AddressPicker value={toText} selected={to} variant="map" gps={false} clear resolving={resolving}
+      {routeOpen && <AddressPicker value={toText} selected={to} variant="map" gps={false} clear resolving={resolving} autoSearch
         label={t('toLabel')} ariaLabel={t('toAddress')} onChange={setManualTo}/>}
     </div>
     {addressError && <ErrorNotice message="addressLookupError"/>}
