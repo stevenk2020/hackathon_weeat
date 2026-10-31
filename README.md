@@ -1,43 +1,37 @@
-<h1 align="center">WeEat 🍜 — Your food memory, searchable</h1>
+# WeEat AI 🍜
 
+**Save a food video. Find the restaurant again when you need it.**
 
+[Try the live app](https://hackathon.weeat.site/) · Built for the Sea x OpenAI Codex Hackathon 2026 by **Four of a Kind**.
 
+WeEat turns TikTok and YouTube Shorts food videos into a personal restaurant library. Paste a video link to extract places and dishes, save the ones you want, explore them on a map, and ask AI questions grounded in your saved places. Personal features use Google sign-in.
 
-<p align="center">
-  <img width="180" height="180" alt="image" src="https://github.com/user-attachments/assets/c6037082-d3aa-4cb4-91f2-bf750f8dc6bd" />
-</p>
+## What is in this repository
 
-<p align="center">
-  <img src="https://img.shields.io/badge/hackathon-Sea%20x%20OpenAI%20Codex-orange" alt="hackathon">
-  <img src="https://img.shields.io/badge/database-Postgres-blue" alt="postgres">
-  <img src="https://img.shields.io/badge/architecture-RAG-green" alt="rag">
-  <img src="https://img.shields.io/badge/license-MIT-lightgrey" alt="license">
-</p>
+```text
+.
+├── weeat-v2-frontend/    React app and its Node API server
+└── backend-api/
+    └── backend/          Standalone video extraction service
+```
 
-WeEat is an AI-native app that turns the food posts you save on social media
-into a personal, searchable knowledge base. Share a link, and WeEat extracts
-the content, indexes it, and lets you ask in plain language where to eat.
+- **`weeat-v2-frontend/`** contains the Discover, Library, Map, Profile, and Ask AI screens. Its `server/` directory serves the app and personal APIs using PostgreSQL, OpenAI, and Goong/MapLibre. It calls the extraction service for videos that are not already in the database.
+- **`backend-api/backend/`** contains the separate video extraction API, its prompts, specifications, and tests. See its [README](backend-api/backend/README.md) and [API reference](backend-api/backend/API.md).
 
-**Save once, find forever.** Paste a TikTok, Facebook, or Instagram link and
-WeEat pulls out the text, place names, and dishes for you.
+The two server directories have different roles; starting the frontend app server does not start the extraction service.
 
-**Ask, don't scroll.** Questions like "where can I eat good pho nearby?" return
-the original videos and pinned map locations.
+## Run the frontend demo locally
 
-**Yours alone.** Each user gets a private knowledge base, signed in with Google.
+The mock UI works without API credentials:
 
-## How it works
+```sh
+cd weeat-v2-frontend
+npm ci
+VITE_API_MODE=mock npm run dev
+```
 
-1. **Save** a social media food link
-2. **Extract & index** the content into your personal knowledge base (RAG)
-3. **Ask** in natural language and get videos + map results
+Open `http://127.0.0.1:5173`. For the live app server, see the [deployment notes](weeat-v2-frontend/deploy/README.md). Keep local credentials in ignored environment files; never commit them.
 
-## Tech stack
+## Project status
 
-- RAG pipeline for retrieval and answers
-- Postgres for users and saved content
-- Built with OpenAI Codex
-
-## Team
-
-**Four of a Kind**, built for the Sea x OpenAI Codex Hackathon 2026.
+This checkpoint brings the app and the extraction backend into one repository. The live app is available at [hackathon.weeat.site](https://hackathon.weeat.site/). Current implementation notes and remaining work are tracked in the [project plan](weeat-v2-frontend/docs/spec/PLAN.md).

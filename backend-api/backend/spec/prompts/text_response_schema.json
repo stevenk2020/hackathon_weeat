@@ -1,0 +1,187 @@
+{
+  "type": "OBJECT",
+  "properties": {
+    "is_about_specific_place": {
+      "type": "BOOLEAN"
+    },
+    "restaurant_name": {
+      "type": "OBJECT",
+      "properties": {
+        "value": {
+          "type": "STRING",
+          "nullable": true
+        },
+        "source": {
+          "type": "STRING",
+          "enum": [
+            "title",
+            "description",
+            "tags",
+            "comment"
+          ],
+          "nullable": true
+        },
+        "evidence": {
+          "type": "STRING",
+          "nullable": true
+        },
+        "confidence": {
+          "type": "STRING",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ],
+          "nullable": true
+        }
+      },
+      "required": [
+        "value",
+        "source",
+        "evidence",
+        "confidence"
+      ]
+    },
+    "dish": {
+      "type": "OBJECT",
+      "properties": {
+        "value": {
+          "type": "STRING",
+          "nullable": true
+        },
+        "source": {
+          "type": "STRING",
+          "enum": [
+            "title",
+            "description",
+            "tags",
+            "comment"
+          ],
+          "nullable": true
+        },
+        "evidence": {
+          "type": "STRING",
+          "nullable": true
+        },
+        "confidence": {
+          "type": "STRING",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ],
+          "nullable": true
+        }
+      },
+      "required": [
+        "value",
+        "source",
+        "evidence",
+        "confidence"
+      ]
+    },
+    "location": {
+      "type": "OBJECT",
+      "properties": {
+        "value": {
+          "type": "STRING",
+          "nullable": true
+        },
+        "source": {
+          "type": "STRING",
+          "enum": [
+            "title",
+            "description",
+            "tags",
+            "comment"
+          ],
+          "nullable": true
+        },
+        "evidence": {
+          "type": "STRING",
+          "nullable": true
+        },
+        "confidence": {
+          "type": "STRING",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ],
+          "nullable": true
+        }
+      },
+      "required": [
+        "value",
+        "source",
+        "evidence",
+        "confidence"
+      ]
+    },
+    "price": {
+      "type": "OBJECT",
+      "properties": {
+        "value": {
+          "type": "STRING",
+          "nullable": true
+        },
+        "source": {
+          "type": "STRING",
+          "enum": [
+            "title",
+            "description",
+            "tags",
+            "comment"
+          ],
+          "nullable": true
+        },
+        "evidence": {
+          "type": "STRING",
+          "nullable": true
+        },
+        "confidence": {
+          "type": "STRING",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ],
+          "nullable": true
+        }
+      },
+      "required": [
+        "value",
+        "source",
+        "evidence",
+        "confidence"
+      ]
+    },
+    "dish_group": {
+      "type": "STRING",
+      "enum": [
+        "chay",
+        "banh_mi",
+        "pho_mi_mien",
+        "com",
+        "do_an_nhanh",
+        "pizza",
+        "tra",
+        "cafe",
+        "hai_san",
+        "quan_nuong",
+        "quan_han",
+        "quan_nhat",
+        "quoc_te",
+        "other"
+      ],
+      "nullable": true
+    }
+  },
+  "required": [
+    "is_about_specific_place",
+    "restaurant_name",
+    "dish",
+    "location",
+    "price"
+  ]
+}
