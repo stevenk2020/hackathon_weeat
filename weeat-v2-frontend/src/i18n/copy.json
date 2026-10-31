@@ -1651,5 +1651,33 @@
     "confirmDeleteChat": {
                         "vi": "Xóa",
                         "en": "Delete"
+                  },
+    "locationPromptTitle": {
+                        "vi": "Mình nên tìm ở đâu?",
+                        "en": "Where should I look?"
+                  },
+    "locationUseHome": {
+                        "vi": "Dùng nhà của tôi: {address}",
+                        "en": "Use my home: {address}"
+                  },
+    "locationTypeLabel": {
+                        "vi": "Hoặc nhập địa chỉ bất kỳ",
+                        "en": "Or type any address"
+                  },
+    "locationTypePlaceholder": {
+                        "vi": "Đường, phường, quận hoặc thành phố",
+                        "en": "Street, ward, district or city"
+                  },
+    "locationUseTyped": {
+                        "vi": "Dùng “{text}” như đã nhập",
+                        "en": "Use “{text}” as typed"
+                  },
+    "locationChosen": {
+                        "vi": "Tìm quanh: {label}",
+                        "en": "Search around: {label}"
+                  },
+    "suggestedFollowUps": {
+                        "vi": "Bạn cũng có thể hỏi",
+                        "en": "You could also ask"
                   }
 }

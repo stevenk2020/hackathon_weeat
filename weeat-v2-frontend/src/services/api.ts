@@ -51,7 +51,8 @@ export const api = {
         if(message.role!=='user'&&message.role!=='assistant')throw new ServiceError('INVALID_RESPONSE');
         const references=trace?.references;
         if(references!==undefined&&!Array.isArray(references))throw new ServiceError('INVALID_RESPONSE');
-        return {id:c.str(message.id),role:message.role,content:typeof message.content==='string'?message.content:'',created_at:c.str(message.created_at),references:(references as unknown[]|undefined)?.map(ref=>{const item=c.object(ref);return {video_id:c.str(item.video_id),restaurant_id:c.str(item.restaurant_id)} as Reference;})};
+        const ui=message.ui?c.object(message.ui):null;
+        return {id:c.str(message.id),role:message.role,content:typeof message.content==='string'?message.content:'',created_at:c.str(message.created_at),references:(references as unknown[]|undefined)?.map(ref=>{const item=c.object(ref);return {video_id:c.str(item.video_id),restaurant_id:c.str(item.restaurant_id)} as Reference;}),ui:ui?{location_prompt:ui.location_prompt===true,suggestions:Array.isArray(ui.suggestions)?ui.suggestions.filter((x):x is string=>typeof x==='string'):undefined}:undefined};
       })} as ChatSession;
     });
   },
