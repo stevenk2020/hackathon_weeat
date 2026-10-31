@@ -1,6 +1,6 @@
 # Saving, the library, map points, ShopeeFood and Ask
 
-Field names and meanings: API_CONTRACT.md, EXTRACT_API.md. Current reply construction is in `server.js` and `lib/records.js`.
+Field names and meanings: API_CONTRACT.md, [API.md](../API.md). Current reply construction is in `server.js` and `lib/records.js`.
 
 ## 1. Text helpers (use these exact definitions)
 - `normalizeText(s)` = NFD, remove U+0300–U+036F, `đ`/`Đ` → `d`, lowercase, every run of characters other than `a-z0-9`
@@ -85,8 +85,11 @@ and the record JSON. Every query filters by the uid from the verifier; parameter
 - Save by token (POST /api/library, the extract API): look up the place (section 7), build the record (savedVia `app`
   or `extract_api`; is_saved 1 only for `app`), insert. If a row is already there: an `analyze` row is REPLACED by this
   record (keeping its keys; create_time = update_time = now; reply `created: true`); a not-saved tool row hit by an `app`
-  save gets `savedVia = "app"` and is_saved 1 (nothing else, not even update_time; `created: true`); otherwise
-  `created: false`. Reply 201 `{id, alreadySaved: false}` or 200 `{id, alreadySaved: true}`.
+  save gets `savedVia = "app"` and is_saved 1 (`created: true`); otherwise `created: false`.
+  For an existing non-Facebook row with the same restaurant_id, a missing shopeeFoodUrl is filled when the new lookup
+  succeeds, updating update_time only. Existing store URLs, extraction data, notes, saved status (except an explicit app
+  save) and create_time are preserved. A candidate from a different restaurant_id cannot fill the stored URL.
+  Reply 201 `{id, alreadySaved: false}` or 200 `{id, alreadySaved: true}`.
 - PUT .../save: not stored → 404; already saved → `{..., is_saved: 1}` with no change. Otherwise, for an `analyze` row run
   the lookup on its venue and set latitude, longitude, geoSource, shopeeFoodUrl; set savedVia `app`, is_saved 1, and for an
   `analyze` row also savedAt = create_time = update_time = now.
@@ -131,11 +134,18 @@ numberAndStreet(a) = plain(first comma part of withoutFloor(a)) with leading `so
 Point = the row's point, else the detail call; must be a valid lat/lng. The result is `{lat, lng, source, provider}`.
 
 ShopeeFood lookup requires a restaurant name, address, WEB_SEARCH_PROVIDER=brave and WEB_SEARCH_KEY.
-Search Brave for `site:shopeefood.vn "<name>" <street>`, then name + city when available.
+Search Brave for `site:shopeefood.vn <name> <street>`, then name + city when available.
 Remove house numbers/ranges from the street; join a number-only comma segment to its following street first.
+Names are unquoted so word order can vary; normalize Hotdog and Hot Dog to the same tokens.
 Match all normalized name words in the result title/snippet, plus street or city in the title/snippet or listing URL.
-Do not require an exact numbered address or fetch listing HTML. Reject non-store URLs, brand/collection pages,
-and results marked Not found/404. Return the first matching store, or null; retain the Google search fallback.
+Do not require an exact numbered address. Reject non-store URLs and brand/collection pages.
+If no search result passes the locality check, fetch up to two unique name-matched store URLs using link-preview HTML
+(`User-Agent: facebookexternalhit/1.1`, redirects rejected, 6-second timeout, HTML content type, at most 1 MiB each).
+Read JSON-LD objects, arrays and @graph entries for LocalBusiness, Restaurant, FoodEstablishment, CafeOrCoffeeShop,
+FastFoodRestaurant or Bakery. Require all normalized name words in the structured name and a requested street or city
+in that business's address (string or streetAddress/addressLocality/addressRegion). Ignore navigation/footer text and
+unrelated structured objects. Failed fetches, malformed data or missing/mismatched merchant details retain the search fallback.
+A Not found/404 search description alone does not disqualify a result matching the restaurant name and location. Return the first matching store, or null; retain the Google search fallback.
 Cache successful matches by normalized name and full address to keep locality contexts separate.
 
 ## 8. Ask (POST /api/ask and POST /api/library/ask)

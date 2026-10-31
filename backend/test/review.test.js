@@ -261,3 +261,34 @@ for(const phase of ['text','video'])for(const errorName of ['TimeoutError','Abor
     const response=await fetch(base+'/api/analyze',{method:'POST',headers:{Authorization:'Bearer test','Content-Type':'application/json'},body:JSON.stringify({url:phase==='text'?URL:'https://www.youtube.com/shorts/abcdefghijk'})});
     assert.equal(response.status,504);assert.equal((await response.json()).error.code,'timeout');
   });
+
+test('TikTok reuses metadata for download and removes its private temporary file',async()=>{
+  let infoFile;
+  const bytes=Buffer.from([0,1,2,255]);
+  const h=harness([videoFixture,child=>{
+    const args=h.calls[1].args;
+    infoFile=args[args.indexOf('--load-info-json')+1];
+    assert.deepEqual(JSON.parse(fs.readFileSync(infoFile,'utf8')),videoFixture);
+    assert.equal(fs.statSync(infoFile).mode&0o777,0o600);
+    child.stdout.write(bytes);child.emit('close',0);
+  }]);
+  const metadata=await h.readers.tiktokVideo.details(URL);
+  const result=await h.readers.tiktokVideo.fetch(URL,metadata.details);
+  assert.deepEqual(result,{ok:true,videoBuffer:bytes,comments:[]});
+  assert.equal(fs.existsSync(path.dirname(infoFile)),false);
+  await h.readers.tiktokVideo.close();
+});
+
+test('TikTok retries with fresh extraction when reused download information fails',async t=>{
+  clock(t);
+  const bytes=Buffer.from([1,2,3]),h=harness([videoFixture,'exit',bytes]);
+  const metadata=await h.readers.tiktokVideo.details(URL);
+  const pending=h.readers.tiktokVideo.fetch(URL,metadata.details);
+  await flush();t.mock.timers.tick(1500);await flush();
+  assert.equal((await pending).ok,true);
+  assert.ok(h.calls[1].args.includes('--load-info-json'));
+  assert.deepEqual(h.calls[2].args.slice(-2),['--',URL]);
+  const infoFile=h.calls[1].args[h.calls[1].args.indexOf('--load-info-json')+1];
+  assert.equal(fs.existsSync(path.dirname(infoFile)),false);
+  await h.readers.tiktokVideo.close();
+});

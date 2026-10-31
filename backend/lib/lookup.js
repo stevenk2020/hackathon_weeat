@@ -19,20 +19,44 @@ function createLookup(c,p,now){const points=new Map(),stores=new Map(),blocked=n
   if(!contexts.length)return null;
   const key=plain(n)+'|'+locality(address);
   if(stores.has(key))return stores.get(key);
-  const nw=words(n),queries=contexts.map(context=>`site:shopeefood.vn "${n}" ${context}`);
+  const nameWords=s=>words(s.replace(/hot\s*dog/gi,'hot dog'));
+  const nw=nameWords(n),queries=contexts.map(context=>`site:shopeefood.vn ${n} ${context}`),candidates=new Set();
   for(const q of new Set(queries)){
    try{for(const row of await p.brave(q)){
     const url=String(row.url||'').split(/[?#&]/)[0];
     const m=url.match(/^https:\/\/shopeefood\.vn\/([a-z0-9]+(?:-[a-z0-9]+)*)\/([a-z0-9]+(?:-[a-z0-9]+)*)\/?$/);
     if(!m||m[1]==='thuong-hieu'||['food','drinks','danh-sach-dia-diem-giao-tan-noi','collections','top-food','deals'].includes(m[2]))continue;
     const text=clean([row.title,row.snippet].filter(Boolean).join(' ').replace(/<[^>]*>/g,' '));
-    if(/\bnot found\b|\b404\b/i.test(text))continue;
-    if(!nw.length||!nw.every(w=>words(text).includes(w)))continue;
+    if(!nw.length||!nw.every(w=>nameWords(text).includes(w)))continue;
     // The listing title, snippet or URL can identify the street or city.
     const evidence=' '+locality(text+' '+m[1]+' '+m[2])+' ';
-    if(!contexts.some(context=>evidence.includes(' '+context+' ')))continue;
+    if(!contexts.some(context=>evidence.includes(' '+context+' '))){candidates.add(url);continue;}
     stores.set(key,url);return url;
    }}catch{}
+  }
+  // Link-preview HTML includes the merchant's structured name and address even
+  // when the search snippet omits its location. Never use navigation/footer text.
+  for(const url of [...candidates].slice(0,2)){
+   try{
+    const r=await p.fetchTimeout(url,{headers:{Accept:'text/html','User-Agent':'facebookexternalhit/1.1'},redirect:'error'},6000);
+    if(!r.ok||!/(?:text\/html|application\/xhtml\+xml)/i.test(r.headers.get('content-type')||'')||Number(r.headers.get('content-length'))>1048576){await r.body?.cancel();continue;}
+    const chunks=[];let size=0;
+    for await(const chunk of r.body){size+=chunk.length;if(size>1048576)throw new Error('listing too large');chunks.push(chunk);}
+    const html=Buffer.concat(chunks).toString('utf8');
+    for(const script of html.matchAll(/<script\b[^>]*\btype\s*=\s*["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script\s*>/gi)){
+     let nodes;try{nodes=[JSON.parse(script[1])];}catch{continue;}
+     while(nodes.length){
+      const node=nodes.shift();if(!node||typeof node!=='object')continue;
+      if(Array.isArray(node)){nodes.push(...node);continue;}
+      if(Array.isArray(node['@graph']))nodes.push(...node['@graph']);
+      const types=[].concat(node['@type']||'');
+      if(!types.some(type=>['LocalBusiness','Restaurant','FoodEstablishment','CafeOrCoffeeShop','FastFoodRestaurant','Bakery'].includes(type))||typeof node.name!=='string'||!nw.every(w=>nameWords(node.name).includes(w)))continue;
+      const a=node.address,location=typeof a==='string'?a:a&&[a.streetAddress,a.addressLocality,a.addressRegion].filter(v=>typeof v==='string').join(' ');
+      const evidence=' '+locality(location)+' ';
+      if(contexts.some(context=>evidence.includes(' '+context+' '))){stores.set(key,url);return url;}
+     }
+    }
+   }catch{}
   }
   return null;
  }

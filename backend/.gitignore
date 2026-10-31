@@ -1,7 +1,10 @@
 .env
+.env.*
+!.env.example
 node_modules/
 data/
 cache/
 inspection/
+artifacts/
 test/.tmp-*/
 test/.smoke-*/

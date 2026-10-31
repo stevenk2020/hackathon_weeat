@@ -155,7 +155,7 @@ function createPostgres(config, { pool, logger = console } = {}) {
         updates.push('synced_at=NOW()');
         const sql = insertStatement('quan_hackathon_video_places', columns, '(user_id, video_id, restaurant_id)', updates.join(', '));
         await client.query(sql, columns.map(column => row[column]));
-        if (place.comments?.status === 'ok') {
+        if (['ok','partial'].includes(place.comments?.status)) {
           await client.query(
             'DELETE FROM public.quan_hackathon_video_comments WHERE video_id=$1 AND merchant_id=$2',
             [row.video_id, row.restaurant_id]
