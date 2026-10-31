@@ -2,7 +2,7 @@ import { config,isMock } from './config';
 import { ServiceError } from './errors';
 import type { AuthUser } from '../types';
 export async function request(path:string,method='GET',body?:unknown,user?:AuthUser|null,signal?:AbortSignal):Promise<unknown> {
-  if(isMock){const {mockRequest}=await import('./mockServer');return mockRequest(path,method,body,user,signal);}
+  if(import.meta.env.DEV && isMock){const {mockRequest}=await import('./mockServer');return mockRequest(path,method,body,user,signal);}
   if(!config.base)throw new ServiceError('BLOCKED');
   const controller=new AbortController();const abort=()=>controller.abort(signal?.reason);signal?.addEventListener('abort',abort,{once:true});if(signal?.aborted)abort();
   const timer=setTimeout(()=>controller.abort('timeout'),15000);
