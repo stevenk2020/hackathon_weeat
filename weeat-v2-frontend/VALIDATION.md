@@ -1,6 +1,6 @@
 # Frontend implementation validation — 31 October 2026
 
-All application/configuration/test source was authored in this repository during this session. The approved static assets and bilingual/fixture catalog data were reused. Original preparation documents were preserved. Only `frontend/` is staged in implementation commits on `feature/frontend`.
+All application/configuration/test source was authored in this repository during this session. The approved static assets and bilingual/fixture catalog data were reused. Original preparation documents were preserved. Only `weeat-v2-frontend/` is staged in implementation commits on `feature/frontend`.
 
 ## Executed checks
 

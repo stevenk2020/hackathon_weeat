@@ -5,7 +5,7 @@ Newly authored React 19 / TypeScript / Vite implementation. The preparation pack
 ## Run
 
 ```powershell
-cd frontend
+cd weeat-v2-frontend
 npm ci
 npm run dev
 ```
