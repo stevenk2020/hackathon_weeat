@@ -1,0 +1,519 @@
+{
+ "input": {
+  "video": {
+   "platform": "tiktok",
+   "media": "video",
+   "id": "7667074991795473685",
+   "title": "Bánh canh tôm khô , mực khô giá chỉ 20k #chukimreview  #ancungtiktok  #learnontiktok  #banhcanhtomkho",
+   "channel": "Chú Kim Review",
+   "thumbnail": null,
+   "durationSec": 92,
+   "url": "https://www.tiktok.com/@duckim90/video/7667074991795473685"
+  },
+  "videoResult": {
+   "venues": [
+    {
+     "restaurant_name": {
+      "value": null,
+      "source": null,
+      "evidence": null,
+      "timestamp": null,
+      "confidence": null
+     },
+     "dish": {
+      "value": "bánh canh tôm khô mực khô",
+      "source": "spoken_audio",
+      "evidence": "biết được có một cái tiệm bánh canh tôm khô mực khô này",
+      "timestamp": "00:01",
+      "confidence": "high"
+     },
+     "location": {
+      "value": "Số 8, Đường 15, Tân Hưng, Q.7",
+      "source": "visual_text",
+      "evidence": "Số 8, Đường 15, Tân Hưng, TP.HCM",
+      "timestamp": "00:08",
+      "confidence": "high"
+     },
+     "price": {
+      "value": "20k",
+      "source": "spoken_audio",
+      "evidence": "Chỉ có 20 cành cho một tô thôi",
+      "timestamp": "00:05",
+      "confidence": "high"
+     },
+     "dish_group": "pho_mi_mien",
+     "match_score": 90
+    }
+   ],
+   "incomplete": false,
+   "script": [
+    {
+     "timestamp": "00:00",
+     "kind": "speech",
+     "text": "Ngay Quận 7 mà Kim vừa biết được có một cái tiệm bánh canh tôm khô mực khô mà bên cạnh đó cái giá của nó siêu mềm luôn các bạn."
+    },
+    {
+     "timestamp": "00:05",
+     "kind": "speech",
+     "text": "Chỉ có 20 cành cho một tô thôi."
+    },
+    {
+     "timestamp": "00:06",
+     "kind": "speech",
+     "text": "Chị chủ tại đây nói không bao giờ lên giá nè mà đồ là phải đảm bảo chất lượng."
+    },
+    {
+     "timestamp": "00:10",
+     "kind": "speech",
+     "text": "Đã vậy là từ 10:00 đến 12:00 Chủ Nhật đầu tiên của mỗi tháng"
+    },
+    {
+     "timestamp": "00:13",
+     "kind": "speech",
+     "text": "thì tại quán còn phát bánh canh miễn phí cho cô chú lớn tuổi có hoàn cảnh khó khăn."
+    },
+    {
+     "timestamp": "00:17",
+     "kind": "speech",
+     "text": "Cho nên là coi clip này xong mấy bạn sinh viên Quận 7 hay là cô chú lớn tuổi nhớ lưu lại nha."
+    },
+    {
+     "timestamp": "00:21",
+     "kind": "speech",
+     "text": "Bánh mì nhà có ba loại 20, 35 với lại 45."
+    },
+    {
+     "timestamp": "00:23",
+     "kind": "speech",
+     "text": "Ở bên mình là một tô 20 là có gì chị?"
+    },
+    {
+     "timestamp": "00:25",
+     "kind": "speech",
+     "text": "Có đầy đủ luôn em, bò viên, tôm khô, cua mực, trứng cút, giò heo đầy đủ hết luôn á."
+    },
+    {
+     "timestamp": "00:30",
+     "kind": "speech",
+     "text": "Ủa bây giờ mà cũng còn một tô 20 nữa hả chị?"
+    },
+    {
+     "timestamp": "00:33",
+     "kind": "speech",
+     "text": "Trong đây chị bán bình dân."
+    },
+    {
+     "timestamp": "00:35",
+     "kind": "speech",
+     "text": "Thật sự là bây giờ cái gì cũng lên hết nhưng mà chị không có dám lên giá luôn."
+    },
+    {
+     "timestamp": "00:39",
+     "kind": "speech",
+     "text": "Thì chủ yếu là mình bán cho mấy bạn học sinh sinh viên với lại số lượng lớn."
+    },
+    {
+     "timestamp": "00:44",
+     "kind": "speech",
+     "text": "Tại đây thì Kim có order hai tô, một tô 20 cành và một tô 45 cành."
+    },
+    {
+     "timestamp": "00:47",
+     "kind": "speech",
+     "text": "Thật ra là với cái tô 20 cành mà bạn nào sức ăn vừa thôi là Kim cảm thấy cũng khá no rồi."
+    },
+    {
+     "timestamp": "00:51",
+     "kind": "speech",
+     "text": "Nữa nếu như mà các bạn muốn nhiều topping cũng như sức ăn mạnh thì gõ cái phần 45 cành."
+    },
+    {
+     "timestamp": "00:55",
+     "kind": "speech",
+     "text": "Trong phần này thì Kim thấy là tôm khô, mực khô nhiều hơn nè, thịt hay là chả bò quán cho cũng nhiều."
+    },
+    {
+     "timestamp": "00:59",
+     "kind": "speech",
+     "text": "Đặc biệt là cái sợi bánh canh tại đây nhai khi mà các bạn ăn vào nó rất là mềm và dai."
+    },
+    {
+     "timestamp": "01:03",
+     "kind": "speech",
+     "text": "Nước dùng tại quán được ninh với củ cải này đặc biệt là có tôm khô và mực khô."
+    },
+    {
+     "timestamp": "01:08",
+     "kind": "speech",
+     "text": "Bạn sẽ cảm nhận được cái độ thanh ngọt tự nhiên này và hậu béo khá là ngon."
+    },
+    {
+     "timestamp": "01:09",
+     "kind": "speech",
+     "text": "Thông thường mà đi ăn một ổ bánh mì bây giờ mà ngay trung tâm á các bạn là Kim thấy đâu đó nhìn hơn 30 cành rồi."
+    },
+    {
+     "timestamp": "01:13",
+     "kind": "speech",
+     "text": "Đến đây là các bạn order một tô bánh canh 20 cành cộng với một cái ly trà tắc chỉ có 15 cành."
+    },
+    {
+     "timestamp": "01:18",
+     "kind": "speech",
+     "text": "Mà đã vậy là cái ly trà tắc siêu to nha thơm trà chua chua ngọt ngọt rất là dính."
+    },
+    {
+     "timestamp": "01:21",
+     "kind": "speech",
+     "text": "Với lại vào những cái chủ nhật đầu tuần của mỗi tháng thì bánh canh tôm khô mực khô có phát chút ăn miễn phí cho cô chú lớn tuổi."
+    },
+    {
+     "timestamp": "01:27",
+     "kind": "speech",
+     "text": "Cho nên là mọi người nhớ note lại nha đặc biệt là mấy bạn sinh viên muốn tìm dùng bánh canh tôm khô mực khô bình dân thì lưu lại nha."
+    },
+    {
+     "timestamp": "00:07",
+     "kind": "on_screen",
+     "text": "BÁNH CANH 15 (SỐ 8, ĐƯỜNG 15, TÂN HƯNG, Q.7) KHÔ MỰC - TÔM KHÔ 20K"
+    },
+    {
+     "timestamp": "00:08",
+     "kind": "on_screen",
+     "text": "BÁNH CANH 15 (Số 8, Đường 15, Tân Hưng, TP.HCM) PHÁT PHẦN ĂN Miễn Phí!"
+    },
+    {
+     "timestamp": "00:08",
+     "kind": "on_screen",
+     "text": "Thời gian: 10h - 12h Chủ Nhật đầu tiên mỗi tháng! Kính Mời Cô Chú có hoàn cảnh khó khăn đến nhận phần ăn. Kính Chúc Cô Chú nhiều sức khoẻ!"
+    },
+    {
+     "timestamp": "00:11",
+     "kind": "on_screen",
+     "text": "Chủ nhật đầu tuần mỗi tháng Từ: 10g-12g Quán phát bánh canh cho cô chú Lớn tuổi có hoàn cảnh khó khăn"
+    },
+    {
+     "timestamp": "01:23",
+     "kind": "on_screen",
+     "text": "Bánh Canh Tôm Khô, Mực Khô 20k Số 8, Đường 15, Tân Hưng, Q7"
+    }
+   ]
+  },
+  "metaChecked": {
+   "is_about_specific_place": true,
+   "dish_group": "pho_mi_mien",
+   "restaurant_name": {
+    "value": null,
+    "source": null,
+    "evidence": null,
+    "confidence": null,
+    "supported": false
+   },
+   "dish": {
+    "value": "Bánh canh tôm khô , mực khô",
+    "source": "caption",
+    "evidence": "Bánh canh tôm khô , mực khô",
+    "confidence": "high",
+    "supported": true
+   },
+   "location": {
+    "value": null,
+    "source": null,
+    "evidence": null,
+    "confidence": null,
+    "supported": false
+   },
+   "price": {
+    "value": "20k",
+    "source": "caption",
+    "evidence": "giá chỉ 20k",
+    "confidence": "high",
+    "supported": true
+   }
+  }
+ },
+ "output": {
+  "status": "ok",
+  "disclaimer": "AI-extracted, not independently verified. Source labels, quotes and timestamps are written by the AI and have not been checked against the video.",
+  "analysis_mode": "video_and_text",
+  "video": {
+   "platform": "tiktok",
+   "media": "video",
+   "id": "7667074991795473685",
+   "title": "Bánh canh tôm khô , mực khô giá chỉ 20k #chukimreview  #ancungtiktok  #learnontiktok  #banhcanhtomkho",
+   "channel": "Chú Kim Review",
+   "thumbnail": null,
+   "duration_sec": 92,
+   "url": "https://www.tiktok.com/@duckim90/video/7667074991795473685"
+  },
+  "venues": [
+   {
+    "id": "venue-1",
+    "fields": {
+     "restaurant_name": {
+      "status": "not_found",
+      "agreement": null,
+      "entries": []
+     },
+     "dish": {
+      "status": "found",
+      "agreement": "match",
+      "entries": [
+       {
+        "value": "bánh canh tôm khô mực khô",
+        "origin": "video",
+        "source": "spoken_audio",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "biết được có một cái tiệm bánh canh tôm khô mực khô này",
+        "timestamp": "00:01",
+        "evidence_checked": false
+       },
+       {
+        "value": "Bánh canh tôm khô , mực khô",
+        "origin": "metadata",
+        "source": "title_description",
+        "source_detail": "caption",
+        "confidence": "high",
+        "evidence": "Bánh canh tôm khô , mực khô",
+        "timestamp": null,
+        "evidence_checked": true
+       }
+      ]
+     },
+     "location": {
+      "status": "found",
+      "agreement": null,
+      "entries": [
+       {
+        "value": "Số 8, Đường 15, Tân Hưng, Q.7",
+        "origin": "video",
+        "source": "on_screen_text",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "Số 8, Đường 15, Tân Hưng, TP.HCM",
+        "timestamp": "00:08",
+        "evidence_checked": false
+       }
+      ]
+     },
+     "price": {
+      "status": "found",
+      "agreement": "match",
+      "entries": [
+       {
+        "value": "20k",
+        "origin": "video",
+        "source": "spoken_audio",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "Chỉ có 20 cành cho một tô thôi",
+        "timestamp": "00:05",
+        "evidence_checked": false,
+        "normalized": {
+         "min": 20000,
+         "max": 20000,
+         "currency": "VND",
+         "inferred": true,
+         "basis": "converted from slang/abbreviation unit: k (x1000)"
+        }
+       },
+       {
+        "value": "20k",
+        "origin": "metadata",
+        "source": "title_description",
+        "source_detail": "caption",
+        "confidence": "high",
+        "evidence": "giá chỉ 20k",
+        "timestamp": null,
+        "evidence_checked": true,
+        "normalized": {
+         "min": 20000,
+         "max": 20000,
+         "currency": "VND",
+         "inferred": true,
+         "basis": "converted from slang/abbreviation unit: k (x1000)"
+        }
+       }
+      ]
+     }
+    },
+    "dish_group": "pho_mi_mien",
+    "match_score": 90,
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=b%C3%A1nh%20canh%20t%C3%B4m%20kh%C3%B4%20m%E1%BB%B1c%20kh%C3%B4%20S%E1%BB%91%208%2C%20%C4%90%C6%B0%E1%BB%9Dng%2015%2C%20T%C3%A2n%20H%C6%B0ng%2C%20Q.7",
+    "maps_note": "The restaurant name was not found, so this Maps link searches by dish and area only.",
+    "conflicts": []
+   }
+  ],
+  "incomplete": {
+   "more_venues_not_shown": false,
+   "max_shown": 5,
+   "shown": 1
+  },
+  "metadata_hints": [],
+  "conflict_count": 0,
+  "script": {
+   "status": "ok",
+   "reason": null,
+   "lines": [
+    {
+     "timestamp": "00:00",
+     "kind": "speech",
+     "text": "Ngay Quận 7 mà Kim vừa biết được có một cái tiệm bánh canh tôm khô mực khô mà bên cạnh đó cái giá của nó siêu mềm luôn các bạn."
+    },
+    {
+     "timestamp": "00:05",
+     "kind": "speech",
+     "text": "Chỉ có 20 cành cho một tô thôi."
+    },
+    {
+     "timestamp": "00:06",
+     "kind": "speech",
+     "text": "Chị chủ tại đây nói không bao giờ lên giá nè mà đồ là phải đảm bảo chất lượng."
+    },
+    {
+     "timestamp": "00:10",
+     "kind": "speech",
+     "text": "Đã vậy là từ 10:00 đến 12:00 Chủ Nhật đầu tiên của mỗi tháng"
+    },
+    {
+     "timestamp": "00:13",
+     "kind": "speech",
+     "text": "thì tại quán còn phát bánh canh miễn phí cho cô chú lớn tuổi có hoàn cảnh khó khăn."
+    },
+    {
+     "timestamp": "00:17",
+     "kind": "speech",
+     "text": "Cho nên là coi clip này xong mấy bạn sinh viên Quận 7 hay là cô chú lớn tuổi nhớ lưu lại nha."
+    },
+    {
+     "timestamp": "00:21",
+     "kind": "speech",
+     "text": "Bánh mì nhà có ba loại 20, 35 với lại 45."
+    },
+    {
+     "timestamp": "00:23",
+     "kind": "speech",
+     "text": "Ở bên mình là một tô 20 là có gì chị?"
+    },
+    {
+     "timestamp": "00:25",
+     "kind": "speech",
+     "text": "Có đầy đủ luôn em, bò viên, tôm khô, cua mực, trứng cút, giò heo đầy đủ hết luôn á."
+    },
+    {
+     "timestamp": "00:30",
+     "kind": "speech",
+     "text": "Ủa bây giờ mà cũng còn một tô 20 nữa hả chị?"
+    },
+    {
+     "timestamp": "00:33",
+     "kind": "speech",
+     "text": "Trong đây chị bán bình dân."
+    },
+    {
+     "timestamp": "00:35",
+     "kind": "speech",
+     "text": "Thật sự là bây giờ cái gì cũng lên hết nhưng mà chị không có dám lên giá luôn."
+    },
+    {
+     "timestamp": "00:39",
+     "kind": "speech",
+     "text": "Thì chủ yếu là mình bán cho mấy bạn học sinh sinh viên với lại số lượng lớn."
+    },
+    {
+     "timestamp": "00:44",
+     "kind": "speech",
+     "text": "Tại đây thì Kim có order hai tô, một tô 20 cành và một tô 45 cành."
+    },
+    {
+     "timestamp": "00:47",
+     "kind": "speech",
+     "text": "Thật ra là với cái tô 20 cành mà bạn nào sức ăn vừa thôi là Kim cảm thấy cũng khá no rồi."
+    },
+    {
+     "timestamp": "00:51",
+     "kind": "speech",
+     "text": "Nữa nếu như mà các bạn muốn nhiều topping cũng như sức ăn mạnh thì gõ cái phần 45 cành."
+    },
+    {
+     "timestamp": "00:55",
+     "kind": "speech",
+     "text": "Trong phần này thì Kim thấy là tôm khô, mực khô nhiều hơn nè, thịt hay là chả bò quán cho cũng nhiều."
+    },
+    {
+     "timestamp": "00:59",
+     "kind": "speech",
+     "text": "Đặc biệt là cái sợi bánh canh tại đây nhai khi mà các bạn ăn vào nó rất là mềm và dai."
+    },
+    {
+     "timestamp": "01:03",
+     "kind": "speech",
+     "text": "Nước dùng tại quán được ninh với củ cải này đặc biệt là có tôm khô và mực khô."
+    },
+    {
+     "timestamp": "01:08",
+     "kind": "speech",
+     "text": "Bạn sẽ cảm nhận được cái độ thanh ngọt tự nhiên này và hậu béo khá là ngon."
+    },
+    {
+     "timestamp": "01:09",
+     "kind": "speech",
+     "text": "Thông thường mà đi ăn một ổ bánh mì bây giờ mà ngay trung tâm á các bạn là Kim thấy đâu đó nhìn hơn 30 cành rồi."
+    },
+    {
+     "timestamp": "01:13",
+     "kind": "speech",
+     "text": "Đến đây là các bạn order một tô bánh canh 20 cành cộng với một cái ly trà tắc chỉ có 15 cành."
+    },
+    {
+     "timestamp": "01:18",
+     "kind": "speech",
+     "text": "Mà đã vậy là cái ly trà tắc siêu to nha thơm trà chua chua ngọt ngọt rất là dính."
+    },
+    {
+     "timestamp": "01:21",
+     "kind": "speech",
+     "text": "Với lại vào những cái chủ nhật đầu tuần của mỗi tháng thì bánh canh tôm khô mực khô có phát chút ăn miễn phí cho cô chú lớn tuổi."
+    },
+    {
+     "timestamp": "01:27",
+     "kind": "speech",
+     "text": "Cho nên là mọi người nhớ note lại nha đặc biệt là mấy bạn sinh viên muốn tìm dùng bánh canh tôm khô mực khô bình dân thì lưu lại nha."
+    },
+    {
+     "timestamp": "00:07",
+     "kind": "on_screen",
+     "text": "BÁNH CANH 15 (SỐ 8, ĐƯỜNG 15, TÂN HƯNG, Q.7) KHÔ MỰC - TÔM KHÔ 20K"
+    },
+    {
+     "timestamp": "00:08",
+     "kind": "on_screen",
+     "text": "BÁNH CANH 15 (Số 8, Đường 15, Tân Hưng, TP.HCM) PHÁT PHẦN ĂN Miễn Phí!"
+    },
+    {
+     "timestamp": "00:08",
+     "kind": "on_screen",
+     "text": "Thời gian: 10h - 12h Chủ Nhật đầu tiên mỗi tháng! Kính Mời Cô Chú có hoàn cảnh khó khăn đến nhận phần ăn. Kính Chúc Cô Chú nhiều sức khoẻ!"
+    },
+    {
+     "timestamp": "00:11",
+     "kind": "on_screen",
+     "text": "Chủ nhật đầu tuần mỗi tháng Từ: 10g-12g Quán phát bánh canh cho cô chú Lớn tuổi có hoàn cảnh khó khăn"
+    },
+    {
+     "timestamp": "01:23",
+     "kind": "on_screen",
+     "text": "Bánh Canh Tôm Khô, Mực Khô 20k Số 8, Đường 15, Tân Hưng, Q7"
+    }
+   ]
+  },
+  "comments": {
+   "status": "unavailable",
+   "reason": "error",
+   "items": [],
+   "sentiment": null
+  },
+  "warnings": []
+ }
+}

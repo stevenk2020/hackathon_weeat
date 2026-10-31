@@ -1,0 +1,975 @@
+{
+ "input": {
+  "video": {
+   "platform": "youtube",
+   "media": "video",
+   "id": "Dn3rgGz7SaQ",
+   "title": "ĐI ĐÂY ĐI ĐÓ | Vô số món ngon độc đáo ở Bình Dương hông phải ai cũng biết #didausaigon #didaydido",
+   "channel": "Đi Đây Đi Đó",
+   "thumbnail": "https://i.ytimg.com/vi/Dn3rgGz7SaQ/maxresdefault.jpg",
+   "durationSec": 117,
+   "url": "https://www.youtube.com/shorts/Dn3rgGz7SaQ"
+  },
+  "videoResult": {
+   "venues": [
+    {
+     "restaurant_name": {
+      "value": "Hủ tiếu mực 6 Quyết",
+      "source": "visual_text",
+      "evidence": "1. Hủ tiếu mực 6 Quyết",
+      "timestamp": "00:10",
+      "confidence": "high"
+     },
+     "dish": {
+      "value": "hủ tiếu mực",
+      "source": "spoken_audio",
+      "evidence": "món đầu tiên khi mà vừa đặt chân xuống đây là hủ tiếu mực 6 Quyết nha mọi người",
+      "timestamp": "00:10",
+      "confidence": "high"
+     },
+     "location": {
+      "value": "204 Đường D4, Phú Hoà, Thủ Dầu Một, Bình Dương",
+      "source": "visual_text",
+      "evidence": "204 Đường D4, Phú Hoà, Thủ Dầu Một, Bình Dương",
+      "timestamp": "00:10",
+      "confidence": "high"
+     },
+     "price": {
+      "value": "40K đến 65K",
+      "source": "visual_text",
+      "evidence": "TÔ EM BÉ : 40K HỦ TÍU KHÔ: 55K TÔ LỚN : 55K TÔ ĐẶC BIỆT : 65K",
+      "timestamp": "00:28",
+      "confidence": "high"
+     },
+     "dish_group": "pho_mi_mien",
+     "match_score": 100
+    },
+    {
+     "restaurant_name": {
+      "value": "Bò Nhúng Mắm Ruốc 8 Côn",
+      "source": "visual_text",
+      "evidence": "2. Bò Nhúng Mắm Ruốc 8 Côn",
+      "timestamp": "00:31",
+      "confidence": "high"
+     },
+     "dish": {
+      "value": "lẩu bò nhúng mắm ruốc",
+      "source": "spoken_audio",
+      "evidence": "món lẩu bò nhúng mắm ruốc của quán 8 Côn nha mọi người",
+      "timestamp": "00:35",
+      "confidence": "high"
+     },
+     "location": {
+      "value": "720 Nguyễn Tri Phương, Chánh Nghĩa, Thủ Dầu Một",
+      "source": "visual_text",
+      "evidence": "720 Nguyễn Tri Phương, Chánh Nghĩa, Thủ Dầu Một",
+      "timestamp": "00:31",
+      "confidence": "high"
+     },
+     "price": {
+      "value": null,
+      "source": null,
+      "evidence": null,
+      "timestamp": null,
+      "confidence": null
+     },
+     "dish_group": "quan_nuong",
+     "match_score": 95
+    },
+    {
+     "restaurant_name": {
+      "value": "Bún nước, mì trộn Cô Ba",
+      "source": "visual_text",
+      "evidence": "3. Bún nước, mì trộn Cô Ba",
+      "timestamp": "00:56",
+      "confidence": "high"
+     },
+     "dish": {
+      "value": "bún nước, mì trộn",
+      "source": "visual_text",
+      "evidence": "3. Bún nước, mì trộn Cô Ba",
+      "timestamp": "00:56",
+      "confidence": "high"
+     },
+     "location": {
+      "value": "368 Huỳnh Văn Cư, Thủ Dầu Một, Bình Dương",
+      "source": "visual_text",
+      "evidence": "368 Huỳnh Văn Cư, Thủ Dầu Một, Bình Dương",
+      "timestamp": "00:56",
+      "confidence": "high"
+     },
+     "price": {
+      "value": "60k",
+      "source": "spoken_audio",
+      "evidence": "một tô thập cẩm đặc biệt là 60 cành",
+      "timestamp": "01:10",
+      "confidence": "high"
+     },
+     "dish_group": "pho_mi_mien",
+     "match_score": 100
+    },
+    {
+     "restaurant_name": {
+      "value": "Bánh Chị",
+      "source": "visual_text",
+      "evidence": "4. Bánh Chị 3K",
+      "timestamp": "01:30",
+      "confidence": "high"
+     },
+     "dish": {
+      "value": "bánh chị",
+      "source": "visual_text",
+      "evidence": "4. Bánh Chị 3K",
+      "timestamp": "01:30",
+      "confidence": "high"
+     },
+     "location": {
+      "value": "59 đường Văn Công Khai, Phú Cường, Thủ Dầu Một, Bình Dương",
+      "source": "visual_text",
+      "evidence": "59 đường Văn Công Khai, Phú Cường, Thủ Dầu Một, Bình Dương",
+      "timestamp": "01:30",
+      "confidence": "high"
+     },
+     "price": {
+      "value": "3.000Đ/CÁI",
+      "source": "visual_text",
+      "evidence": "3.000Đ/CÁI",
+      "timestamp": "01:54",
+      "confidence": "high"
+     },
+     "dish_group": "other",
+     "match_score": 100
+    }
+   ],
+   "incomplete": false,
+   "script": [
+    {
+     "timestamp": "00:00",
+     "kind": "speech",
+     "text": "Thường ngày ở Sài Gòn ăn chán rồi hôm nay xuống Bình Dương phá đảo một bữa. Let's go."
+    },
+    {
+     "timestamp": "00:04",
+     "kind": "speech",
+     "text": "Trộm vía sáng hai đứa chạy đi Bình Dương mà thời tiết dịu dễ sợ."
+    },
+    {
+     "timestamp": "00:07",
+     "kind": "speech",
+     "text": "Đi sớm tranh thủ xuống đây hai đứa tui ăn sáng luôn."
+    },
+    {
+     "timestamp": "00:10",
+     "kind": "speech",
+     "text": "Món đầu tiên khi mà vừa đặt chân xuống đây là hủ tiếu mực 6 Quyết nha mọi người."
+    },
+    {
+     "timestamp": "00:14",
+     "kind": "speech",
+     "text": "Quán này là tui được gian cư mận chỉ đó."
+    },
+    {
+     "timestamp": "00:16",
+     "kind": "speech",
+     "text": "Trộm vía là ok phết mở đầu cho food tour là thấy như vậy là ngon rồi."
+    },
+    {
+     "timestamp": "00:19",
+     "kind": "speech",
+     "text": "Mực tươi sống order tới đâu nấu chín tới đó cho nên là vẫn giữ được độ giòn ngọt nhất định."
+    },
+    {
+     "timestamp": "00:24",
+     "kind": "speech",
+     "text": "Cái phần hủ tiếu khô cũng được trộn rất là đậm đà."
+    },
+    {
+     "timestamp": "00:26",
+     "kind": "speech",
+     "text": "Kết thúc món ăn đầu tiên vô cùng ưng ý."
+    },
+    {
+     "timestamp": "00:29",
+     "kind": "speech",
+     "text": "Đi vòng vòng tới trưa thì tui cũng đã được ăn cái món mà tui đã ấp ủ bấy lâu nay."
+    },
+    {
+     "timestamp": "00:31",
+     "kind": "speech",
+     "text": "Xuống tới Bình Dương nhất định phải ăn cái quán này tui mới chịu."
+    },
+    {
+     "timestamp": "00:34",
+     "kind": "speech",
+     "text": "Món lẩu bò nhúng mắm ruốc của quán 8 Côn nha mọi người."
+    },
+    {
+     "timestamp": "00:37",
+     "kind": "speech",
+     "text": "Quán này thì tui được một người bạn ở địa phương chỉ cho cho nên là yên tâm."
+    },
+    {
+     "timestamp": "00:40",
+     "kind": "speech",
+     "text": "Kêu phần 200 cành ra cho hai đứa ăn mà no không chịu nổi luôn."
+    },
+    {
+     "timestamp": "00:43",
+     "kind": "speech",
+     "text": "Mang cái nồi lẩu ra nó thơm lắm mấy bà ơi."
+    },
+    {
+     "timestamp": "00:46",
+     "kind": "speech",
+     "text": "Phải ở đây mới cảm nhận được."
+    },
+    {
+     "timestamp": "00:47",
+     "kind": "speech",
+     "text": "Thịt bò nhúng vừa chín tới chấm thêm một miếng mắm ruốc ta nói xuất sắc gì đâu đã ghiền lắm."
+    },
+    {
+     "timestamp": "00:51",
+     "kind": "speech",
+     "text": "Nói chung là rất là ổn, ở đây toàn là khách du lịch tới ăn không à."
+    },
+    {
+     "timestamp": "00:54",
+     "kind": "speech",
+     "text": "Hôm nay được ngày tốt hay sao á hai đứa tui đi cảm giác chill ghê chứ không có nóng."
+    },
+    {
+     "timestamp": "00:58",
+     "kind": "speech",
+     "text": "Vô tới cái quán bún nước mì trộn của Cô Ba Sài Gòn còn thấy chill hơn nữa."
+    },
+    {
+     "timestamp": "01:01",
+     "kind": "speech",
+     "text": "Tuy là ở Sài Gòn ăn nhiều rồi nhưng mà mỗi người có mỗi cách nấu khác nhau cho nên là tui quyết định thử cái quán này."
+    },
+    {
+     "timestamp": "01:07",
+     "kind": "speech",
+     "text": "Chị chủ nói với tui á mấy bạn ở Sài Gòn xuống đây ăn nhiều lắm."
+    },
+    {
+     "timestamp": "01:10",
+     "kind": "speech",
+     "text": "Một tô thập cẩm đặc biệt là 60 cành tôm to thịt nhiều và những loại topping khác đều rất là ok."
+    },
+    {
+     "timestamp": "01:14",
+     "kind": "speech",
+     "text": "Chị chủ còn tự tay pha cho tui một chén nước chấm."
+    },
+    {
+     "timestamp": "01:16",
+     "kind": "speech",
+     "text": "Nói chung á là tay của người chỉ pha khác ăn có vẻ ngon hơn hẳn."
+    },
+    {
+     "timestamp": "01:20",
+     "kind": "speech",
+     "text": "Nước dùng được nêm không có bị ngọt gắt tại vì tui đứng trong bếp luôn thấy bà bỏ ít bột ngọt dữ lắm."
+    },
+    {
+     "timestamp": "01:24",
+     "kind": "speech",
+     "text": "Tuy món nó không lạ nhưng mà được nấu ngon thì rất đáng để thử."
+    },
+    {
+     "timestamp": "01:27",
+     "kind": "speech",
+     "text": "Đi ăn cả một ngày là cũng thấy đuối rồi đó."
+    },
+    {
+     "timestamp": "01:29",
+     "kind": "speech",
+     "text": "Thôi khúc này mình ăn nhẹ nhẹ thôi nha."
+    },
+    {
+     "timestamp": "01:31",
+     "kind": "speech",
+     "text": "Cái bánh chị 3k này á là tui có tìm hiểu trước đó rồi."
+    },
+    {
+     "timestamp": "01:34",
+     "kind": "speech",
+     "text": "Cách làm nó cũng lạ mà đặc biệt hơn là lạ ở cái tên là bánh chị."
+    },
+    {
+     "timestamp": "01:37",
+     "kind": "speech",
+     "text": "Theo tui được biết á thì bánh này là của người Phúc Kiến Trung Quốc."
+    },
+    {
+     "timestamp": "01:40",
+     "kind": "speech",
+     "text": "Vỏ bánh bên ngoài giòn bên trong dẻo và được nêm gia vị sẵn."
+    },
+    {
+     "timestamp": "01:43",
+     "kind": "speech",
+     "text": "Chấm cùng với lại nước chấm đậu."
+    },
+    {
+     "timestamp": "01:45",
+     "kind": "speech",
+     "text": "Ê cái nước chấm này ngon nha có thêm đồ chua với lại đậu phộng."
+    },
+    {
+     "timestamp": "01:48",
+     "kind": "speech",
+     "text": "Phần bánh á thì mọi người nhất định nên thử nó rất là độc lạ ở Bình Dương á."
+    },
+    {
+     "timestamp": "01:51",
+     "kind": "speech",
+     "text": "Thôi kết thúc food tour Bình Dương tại đây, mọi người muốn đi chỗ nào nữa thì comment cho tui biết nha."
+    },
+    {
+     "timestamp": "01:54",
+     "kind": "speech",
+     "text": "Bye bye."
+    },
+    {
+     "timestamp": "00:00",
+     "kind": "on_screen",
+     "text": "FOOD TOUR BÌNH DƯƠNG Phần 1"
+    },
+    {
+     "timestamp": "00:10",
+     "kind": "on_screen",
+     "text": "1. Hủ tiếu mực 6 Quyết 204 Đường D4, Phú Hoà, Thủ Dầu Một, Bình Dương 6h00 đến 21h00"
+    },
+    {
+     "timestamp": "00:27",
+     "kind": "on_screen",
+     "text": "HỦ TÍU MỰC 6 QUYẾT MENU NƯỚC UỐNG TÔ EM BÉ : 40K Atiso Đỏ : 20k HỦ TÍU KHÔ: 55K Suối Lạnh : 10k TÔ LỚN : 55K Trà Đá : 2k TÔ ĐẶC BIỆT : 65K Nước Ngọt : 15k MÌ GÓI MỰC + THỊT BẰM : 55K Trà Tắc : 15k Khă"
+    },
+    {
+     "timestamp": "00:31",
+     "kind": "on_screen",
+     "text": "2. Bò Nhúng Mắm Ruốc 8 Côn 720 Nguyễn Tri Phương, Chánh Nghĩa, Thủ Dầu Một 9h00 đến 21h00"
+    },
+    {
+     "timestamp": "00:54",
+     "kind": "on_screen",
+     "text": "QUÁN ĂN 8 CÔN LẨU BÒ NHÚNG MẮM RUỐC"
+    },
+    {
+     "timestamp": "00:56",
+     "kind": "on_screen",
+     "text": "Quán BÚN NƯỚC CÔ BA SÀI GÒN"
+    },
+    {
+     "timestamp": "00:57",
+     "kind": "on_screen",
+     "text": "3. Bún nước, mì trộn Cô Ba 368 Huỳnh Văn Cư, Thủ Dầu Một, Bình Dương 9h00 đến 21h00"
+    },
+    {
+     "timestamp": "01:28",
+     "kind": "on_screen",
+     "text": "Quán BÚN NƯỚC CÔ BA SÀI GÒN"
+    },
+    {
+     "timestamp": "01:30",
+     "kind": "on_screen",
+     "text": "4. Bánh Chị 3K 59 đường Văn Công Khai, Phú Cường, Thủ Dầu Một, Bình Dương Tầm 14h00 trở đi"
+    },
+    {
+     "timestamp": "01:54",
+     "kind": "on_screen",
+     "text": "3.000Đ/CÁI BÁNH CHỊ"
+    }
+   ]
+  },
+  "metaChecked": null
+ },
+ "output": {
+  "status": "ok",
+  "disclaimer": "AI-extracted, not independently verified. Source labels, quotes and timestamps are written by the AI and have not been checked against the video.",
+  "analysis_mode": "video_and_text",
+  "video": {
+   "platform": "youtube",
+   "media": "video",
+   "id": "Dn3rgGz7SaQ",
+   "title": "ĐI ĐÂY ĐI ĐÓ | Vô số món ngon độc đáo ở Bình Dương hông phải ai cũng biết #didausaigon #didaydido",
+   "channel": "Đi Đây Đi Đó",
+   "thumbnail": "https://i.ytimg.com/vi/Dn3rgGz7SaQ/maxresdefault.jpg",
+   "duration_sec": 117,
+   "url": "https://www.youtube.com/shorts/Dn3rgGz7SaQ"
+  },
+  "venues": [
+   {
+    "id": "venue-1",
+    "fields": {
+     "restaurant_name": {
+      "status": "found",
+      "agreement": null,
+      "entries": [
+       {
+        "value": "Hủ tiếu mực 6 Quyết",
+        "origin": "video",
+        "source": "on_screen_text",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "1. Hủ tiếu mực 6 Quyết",
+        "timestamp": "00:10",
+        "evidence_checked": false
+       }
+      ]
+     },
+     "dish": {
+      "status": "found",
+      "agreement": null,
+      "entries": [
+       {
+        "value": "hủ tiếu mực",
+        "origin": "video",
+        "source": "spoken_audio",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "món đầu tiên khi mà vừa đặt chân xuống đây là hủ tiếu mực 6 Quyết nha mọi người",
+        "timestamp": "00:10",
+        "evidence_checked": false
+       }
+      ]
+     },
+     "location": {
+      "status": "found",
+      "agreement": null,
+      "entries": [
+       {
+        "value": "204 Đường D4, Phú Hoà, Thủ Dầu Một, Bình Dương",
+        "origin": "video",
+        "source": "on_screen_text",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "204 Đường D4, Phú Hoà, Thủ Dầu Một, Bình Dương",
+        "timestamp": "00:10",
+        "evidence_checked": false
+       }
+      ]
+     },
+     "price": {
+      "status": "found",
+      "agreement": null,
+      "entries": [
+       {
+        "value": "40K đến 65K",
+        "origin": "video",
+        "source": "on_screen_text",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "TÔ EM BÉ : 40K HỦ TÍU KHÔ: 55K TÔ LỚN : 55K TÔ ĐẶC BIỆT : 65K",
+        "timestamp": "00:28",
+        "evidence_checked": false,
+        "normalized": {
+         "min": 40000,
+         "max": 65000,
+         "currency": "VND",
+         "inferred": true,
+         "basis": "converted from slang/abbreviation unit: k (x1000)"
+        }
+       }
+      ]
+     }
+    },
+    "dish_group": "pho_mi_mien",
+    "match_score": 100,
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=H%E1%BB%A7%20ti%E1%BA%BFu%20m%E1%BB%B1c%206%20Quy%E1%BA%BFt%20204%20%C4%90%C6%B0%E1%BB%9Dng%20D4%2C%20Ph%C3%BA%20Ho%C3%A0%2C%20Th%E1%BB%A7%20D%E1%BA%A7u%20M%E1%BB%99t%2C%20B%C3%ACnh%20D%C6%B0%C6%A1ng",
+    "maps_note": null,
+    "conflicts": []
+   },
+   {
+    "id": "venue-2",
+    "fields": {
+     "restaurant_name": {
+      "status": "found",
+      "agreement": null,
+      "entries": [
+       {
+        "value": "Bò Nhúng Mắm Ruốc 8 Côn",
+        "origin": "video",
+        "source": "on_screen_text",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "2. Bò Nhúng Mắm Ruốc 8 Côn",
+        "timestamp": "00:31",
+        "evidence_checked": false
+       }
+      ]
+     },
+     "dish": {
+      "status": "found",
+      "agreement": null,
+      "entries": [
+       {
+        "value": "lẩu bò nhúng mắm ruốc",
+        "origin": "video",
+        "source": "spoken_audio",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "món lẩu bò nhúng mắm ruốc của quán 8 Côn nha mọi người",
+        "timestamp": "00:35",
+        "evidence_checked": false
+       }
+      ]
+     },
+     "location": {
+      "status": "found",
+      "agreement": null,
+      "entries": [
+       {
+        "value": "720 Nguyễn Tri Phương, Chánh Nghĩa, Thủ Dầu Một",
+        "origin": "video",
+        "source": "on_screen_text",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "720 Nguyễn Tri Phương, Chánh Nghĩa, Thủ Dầu Một",
+        "timestamp": "00:31",
+        "evidence_checked": false
+       }
+      ]
+     },
+     "price": {
+      "status": "not_found",
+      "agreement": null,
+      "entries": []
+     }
+    },
+    "dish_group": "quan_nuong",
+    "match_score": 95,
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=B%C3%B2%20Nh%C3%BAng%20M%E1%BA%AFm%20Ru%E1%BB%91c%208%20C%C3%B4n%20720%20Nguy%E1%BB%85n%20Tri%20Ph%C6%B0%C6%A1ng%2C%20Ch%C3%A1nh%20Ngh%C4%A9a%2C%20Th%E1%BB%A7%20D%E1%BA%A7u%20M%E1%BB%99t",
+    "maps_note": null,
+    "conflicts": []
+   },
+   {
+    "id": "venue-3",
+    "fields": {
+     "restaurant_name": {
+      "status": "found",
+      "agreement": null,
+      "entries": [
+       {
+        "value": "Bún nước, mì trộn Cô Ba",
+        "origin": "video",
+        "source": "on_screen_text",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "3. Bún nước, mì trộn Cô Ba",
+        "timestamp": "00:56",
+        "evidence_checked": false
+       }
+      ]
+     },
+     "dish": {
+      "status": "found",
+      "agreement": null,
+      "entries": [
+       {
+        "value": "bún nước, mì trộn",
+        "origin": "video",
+        "source": "on_screen_text",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "3. Bún nước, mì trộn Cô Ba",
+        "timestamp": "00:56",
+        "evidence_checked": false
+       }
+      ]
+     },
+     "location": {
+      "status": "found",
+      "agreement": null,
+      "entries": [
+       {
+        "value": "368 Huỳnh Văn Cư, Thủ Dầu Một, Bình Dương",
+        "origin": "video",
+        "source": "on_screen_text",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "368 Huỳnh Văn Cư, Thủ Dầu Một, Bình Dương",
+        "timestamp": "00:56",
+        "evidence_checked": false
+       }
+      ]
+     },
+     "price": {
+      "status": "found",
+      "agreement": null,
+      "entries": [
+       {
+        "value": "60k",
+        "origin": "video",
+        "source": "spoken_audio",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "một tô thập cẩm đặc biệt là 60 cành",
+        "timestamp": "01:10",
+        "evidence_checked": false,
+        "normalized": {
+         "min": 60000,
+         "max": 60000,
+         "currency": "VND",
+         "inferred": true,
+         "basis": "converted from slang/abbreviation unit: k (x1000)"
+        }
+       }
+      ]
+     }
+    },
+    "dish_group": "pho_mi_mien",
+    "match_score": 100,
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=B%C3%BAn%20n%C6%B0%E1%BB%9Bc%2C%20m%C3%AC%20tr%E1%BB%99n%20C%C3%B4%20Ba%20368%20Hu%E1%BB%B3nh%20V%C4%83n%20C%C6%B0%2C%20Th%E1%BB%A7%20D%E1%BA%A7u%20M%E1%BB%99t%2C%20B%C3%ACnh%20D%C6%B0%C6%A1ng",
+    "maps_note": null,
+    "conflicts": []
+   },
+   {
+    "id": "venue-4",
+    "fields": {
+     "restaurant_name": {
+      "status": "found",
+      "agreement": null,
+      "entries": [
+       {
+        "value": "Bánh Chị",
+        "origin": "video",
+        "source": "on_screen_text",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "4. Bánh Chị 3K",
+        "timestamp": "01:30",
+        "evidence_checked": false
+       }
+      ]
+     },
+     "dish": {
+      "status": "found",
+      "agreement": null,
+      "entries": [
+       {
+        "value": "bánh chị",
+        "origin": "video",
+        "source": "on_screen_text",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "4. Bánh Chị 3K",
+        "timestamp": "01:30",
+        "evidence_checked": false
+       }
+      ]
+     },
+     "location": {
+      "status": "found",
+      "agreement": null,
+      "entries": [
+       {
+        "value": "59 đường Văn Công Khai, Phú Cường, Thủ Dầu Một, Bình Dương",
+        "origin": "video",
+        "source": "on_screen_text",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "59 đường Văn Công Khai, Phú Cường, Thủ Dầu Một, Bình Dương",
+        "timestamp": "01:30",
+        "evidence_checked": false
+       }
+      ]
+     },
+     "price": {
+      "status": "found",
+      "agreement": null,
+      "entries": [
+       {
+        "value": "3.000Đ/CÁI",
+        "origin": "video",
+        "source": "on_screen_text",
+        "source_detail": null,
+        "confidence": "high",
+        "evidence": "3.000Đ/CÁI",
+        "timestamp": "01:54",
+        "evidence_checked": false,
+        "normalized": {
+         "min": 3000,
+         "max": 3000,
+         "currency": "VND",
+         "inferred": false,
+         "basis": "number written in VND"
+        }
+       }
+      ]
+     }
+    },
+    "dish_group": "other",
+    "match_score": 100,
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=B%C3%A1nh%20Ch%E1%BB%8B%2059%20%C4%91%C6%B0%E1%BB%9Dng%20V%C4%83n%20C%C3%B4ng%20Khai%2C%20Ph%C3%BA%20C%C6%B0%E1%BB%9Dng%2C%20Th%E1%BB%A7%20D%E1%BA%A7u%20M%E1%BB%99t%2C%20B%C3%ACnh%20D%C6%B0%C6%A1ng",
+    "maps_note": null,
+    "conflicts": []
+   }
+  ],
+  "incomplete": {
+   "more_venues_not_shown": false,
+   "max_shown": 5,
+   "shown": 4
+  },
+  "metadata_hints": [],
+  "conflict_count": 0,
+  "script": {
+   "status": "ok",
+   "reason": null,
+   "lines": [
+    {
+     "timestamp": "00:00",
+     "kind": "speech",
+     "text": "Thường ngày ở Sài Gòn ăn chán rồi hôm nay xuống Bình Dương phá đảo một bữa. Let's go."
+    },
+    {
+     "timestamp": "00:04",
+     "kind": "speech",
+     "text": "Trộm vía sáng hai đứa chạy đi Bình Dương mà thời tiết dịu dễ sợ."
+    },
+    {
+     "timestamp": "00:07",
+     "kind": "speech",
+     "text": "Đi sớm tranh thủ xuống đây hai đứa tui ăn sáng luôn."
+    },
+    {
+     "timestamp": "00:10",
+     "kind": "speech",
+     "text": "Món đầu tiên khi mà vừa đặt chân xuống đây là hủ tiếu mực 6 Quyết nha mọi người."
+    },
+    {
+     "timestamp": "00:14",
+     "kind": "speech",
+     "text": "Quán này là tui được gian cư mận chỉ đó."
+    },
+    {
+     "timestamp": "00:16",
+     "kind": "speech",
+     "text": "Trộm vía là ok phết mở đầu cho food tour là thấy như vậy là ngon rồi."
+    },
+    {
+     "timestamp": "00:19",
+     "kind": "speech",
+     "text": "Mực tươi sống order tới đâu nấu chín tới đó cho nên là vẫn giữ được độ giòn ngọt nhất định."
+    },
+    {
+     "timestamp": "00:24",
+     "kind": "speech",
+     "text": "Cái phần hủ tiếu khô cũng được trộn rất là đậm đà."
+    },
+    {
+     "timestamp": "00:26",
+     "kind": "speech",
+     "text": "Kết thúc món ăn đầu tiên vô cùng ưng ý."
+    },
+    {
+     "timestamp": "00:29",
+     "kind": "speech",
+     "text": "Đi vòng vòng tới trưa thì tui cũng đã được ăn cái món mà tui đã ấp ủ bấy lâu nay."
+    },
+    {
+     "timestamp": "00:31",
+     "kind": "speech",
+     "text": "Xuống tới Bình Dương nhất định phải ăn cái quán này tui mới chịu."
+    },
+    {
+     "timestamp": "00:34",
+     "kind": "speech",
+     "text": "Món lẩu bò nhúng mắm ruốc của quán 8 Côn nha mọi người."
+    },
+    {
+     "timestamp": "00:37",
+     "kind": "speech",
+     "text": "Quán này thì tui được một người bạn ở địa phương chỉ cho cho nên là yên tâm."
+    },
+    {
+     "timestamp": "00:40",
+     "kind": "speech",
+     "text": "Kêu phần 200 cành ra cho hai đứa ăn mà no không chịu nổi luôn."
+    },
+    {
+     "timestamp": "00:43",
+     "kind": "speech",
+     "text": "Mang cái nồi lẩu ra nó thơm lắm mấy bà ơi."
+    },
+    {
+     "timestamp": "00:46",
+     "kind": "speech",
+     "text": "Phải ở đây mới cảm nhận được."
+    },
+    {
+     "timestamp": "00:47",
+     "kind": "speech",
+     "text": "Thịt bò nhúng vừa chín tới chấm thêm một miếng mắm ruốc ta nói xuất sắc gì đâu đã ghiền lắm."
+    },
+    {
+     "timestamp": "00:51",
+     "kind": "speech",
+     "text": "Nói chung là rất là ổn, ở đây toàn là khách du lịch tới ăn không à."
+    },
+    {
+     "timestamp": "00:54",
+     "kind": "speech",
+     "text": "Hôm nay được ngày tốt hay sao á hai đứa tui đi cảm giác chill ghê chứ không có nóng."
+    },
+    {
+     "timestamp": "00:58",
+     "kind": "speech",
+     "text": "Vô tới cái quán bún nước mì trộn của Cô Ba Sài Gòn còn thấy chill hơn nữa."
+    },
+    {
+     "timestamp": "01:01",
+     "kind": "speech",
+     "text": "Tuy là ở Sài Gòn ăn nhiều rồi nhưng mà mỗi người có mỗi cách nấu khác nhau cho nên là tui quyết định thử cái quán này."
+    },
+    {
+     "timestamp": "01:07",
+     "kind": "speech",
+     "text": "Chị chủ nói với tui á mấy bạn ở Sài Gòn xuống đây ăn nhiều lắm."
+    },
+    {
+     "timestamp": "01:10",
+     "kind": "speech",
+     "text": "Một tô thập cẩm đặc biệt là 60 cành tôm to thịt nhiều và những loại topping khác đều rất là ok."
+    },
+    {
+     "timestamp": "01:14",
+     "kind": "speech",
+     "text": "Chị chủ còn tự tay pha cho tui một chén nước chấm."
+    },
+    {
+     "timestamp": "01:16",
+     "kind": "speech",
+     "text": "Nói chung á là tay của người chỉ pha khác ăn có vẻ ngon hơn hẳn."
+    },
+    {
+     "timestamp": "01:20",
+     "kind": "speech",
+     "text": "Nước dùng được nêm không có bị ngọt gắt tại vì tui đứng trong bếp luôn thấy bà bỏ ít bột ngọt dữ lắm."
+    },
+    {
+     "timestamp": "01:24",
+     "kind": "speech",
+     "text": "Tuy món nó không lạ nhưng mà được nấu ngon thì rất đáng để thử."
+    },
+    {
+     "timestamp": "01:27",
+     "kind": "speech",
+     "text": "Đi ăn cả một ngày là cũng thấy đuối rồi đó."
+    },
+    {
+     "timestamp": "01:29",
+     "kind": "speech",
+     "text": "Thôi khúc này mình ăn nhẹ nhẹ thôi nha."
+    },
+    {
+     "timestamp": "01:31",
+     "kind": "speech",
+     "text": "Cái bánh chị 3k này á là tui có tìm hiểu trước đó rồi."
+    },
+    {
+     "timestamp": "01:34",
+     "kind": "speech",
+     "text": "Cách làm nó cũng lạ mà đặc biệt hơn là lạ ở cái tên là bánh chị."
+    },
+    {
+     "timestamp": "01:37",
+     "kind": "speech",
+     "text": "Theo tui được biết á thì bánh này là của người Phúc Kiến Trung Quốc."
+    },
+    {
+     "timestamp": "01:40",
+     "kind": "speech",
+     "text": "Vỏ bánh bên ngoài giòn bên trong dẻo và được nêm gia vị sẵn."
+    },
+    {
+     "timestamp": "01:43",
+     "kind": "speech",
+     "text": "Chấm cùng với lại nước chấm đậu."
+    },
+    {
+     "timestamp": "01:45",
+     "kind": "speech",
+     "text": "Ê cái nước chấm này ngon nha có thêm đồ chua với lại đậu phộng."
+    },
+    {
+     "timestamp": "01:48",
+     "kind": "speech",
+     "text": "Phần bánh á thì mọi người nhất định nên thử nó rất là độc lạ ở Bình Dương á."
+    },
+    {
+     "timestamp": "01:51",
+     "kind": "speech",
+     "text": "Thôi kết thúc food tour Bình Dương tại đây, mọi người muốn đi chỗ nào nữa thì comment cho tui biết nha."
+    },
+    {
+     "timestamp": "01:54",
+     "kind": "speech",
+     "text": "Bye bye."
+    },
+    {
+     "timestamp": "00:00",
+     "kind": "on_screen",
+     "text": "FOOD TOUR BÌNH DƯƠNG Phần 1"
+    },
+    {
+     "timestamp": "00:10",
+     "kind": "on_screen",
+     "text": "1. Hủ tiếu mực 6 Quyết 204 Đường D4, Phú Hoà, Thủ Dầu Một, Bình Dương 6h00 đến 21h00"
+    },
+    {
+     "timestamp": "00:27",
+     "kind": "on_screen",
+     "text": "HỦ TÍU MỰC 6 QUYẾT MENU NƯỚC UỐNG TÔ EM BÉ : 40K Atiso Đỏ : 20k HỦ TÍU KHÔ: 55K Suối Lạnh : 10k TÔ LỚN : 55K Trà Đá : 2k TÔ ĐẶC BIỆT : 65K Nước Ngọt : 15k MÌ GÓI MỰC + THỊT BẰM : 55K Trà Tắc : 15k Khă"
+    },
+    {
+     "timestamp": "00:31",
+     "kind": "on_screen",
+     "text": "2. Bò Nhúng Mắm Ruốc 8 Côn 720 Nguyễn Tri Phương, Chánh Nghĩa, Thủ Dầu Một 9h00 đến 21h00"
+    },
+    {
+     "timestamp": "00:54",
+     "kind": "on_screen",
+     "text": "QUÁN ĂN 8 CÔN LẨU BÒ NHÚNG MẮM RUỐC"
+    },
+    {
+     "timestamp": "00:56",
+     "kind": "on_screen",
+     "text": "Quán BÚN NƯỚC CÔ BA SÀI GÒN"
+    },
+    {
+     "timestamp": "00:57",
+     "kind": "on_screen",
+     "text": "3. Bún nước, mì trộn Cô Ba 368 Huỳnh Văn Cư, Thủ Dầu Một, Bình Dương 9h00 đến 21h00"
+    },
+    {
+     "timestamp": "01:28",
+     "kind": "on_screen",
+     "text": "Quán BÚN NƯỚC CÔ BA SÀI GÒN"
+    },
+    {
+     "timestamp": "01:30",
+     "kind": "on_screen",
+     "text": "4. Bánh Chị 3K 59 đường Văn Công Khai, Phú Cường, Thủ Dầu Một, Bình Dương Tầm 14h00 trở đi"
+    },
+    {
+     "timestamp": "01:54",
+     "kind": "on_screen",
+     "text": "3.000Đ/CÁI BÁNH CHỊ"
+    }
+   ]
+  },
+  "comments": {
+   "status": "unavailable",
+   "reason": "error",
+   "items": [],
+   "sentiment": null
+  },
+  "warnings": [
+   "The title/description could not be analyzed, so only the video analysis is shown."
+  ]
+ }
+}

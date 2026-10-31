@@ -1,0 +1,52 @@
+You are analysing a set of still photos from a food post, in the order given (Vietnamese or English). There is no video and no audio: every "source" must be "visual_text" (text readable in a photo) or "uncertain"; never use "spoken_audio" and never write "speech" lines in the script. Set every "timestamp" to null. Where the rules below say "video", read "photos". In photo posts the shop name is often written inside a sentence or in quotes (for example "Tiệm chè X đã có mặt tại Quận 7" or "X mang đến…"), not on a sign. When such text clearly names the place the post is about, use that name as restaurant_name with confidence "medium" and copy the sentence as the evidence. If two different names compete, or it could be a creator or a brand rather than the venue, leave restaurant_name null. Extract restaurant details ONLY from what you actually see or hear in this video.
+
+The video may feature ONE venue or SEVERAL (for example a "Top 5" list). List each distinct venue separately, in the order shown, up to 5. If it features more than 5, list the first 5 and set "more_than_5_venues" to true. If the video shows no restaurant or food venue at all, return an empty "venues" list.
+
+Rules:
+- Never use outside knowledge to guess. Do not infer a restaurant from the dish, the street, or how a place looks.
+- If a detail is not clearly shown on screen or spoken aloud, set its value to null. Do not copy a detail from one venue to another.
+- "source": "visual_text" = readable text on screen (sign, menu, caption, overlay); "spoken_audio" = said aloud; "uncertain" = only a weak or ambiguous hint (keep confidence "low").
+- "evidence": the exact words you read or heard, copied as written (max 150 characters). Null if value is null.
+- "timestamp": "MM:SS" where the evidence appears, or null. This is only your estimate.
+- Copy prices exactly as shown or said (for example "55xu", "35k", "140,000 VND"). Do not convert them.
+- A channel name, creator handle, watermark or hashtag is NOT a restaurant name unless the video clearly presents it as the venue.
+- A city or district alone is a location with "low" confidence. A street address is stronger.
+- "confidence": "high" = clearly shown or said; "medium" = partially clear; "low" = weak hint.
+- "dish_group": ONE group for that venue, from its dish and the kind of place it is, chosen ONLY from this numbered list. If more than one group fits, choose the one with the LOWEST number. Use "other" only if none fits. Null if both the venue's name and dish are null.
+1. chay: vegetarian or vegan food, or a vegetarian restaurant (quán chay)
+2. banh_mi: bánh mì
+3. pho_mi_mien: phở, mì, miến and other noodle dishes (bún, hủ tiếu, bánh canh)
+4. com: rice dishes (cơm tấm, cơm gà, cơm văn phòng)
+5. do_an_nhanh: fast food (fried chicken, burgers, fries, hot dogs)
+6. pizza: pizza
+7. tra: tea and tea drinks (trà sữa, trà trái cây)
+8. cafe: coffee and coffee shops
+9. hai_san: seafood (ốc, cua, tôm, cá)
+10. quan_nuong: barbecue and grilled food
+11. quan_han: Korean food
+12. quan_nhat: Japanese food
+13. quoc_te: other international food (Thai, Chinese, Western, Indian and so on)
+14. other: none of the above (for example lẩu or chè)
+- "match_score": a whole number from 0 to 100 for that venue: how well the details you read fit ONE real venue shown in this video (100 = the name, the place and the dish are all clearly shown and agree; 50 = only part of it is clear; 0 = almost nothing is clear). It is your own estimate.
+
+Script: also write down, in order, what is said aloud and the main text shown on screen in the whole video.
+- Keep the ORIGINAL language exactly as spoken or written. Do not translate, summarise or correct it.
+- One line per sentence or caption, max 200 characters each, at most 60 lines. Skip repeated on-screen text, music lyrics and sound effects.
+- "kind": "speech" = said aloud; "on_screen" = text shown on screen. "timestamp": "MM:SS" estimate or null.
+- If nothing is said or shown, return an empty "script" list.
+
+Reply with ONLY one JSON object, no markdown, in exactly this shape:
+{
+  "venues": [
+    {
+      "restaurant_name": {"value": string|null, "source": "visual_text"|"spoken_audio"|"uncertain"|null, "evidence": string|null, "timestamp": string|null, "confidence": "high"|"medium"|"low"|null},
+      "dish":            {same shape},
+      "location":        {same shape},
+      "price":           {same shape},
+      "dish_group":      string|null,
+      "match_score":     integer|null
+    }
+  ],
+  "more_than_5_venues": boolean,
+  "script": [ {"timestamp": string|null, "kind": "speech"|"on_screen", "text": string} ]
+}
