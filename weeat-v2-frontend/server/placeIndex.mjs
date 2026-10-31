@@ -8,8 +8,8 @@ const expand = expression => `regexp_replace(regexp_replace(regexp_replace(regex
   '\\m(tphcm|hcmc|hcm)\\M', 'ho chi minh', 'g'), '\\m(hn)\\M', 'ha noi', 'g'),
   '\\m(q)[.]? *([0-9]+)\\M', 'quan \\2', 'g')`;
 
-export async function syncIndex(userId = null, videoId = null, restaurantId = null) {
-  const result = await query(`INSERT INTO public.weeat_place_index
+export async function syncIndex(userId = null, videoId = null, restaurantId = null, execute = query, prune = true) {
+  const result = await execute(`INSERT INTO public.weeat_place_index
     (user_id, video_id, restaurant_id, name_fold, dish_fold, address_fold, cate_id,
      price_vnd, price_vnd_max, lat, lng, doc, doc_video, is_saved, updated_at)
     SELECT p.user_id, p.video_id, p.restaurant_id,
@@ -27,8 +27,8 @@ export async function syncIndex(userId = null, videoId = null, restaurantId = nu
       cate_id=excluded.cate_id, price_vnd=excluded.price_vnd, price_vnd_max=excluded.price_vnd_max,
       lat=excluded.lat, lng=excluded.lng, doc=excluded.doc, doc_video=excluded.doc_video,
       is_saved=excluded.is_saved, updated_at=now()`, [userId, videoId, restaurantId]);
-  if (videoId === null && restaurantId === null) {
-    await query(`DELETE FROM public.weeat_place_index i WHERE ($1::bigint IS NULL OR i.user_id=$1)
+  if (prune && videoId === null && restaurantId === null) {
+    await execute(`DELETE FROM public.weeat_place_index i WHERE ($1::bigint IS NULL OR i.user_id=$1)
       AND NOT EXISTS (SELECT 1 FROM public.quan_hackathon_video_places p WHERE p.user_id=i.user_id
       AND p.video_id=i.video_id AND p.restaurant_id=i.restaurant_id)`, [userId]);
   }
