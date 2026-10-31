@@ -20,6 +20,8 @@ npm test
 
 Tests use installed Chrome by default. Set `PLAYWRIGHT_CHROMIUM_EXECUTABLE` for another installation. Start the development server before `npm test`. Generated traces/screenshots are in ignored `test-results/`.
 
+For intercepted HTTP integration tests, start another dev server on port 5174 with `VITE_API_MODE=live` and `VITE_API_BASE_URL=http://127.0.0.1:5174`, then run `npm test -- --config playwright.live.config.ts`. These tests intercept `/api/` responses locally; they do not contact or certify a real backend. See [VALIDATION.md](VALIDATION.md) for actual check results and remaining verification limits.
+
 ## Live integration
 
 Set these in your local environment (never commit secrets):
