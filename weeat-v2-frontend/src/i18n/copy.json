@@ -1596,6 +1596,30 @@
                            "vi":  "Trò chuyện gần đây",
                            "en":  "Recent chats"
                        },
+    "mapAlongRoute":  {
+                           "vi":  "{count} quán đã lưu trong khu vực tuyến đường (đệm {radius} km)",
+                           "en":  "{count} saved places in the route area ({radius} km margin)"
+                       },
+    "routeFarApart":  {
+                           "vi":  "Điểm đi và điểm đến cách nhau hơn {km} km nên vùng tìm kiếm rất lớn và bản đồ bị thu nhỏ.",
+                           "en":  "From and To are more than {km} km apart, so the area is very large and the map is zoomed out."
+                       },
+    "routeCalculating":  {
+                              "vi":  "Đang tìm tuyến đường xe máy…",
+                              "en":  "Finding the best motorbike route…"
+                          },
+    "routeFallbackNotice":  {
+                                  "vi":  "Hiện chưa có tuyến đường, nên đang hiện các quán quanh điểm xuất phát.",
+                                  "en":  "The route is unavailable right now, so places around your starting point are shown instead."
+                              },
+    "routeLiveSummary":  {
+                              "vi":  "{km} km · khoảng {minutes} phút đi xe máy",
+                              "en":  "{km} km · about {minutes} min by motorbike"
+                          },
+    "toPlaceholder":  {
+                           "vi":  "Chọn vị trí cần đến",
+                           "en":  "Choose a destination"
+                       },
     "zoomIn":  {
                    "vi":  "Phóng to",
                    "en":  "Zoom in"

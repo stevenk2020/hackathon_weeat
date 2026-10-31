@@ -7,7 +7,7 @@ import { config, missingConfig, originFor } from './config.mjs';
 import { pool, query } from './db.mjs';
 import { cookie, readCookie, seal, unseal } from './session.mjs';
 import { HttpError, analyze, editPlace, savePlace, savedPlaces, samples, serveCover } from './places.mjs';
-import { GeoError, checkGeoRate, mapConfig, resolveAddress, reverseGeocode, suggestAddresses } from './geo.mjs';
+import { GeoError, checkGeoRate, mapConfig, resolveAddress, reverseGeocode, routeBetween, suggestAddresses } from './geo.mjs';
 
 const dist = resolve(fileURLToPath(new URL('../dist/', import.meta.url)));
 const SESSION = 'weeat_session';
@@ -226,6 +226,11 @@ async function handle(req, res) {
   if (path === '/api/map/config' && method === 'GET') {
     requireUser(req);
     return sendJson(res, 200, await mapConfig(url.searchParams.get('failed') || ''));
+  }
+  if (path === '/api/map/route' && method === 'GET') {
+    requireUser(req);
+    return sendJson(res, 200, await routeBetween(url.searchParams.get('from_lat'), url.searchParams.get('from_lng'),
+      url.searchParams.get('to_lat'), url.searchParams.get('to_lng')));
   }
   if (path === '/api/profile' && method === 'GET') return sendJson(res, 200, { profile: await getProfile(requireUser(req).uid) });
   if (path === '/api/profile' && method === 'PATCH') {

@@ -68,7 +68,8 @@ Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec
 
 - [x] Tạo `/api/geo/search?q=&st=`, `/api/geo/place?ref=`, `/api/geo/reverse?lat=&lng=`. Autocomplete chỉ trả label/ref; gọi Place Detail **một lần khi chọn**; GPS dùng reverse. Goong ưu tiên, VietMap fallback; key pool/rotation, cache, session token và giới hạn 40 geo calls/phút/user theo `docs/MAP_AND_GEO.md`.
 - [x] Sửa `locationService.ts` và `AddressPicker.tsx` cho live: tìm sau 600 ms khi ≥4 ký tự (≥3 nếu có số), địa chỉ của user trước, "Search more addresses", không tự chọn khi gõ/blur/Enter nếu chưa chọn suggestion. Trạng thái đang tìm/không có kết quả/lỗi và chống kết quả cũ ghi đè. Cùng picker dùng cho Profile, Edit và Map; Ask AI location prompt còn ở bước Ask AI.
-- [ ] Profile bắt buộc Home address đã chọn hoặc GPS có label + lat/lng. Map From/To chọn địa chỉ; trường hợp card Map thiếu tọa độ thì tra địa chỉ và chọn suggestion đầu tiên, hiển thị trạng thái resolving, không để picker phát thêm request trùng.
+- [x] Map From/To chọn địa chỉ; card Map thiếu tọa độ tra địa chỉ và chọn suggestion đầu tiên, hiển thị trạng thái resolving, không để picker phát thêm request trùng. Kiểm tra live Bánh Cuốn Bách Hoa: đúng 1 `/api/geo/search` + 1 `/api/geo/place`.
+- [ ] Profile bắt buộc Home address đã chọn hoặc GPS có label + lat/lng.
 
 ## Map
 
@@ -76,9 +77,10 @@ Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec
 
 - [x] Giữ SVG mock; live lazy load `GoongMap.tsx` dùng MapLibre GL 4.7.1, một instance mỗi lần vào trang. `/api/map/config` cấp style URL/key tag, tile lỗi 401/403/429 thử đổi key một lần sau khi server probe. Một GeoJSON source có cluster 50 px, số pin, nhãn zoom ≥15, hover/selected label; vòng bán kính nét đứt, Home cam, zoom/recenter, card rail theo ảnh live.
 - [x] Radius live lấy saved rows từ Library đã load, không gọi `/api/map/places`; mặc định 5 km, chip 1/3/5/10, `?radius=` được snap. Vẽ và lọc vòng tròn bằng cùng `mapGeometry.ts`; category lọc pin/count/card, báo số quán thiếu tọa độ. Card có số pin/khoảng cách và cuộn tới map khi chạm thân card; mock vẫn dùng SVG.
-- [ ] Along route live: bán kính riêng mặc định 3 km (mock 5 km), ellipse hai tiêu điểm theo `|PA|+|PB| ≤ |AB|+2r`; thiếu To/A≈B dùng hình tròn. `?restaurant=<restaurantKey>` mở To là quán; Empty state "Expand to 5 km" đặt cả hai bán kính về 5.
-- [ ] Tạo `/api/map/route` gọi Goong Direction `vehicle=bike`, cache 24 giờ; vẽ đường thật và tóm tắt km/phút, fit camera cả route lẫn ellipse. Nếu route lỗi/rỗng, báo rõ và hiện quán quanh From, không vẽ đường giả; cảnh báo khi hai điểm cách nhau >40 km.
-- [ ] From/To marker kéo được: vùng/danh sách cập nhật trong lúc kéo, dragend reverse-geocode và tính route lại; chạm nền map trong Along route đặt To, chạm pin chọn quán. Pin/card Radius đã dùng chung `getPinDistanceLabel`, có số pin và chạm card cuộn map; còn To dùng km route và nút Map trên card mọi trang mở Along route với To là quán.
+- [x] Along route live: bán kính riêng mặc định 3 km (mock 5 km), ellipse hai tiêu điểm theo `|PA|+|PB| ≤ |AB|+2r`; thiếu To/A≈B dùng hình tròn. `?restaurant=<restaurantKey>` mở To là quán; `?radius=` snap chip gần nhất; Empty state "Expand to 5 km" đặt cả hai bán kính về 5.
+- [x] `/api/map/route` gọi Goong Direction `vehicle=bike`, cache 24 giờ; vẽ đường thật và tóm tắt km/phút, fit camera cả route lẫn ellipse. Nếu route lỗi/rỗng, báo rõ và hiện quán quanh From, không vẽ đường giả; cảnh báo khi hai điểm cách nhau >40 km.
+- [x] From/To marker kéo được: vùng/danh sách cập nhật trong lúc kéo, dragend reverse-geocode và tính route lại; chạm nền map trong Along route đặt To, chạm pin chỉ chọn quán. Pin/card dùng chung `getPinDistanceLabel`; đích dùng km tuyến thật, kể cả quán Discover chưa lưu hoặc vừa tra tọa độ. Card Map trên Discover/Library/Details/Ask AI mở Along route với To là quán. Kiểm tra live Library → Map: tuyến 1,7 km / 6 phút; kéo B: 0 request khi kéo, đúng 1 reverse + 1 route lúc thả. Chạm cụm giữ To, chạm nền đổi To và gọi 1 reverse + 1 route.
+- [ ] Ask AI cần chuyển `radius_km` và From của câu hỏi vào URL Map khi backend Ask AI live được triển khai.
 - [ ] Ask AI location đã xác nhận có thể lưu làm From gần nhất theo user; địa chỉ Home mới hơn được ưu tiên. Map vẫn có From mặc định từ Profile khi chưa có location chat.
 
 ## Ask AI
@@ -95,4 +97,6 @@ Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec
 - [ ] Details hiển thị transcript, highlights comments, thông tin nguồn/giá/địa chỉ thật; không suy ra link đặt món chỉ vì có URL tìm kiếm. Ảnh thiếu dùng fallback. Giữ accessibility của input, drawer, nút và trạng thái lỗi.
 - [ ] Sau mỗi bước code sau này: cập nhật file này, chạy test theo từng file liên quan, đối chiếu screenshot UI ở 390/820/1280 px; chỉ chạy cả suite cuối cùng. Không sửa locked tests, không chạy loop dịch vụ trả phí.
 
-**Tiếp theo:** Map live và Ask AI theo spec 11. Mỗi bước triển khai là một commit riêng.
+**Kiểm tra bước Along route:** build/typecheck xanh; `map-scroll` 5/5, `map-addresses` 7/7, case Map trong `product-updates` 1/1, case route trong `journeys` 1/1. Cả file `product-updates` 7/11 và `journeys` 10/14 do 4 case mỗi file ở Discover/Ask AI/Details chưa theo spec; không sửa tests. Ảnh live Library → Map được xem cạnh ảnh `map-1280x900` mẫu: bố cục và vị trí card/map khớp, đường Goong màu cam nhìn rõ sau khi dời nhãn đích xuống dưới pin.
+
+**Tiếp theo:** Ask AI theo spec 11 và các case Discover/Details còn đỏ. Mỗi bước triển khai là một commit riêng.
