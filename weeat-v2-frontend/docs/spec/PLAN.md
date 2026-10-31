@@ -8,7 +8,9 @@ Tiến độ server/auth: đã có `server/config.mjs`, `db.mjs`, `session.mjs`,
 
 Tái kiểm tra sau sửa build: `tests/unit/config.spec.ts` **6/6**, `tests/unit/session.spec.ts` **11/11**; `PORT=32031 BASE_URLS=http://localhost:32031 ONLY='health|auth|profile|categories|unknown|cross' bash docs/spec/tools/live-smoke.sh` **7/7**. Server kiểm tra đã tắt, cổng 32031 trống. Mã server/auth của bước này ở commit `170a3c6`; chưa phát hiện lỗi mới trong phạm vi kiểm tra.
 
-Tiến độ places: đã thêm `server/places.mjs`, nối Analyze DB-first/crawl, Save/Unsave, Samples và proxy `/covers/*`. `tests/unit/places.spec.ts` **14/14 xanh**, `npm run build` xanh; một request analyze với link của test user đã có trong DB trả **200**, `X-Weeat-Source: database`, 1 quán; `ONLY='samples'` smoke **1/1 xanh**. Không gọi crawl trong lần kiểm tra. Cổng 32031 đã tắt sau kiểm tra. Còn GET/PATCH Library và việc nối Discover live ở các bước sau; client hiện vẫn đòi `duration_seconds` trong response Analyze nên cần chỉnh ở bước nối Discover (crawl API không trả trường này).
+Tiến độ places: đã thêm `server/places.mjs`, nối Analyze DB-first/crawl, Save/Unsave, Samples và proxy `/covers/*`. `tests/unit/places.spec.ts` **14/14 xanh**, `npm run build` xanh; một request analyze với link của test user đã có trong DB trả **200**, `X-Weeat-Source: database`, 1 quán; `ONLY='samples'` smoke **1/1 xanh**. Không gọi crawl trong lần kiểm tra. Cổng 32031 đã tắt sau kiểm tra. Còn GET/PATCH Library và việc nối Discover live ở các bước sau.
+
+Tiến độ live Analyze: client nhận `duration_seconds` thiếu/null ở live mode (crawl không trả), vẫn từ chối thời lượng thiếu trong mock và thời lượng sai/quá 300 giây ở cả hai mode. Badge chỉ hiện nền tảng khi chưa biết thời lượng; fallback card không giả `0:00`. Timeout riêng `/api/analyze` là 180 giây, đủ cho crawl server tối đa 150 giây cộng thời gian ghi DB. `tests/domain.spec.ts` **6/6 xanh**; kiểm tra Chrome live với response không có thời lượng trả 1 quán/null và vẫn chặn 301 giây; badge null hiện “▶ Shorts”; UI check mock Discover **2/2 sạch**. Đã xem ảnh Discover có card cạnh reference: khác biệt textarea/bố cục cũ vẫn ở backlog Discover, card mock giữ nhãn `0:52` như trước.
 
 Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec 10 > spec 07 > spec 03 > API contract cũ. Đặc biệt: cookie phiên thay Firebase token; DB chỉ có `is_saved` boolean (API trả 0/1), không dùng `is_save`; Map lọc Library ở client, không gọi `/api/map/places`; Along route lọc bằng ellipse dù vẫn vẽ tuyến xe máy thật; card Ask AI lấy từ event `references` do server chọn theo marker `[[n]]` và quy tắc fallback của spec 11. Ảnh là chuẩn bố cục; số lượng quán, ảnh món và vị trí pin là dữ liệu live nên có thể khác.
 
@@ -33,6 +35,7 @@ Thứ tự khi tài liệu xung đột: locked tests > spec 11 cho Ask AI > spec
 ## Discover
 
 - [x] Tạo `extractLinks` tách URL khỏi caption, thêm `https://`, giữ thứ tự/URL đầu tiên và khử trùng theo video. Helper trả mọi link; màn hình Discover áp giới hạn 10 theo locked test.
+- [x] Cho live Analyze nhận response thiếu `duration_seconds` từ crawl; mock vẫn xác thực thời lượng nghiêm. Ẩn thời gian chưa biết trên badge và tăng timeout Analyze riêng lên 180 giây.
 
 - [ ] Đổi input một URL hiện tại thành textarea nhiều link, dùng `extractLinks` và giới hạn 10 link tại màn hình; xử lý tuần tự, hiển thị `processingProgress`, kết quả cộng dồn, lỗi và Retry riêng từng link. Giữ nút Paste link với trạng thái clipboard bị từ chối.
 - [ ] Hỗ trợ `?links=`, `?text=`, `?url=` từ share target: điền ô, xóa query khỏi URL, không tự analyze; giữ link qua đăng nhập bằng sessionStorage. Guest/onboarding thấy prompt phù hợp.
