@@ -1623,5 +1623,17 @@
     "zoomIn":  {
                    "vi":  "Phóng to",
                    "en":  "Zoom in"
+               },
+    "askSearching":  {
+                         "vi":  "Đang tìm trong các quán đã lưu…",
+                         "en":  "Searching your saved places…"
+                     },
+    "askAnswering":  {
+                         "vi":  "Đang trả lời…",
+                         "en":  "Writing an answer…"
+                     },
+    "stopAnswer":  {
+                        "vi":  "Dừng",
+                        "en":  "Stop"
                }
 }
