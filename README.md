@@ -123,7 +123,7 @@ The backend uses **Node.js**, **SQLite** and **node-postgres (`pg`)** to build A
 
 - **Optional TikTok content retrieval:** `yt-dlp` and `gallery-dl`.
 - **Demo-video generation scripts:** FFmpeg, imageio-ffmpeg, NumPy, Pillow and edge-tts. These tools support demonstration-video production.
-- **Third-party services and APIs:** Google Gemini API, YouTube Data API, Goong, VietMap and OpenAI.
+- **Third-party services and APIs:** Google Gemini API, YouTube Data API, Goong, VietMap, OpenAI, Brave Search API.
 
 Pre-prepared assets: https://github.com/nhule-lab/weeat-ai-asset
 
