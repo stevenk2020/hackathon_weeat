@@ -57,7 +57,7 @@ test('reader real fixtures: exact flags, every sanitized field, image order and 
   const details=await h.readers.tiktokVideo.details(URL);
   const thumb=videoFixture.thumbnails.find(item=>item.id==='originCover').url;
   assert.deepEqual(details,{ok:true,details:{caption:videoFixture.description.slice(0,3000),handle:videoFixture.uploader,
-    author:videoFixture.channel.trim().slice(0,200),coverUrl:thumb}});
+    author:videoFixture.channel.trim().slice(0,200),coverUrl:thumb,durationSec:videoFixture.duration,filesizeBytes:videoFixture.filesize}});
   assert.deepEqual(h.calls[0],{bin:'yt-dlp',args:[...common,'-J','--skip-download','--',URL],opts:{shell:false}});
   const photos=await h.readers.tiktokPhotos.fetch(PHOTO_URL);
   const post=photoFixture.find(item=>item[0]===2)?.[1]||photoFixture.find(item=>item[0]===3)[2];
@@ -73,7 +73,7 @@ test('reader real fixtures: exact flags, every sanitized field, image order and 
 test('yt-dlp video exact selector/max-size arguments and raw stdout',async()=>{
   const bytes=Buffer.from([0,1,2,255]),h=harness([bytes]);
   assert.deepEqual(await h.readers.tiktokVideo.fetch(URL),{ok:true,videoBuffer:bytes,comments:[]});
-  const max=70*1048576;
+  const max=100*1048576;
   assert.deepEqual(h.calls[0].args,[...common,'-f',`b[filesize<=${max}]/b[filesize_approx<=${max}]`,'--max-filesize',String(max),'-o','-','--',URL]);
 });
 for(const mode of ['video','details','gallery'])for(const error of ['throw','missing','error','exit','empty'])
@@ -124,11 +124,11 @@ test('details field truncation, invalid types/handle, and all thumbnail fallback
   for(const id of ['originCover','cover','dynamicCover','top']){
     const thumbs=['dynamicCover','cover','originCover'].filter(x=>['originCover','cover','dynamicCover'].indexOf(x)>=['originCover','cover','dynamicCover','top'].indexOf(id)).map(x=>({id:x,url:'https://p16.tiktokcdn.com/'+x}));
     const h=harness([{description:'x'.repeat(3100),uploader:'valid._9',channel:' '+'a'.repeat(210)+' ',thumbnail:'top',thumbnails:thumbs}]);
-    assert.deepEqual((await h.readers.tiktokVideo.details(URL)).details,{caption:'x'.repeat(3000),handle:'valid._9',author:'a'.repeat(200),coverUrl:id==='top'?'top':'https://p16.tiktokcdn.com/'+id});
+    assert.deepEqual((await h.readers.tiktokVideo.details(URL)).details,{caption:'x'.repeat(3000),handle:'valid._9',author:'a'.repeat(200),coverUrl:id==='top'?'top':'https://p16.tiktokcdn.com/'+id,durationSec:null,filesizeBytes:null});
   }
   for(const uploader of ['@bad','x'.repeat(65),'',null]){
     const h=harness([{description:9,uploader,channel:' ',thumbnail:'x'.repeat(4097)}]);
-    assert.deepEqual((await h.readers.tiktokVideo.details(URL)).details,{caption:null,handle:null,author:null,coverUrl:null});
+    assert.deepEqual((await h.readers.tiktokVideo.details(URL)).details,{caption:null,handle:null,author:null,coverUrl:null,durationSec:null,filesizeBytes:null});
   }
 });
 test('details invalid JSON fails without retry',async()=>{

@@ -23,6 +23,10 @@ curl --max-time 180 -X POST "$WEEAT_BASE_URL/api/extract" \
 
 The URL above is a placeholder; replace it with a real public Short or TikTok link.
 
+Videos known to be longer than 5 minutes return HTTP 422 with `error.code: "video_too_long"`. The limit is inclusive: a 5:00 video is accepted. TikTok videos larger than 100 MiB return HTTP 413 with `error.code: "video_too_large"` when `TIKTOK_YTDLP=1` enables the video reader. The server checks TikTok metadata before download when available, and also caps downloaded bytes. These limits default to `MAX_VIDEO_SECONDS=300` and `VIDEO_UPLOAD_MAX_MB=100`; configuration can lower them but cannot raise them above 5 minutes or 100 MiB.
+
+YouTube provides duration through its metadata API, so the duration check happens before AI analysis. This API sends YouTube URLs to Gemini without downloading the video; the YouTube metadata response does not include file size, so it cannot enforce the 100 MiB limit for YouTube. TikTok links analyzed from captions alone also have no reliable duration or file-size check. Enable `TIKTOK_YTDLP=1` to enforce both limits for TikTok videos.
+
 ## Success response
 
 ```jsonc
