@@ -4,7 +4,7 @@ import { identity } from './domain';
 import { ServiceError } from './errors';
 import { isMock } from './config';
 import { initialUser } from './auth';
-import type { AuthUser,Edits,Profile,Restaurant } from '../types';
+import type { AuthUser,ChatSession,Edits,Profile,Reference,Restaurant } from '../types';
 import type { SourceVideo } from '../types';
 async function saveRestaurant(user:AuthUser,r:Restaurant,saved:boolean):Promise<0|1>;
 async function saveRestaurant(r:Restaurant,saved:0|1):Promise<0|1>;
@@ -40,4 +40,22 @@ export const api = {
   save:saveRestaurant,
   edit:editRestaurant,
   async ask(user:AuthUser,message:string,session_id?:string){return c.askResponse(await request('/api/ask','POST',{message,...(session_id?{session_id}:{})},user));},
+  async chatSessions(user:AuthUser,signal?:AbortSignal):Promise<ChatSession[]>{
+    const data=c.object(await request('/api/chat/sessions','GET',undefined,user,signal));
+    if(!Array.isArray(data.sessions))throw new ServiceError('INVALID_RESPONSE');
+    return data.sessions.map(value=>{
+      const session=c.object(value);
+      if(String(session.uid)!==user.uid||!Array.isArray(session.messages))throw new ServiceError('INVALID_RESPONSE');
+      return {id:c.str(session.id),uid:user.uid,title:c.str(session.title),created_at:c.str(session.created_at),updated_at:c.str(session.updated_at),messages:session.messages.map(value=>{
+        const message=c.object(value),trace=message.tool_trace?c.object(message.tool_trace):null;
+        if(message.role!=='user'&&message.role!=='assistant')throw new ServiceError('INVALID_RESPONSE');
+        const references=trace?.references;
+        if(references!==undefined&&!Array.isArray(references))throw new ServiceError('INVALID_RESPONSE');
+        return {id:c.str(message.id),role:message.role,content:typeof message.content==='string'?message.content:'',created_at:c.str(message.created_at),references:(references as unknown[]|undefined)?.map(ref=>{const item=c.object(ref);return {video_id:c.str(item.video_id),restaurant_id:c.str(item.restaurant_id)} as Reference;})};
+      })} as ChatSession;
+    });
+  },
+  async deleteChat(user:AuthUser,id:string){const data=c.object(await request(`/api/chat/sessions/${encodeURIComponent(id)}`,'DELETE',undefined,user));if(data.ok!==true)throw new ServiceError('INVALID_RESPONSE');},
+  async memory(user:AuthUser,signal?:AbortSignal){const data=c.object(await request('/api/memory','GET',undefined,user,signal));if(!Array.isArray(data.memories))throw new ServiceError('INVALID_RESPONSE');return data.memories.map(value=>{const item=c.object(value);return {id:c.str(item.id),text:c.str(item.text)};});},
+  async deleteMemory(user:AuthUser,id:string){const data=c.object(await request(`/api/memory/${encodeURIComponent(id)}`,'DELETE',undefined,user));if(data.ok!==true)throw new ServiceError('INVALID_RESPONSE');},
 };

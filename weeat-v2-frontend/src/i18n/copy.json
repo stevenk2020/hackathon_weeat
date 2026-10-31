@@ -1635,5 +1635,21 @@
     "stopAnswer":  {
                         "vi":  "Dừng",
                         "en":  "Stop"
-               }
+               },
+    "deleteChat": {
+                        "vi": "Xóa cuộc trò chuyện",
+                        "en": "Delete chat"
+                  },
+    "deleteChatLabel": {
+                        "vi": "Xóa cuộc trò chuyện: {title}",
+                        "en": "Delete chat: {title}"
+                  },
+    "deleteChatConfirm": {
+                        "vi": "Xóa cuộc trò chuyện này? Bạn không thể hoàn tác.",
+                        "en": "Delete this chat? This cannot be undone."
+                  },
+    "confirmDeleteChat": {
+                        "vi": "Xóa",
+                        "en": "Delete"
+                  }
 }
